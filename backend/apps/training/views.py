@@ -7,8 +7,9 @@ from rest_framework.views import APIView
 
 from .models import (
     AccessLevel, DAILY_LIMITS, DailyCycle, DailyExerciseProgress, Exercise,
-    TrainingAttempt, UserTrainingProfile,
+    TrainingAttempt, UserTrainingProfile, MonthlyVariantAssignment
 )
+from . import validators
 
 
 def get_or_create_daily_cycle(user, cycle_date):
@@ -68,18 +69,100 @@ class ExerciseSubmitView(APIView):
 
     @transaction.atomic
     def post(self, request, exercise_number):
+        answer_data = request.data.get('answer')
+        if not answer_data:
+            return Response({
+                "error": "invalid_request",
+                "message": "Falta el campo 'answer'."
+            }, status=status.HTTP_400_BAD_REQUEST)
+
         exercise = Exercise.objects.filter(number=exercise_number, active=True).first()
         if not exercise:
-            return Response({'detail': 'Exercise not found.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'invalid_request', 'message': 'Ejercicio no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
 
-        cycle = get_or_create_daily_cycle(request.user, timezone.localdate())
+        today = timezone.localdate()
+        cycle = get_or_create_daily_cycle(request.user, today)
+        
+        # Validación de secuencia de tu código original
         state = exercise_state(cycle, exercise)
         if state == 'NOT_ACCESSIBLE_BY_LEVEL':
-            return Response({'detail': 'Exercise is not accessible for the current level.'}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'error': 'invalid_request', 'message': 'No accesible por nivel.'}, status=status.HTTP_403_FORBIDDEN)
         if state == 'BLOCKED_BY_SEQUENCE':
-            return Response({'detail': 'Previous exercise must be completed first.'}, status=status.HTTP_409_CONFLICT)
+            return Response({'error': 'invalid_request', 'message': 'Debes completar el anterior.'}, status=status.HTTP_409_CONFLICT)
 
-        return Response(
-            {'detail': 'Educational validator for this exercise is not configured yet.'},
-            status=status.HTTP_501_NOT_IMPLEMENTED,
+        # BLOQUEO ANTI-CONCURRENCIA (Punto 16 de F5)
+        # Aseguramos el progreso para evitar clics dobles simultáneos
+        progress, _ = DailyExerciseProgress.objects.select_for_update().get_or_create(
+            cycle=cycle, exercise=exercise
         )
+
+        # Control de 5 intentos máximo
+        current_attempts = TrainingAttempt.objects.filter(user=request.user, exercise=exercise, cycle=cycle).count()
+        if current_attempts >= 5:
+            return Response({
+                "error": "attempt_limit_reached",
+                "message": "Has alcanzado el límite de 5 intentos para este juego hoy."
+            }, status=status.HTTP_409_CONFLICT)
+
+        # Recuperar variante (Punto 5)
+        first_day_of_month = today.replace(day=1)
+        assignment = MonthlyVariantAssignment.objects.filter(
+            user=request.user, exercise=exercise, month=first_day_of_month
+        ).first()
+
+        if not assignment:
+            return Response({
+                "error": "variant_not_found",
+                "message": "No existe una variante disponible para este ejercicio."
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        # Simulación de datos del JSON que vendrá en la variante
+        variant_data = {} 
+        variant_key = assignment.variant_key
+        
+        # Delegar en validators modulares (Punto 8)
+        is_correct, explanation = False, ""
+        if exercise.exercise_type == 'ORDER_ALGORITHM':
+            is_correct, explanation = validators.validate_sorting(variant_data, answer_data)
+        elif exercise.exercise_type == 'FIND_ERROR':
+            is_correct, explanation = validators.validate_bug_finding(variant_data, answer_data)
+        elif exercise.exercise_type == 'CONNECT_NETWORK':
+            is_correct, explanation = validators.validate_networking(variant_data, answer_data)
+        else:
+            return Response({"error": "invalid_request", "message": "Tipo de juego desconocido."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Registrar intento
+        attempt_number = current_attempts + 1
+        TrainingAttempt.objects.create(
+            user=request.user,
+            exercise=exercise,
+            cycle=cycle,
+            answer_payload=answer_data,
+            is_correct=is_correct,
+            error_explanation=explanation,
+            variant_reference=variant_key,
+            attempt_number=attempt_number
+        )
+
+        # Actualizar progreso si acierta
+        if is_correct and not progress.completed:
+            progress.completed = True
+            progress.completed_at = timezone.now()
+            progress.save()
+
+            # Actualizamos contador del ciclo
+            cycle.completed_count += 1
+            cycle.save()
+
+        # Respuesta estructurada según contrato F5
+        response_data = {
+            "success": True,
+            "correct": is_correct,
+            "attempt_number": attempt_number,
+            "attempts_remaining": 5 - attempt_number,
+            "completed": progress.completed
+        }
+        if not is_correct:
+            response_data["explanation"] = explanation
+
+        return Response(response_data, status=status.HTTP_200_OK)

@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from training.models import Difficulty, Exercise, ExerciseType
+from apps.training.models import Difficulty, Exercise, ExerciseType
 
 
 class Command(BaseCommand):

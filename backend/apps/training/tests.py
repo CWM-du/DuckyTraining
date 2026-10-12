@@ -3,6 +3,9 @@ from django.test import TestCase
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APIClient
+from unittest.mock import patch
+from datetime import timedelta , date
+
 
 from .management.commands.seed_logical_exercises import Command
 from .models import (
@@ -102,3 +105,74 @@ class ExerciseSubmitViewTests(TestCase):
         response = self.client.post(url2, payload, format='json')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertEqual(response.data['error'], 'variant_not_found')
+
+
+from unittest.mock import patch
+from datetime import timedelta, date
+
+class DailyCycleAdvancedTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username='pro-user', password='password123')
+        
+        # Poblamos la BD con los ejercicios predefinidos
+        Command().handle()
+        
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.user)
+        
+        # Le damos un perfil PRO a este usuario
+        UserTrainingProfile.objects.create(
+            user=self.user,
+            access_level=AccessLevel.PRO
+        )
+
+    def test_pro_user_gets_ten_daily_exercises(self):
+        """Prueba que un usuario PRO tiene acceso a 10 ejercicios."""
+        response = self.client.get('/api/training/')
+        
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['daily_limit'], 10)
+        
+        exercises = response.data['exercises']
+        self.assertEqual(exercises[0]['state'], 'AVAILABLE')
+        self.assertEqual(exercises[1]['state'], 'BLOCKED_BY_SEQUENCE')
+        self.assertEqual(exercises[9]['state'], 'BLOCKED_BY_SEQUENCE')
+
+    @patch('apps.training.views.timezone.localdate')
+    def test_daily_reset_and_history_retention(self, mock_localdate):
+        """
+        Prueba el viaje en el tiempo usando fechas reales puras.
+        """
+        # Obtenemos la fecha real de hoy saltándonos el mock
+        base_date = date.today()
+        
+        # --- DÍA 1 ---
+        mock_localdate.return_value = base_date
+        
+        response_day1 = self.client.get('/api/training/')
+        
+        # Completamos el ejercicio 1
+        cycle_day1 = DailyCycle.objects.get(user=self.user, cycle_date=base_date)
+        exercise_one = Exercise.objects.get(number=1)
+        DailyExerciseProgress.objects.create(cycle=cycle_day1, exercise=exercise_one, completed=True)
+        
+        response_day1_after = self.client.get('/api/training/')
+        self.assertEqual(response_day1_after.data['exercises'][0]['state'], 'COMPLETED_TODAY')
+        self.assertEqual(response_day1_after.data['exercises'][1]['state'], 'AVAILABLE')
+
+        # --- DÍA 2 (Viaje en el tiempo) ---
+        next_day = base_date + timedelta(days=1)
+        mock_localdate.return_value = next_day
+        
+        response_day2 = self.client.get('/api/training/')
+        
+        self.assertEqual(response_day2.data['daily_limit'], 10)
+        
+        # Secuencia reiniciada
+        self.assertEqual(response_day2.data['exercises'][0]['state'], 'AVAILABLE')
+        self.assertEqual(response_day2.data['exercises'][1]['state'], 'BLOCKED_BY_SEQUENCE')
+        
+        # Historial retenido
+        self.assertEqual(DailyCycle.objects.count(), 2)
+        self.assertTrue(DailyCycle.objects.filter(cycle_date=base_date).exists())
+        self.assertTrue(DailyCycle.objects.filter(cycle_date=next_day).exists())

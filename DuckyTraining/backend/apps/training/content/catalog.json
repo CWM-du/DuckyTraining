@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "description": "Plantilla técnica del catálogo. No contiene preguntas ni soluciones educativas. Sustituir content=null por contenido validado antes de publicar cada variante.",
+  "exercises": [
+    {
+      "exercise_number": 1,
+      "logical_name": "Secuencia de inicio",
+      "exercise_type": "ORDER_ALGORITHM",
+      "variants": [
+        {
+          "variant_key": "ex01_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex01_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex01_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex01_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex01_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 2,
+      "logical_name": "Orden de una respuesta",
+      "exercise_type": "ORDER_ALGORITHM",
+      "variants": [
+        {
+          "variant_key": "ex02_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex02_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex02_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex02_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex02_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 3,
+      "logical_name": "El error visible",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex03_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex03_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex03_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex03_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex03_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 4,
+      "logical_name": "La opción correcta",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex04_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex04_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex04_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex04_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex04_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 5,
+      "logical_name": "Primera conexión",
+      "exercise_type": "CONNECT_NETWORK",
+      "variants": [
+        {
+          "variant_key": "ex05_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex05_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex05_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex05_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex05_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 6,
+      "logical_name": "Ruta sin interrupciones",
+      "exercise_type": "CONNECT_NETWORK",
+      "variants": [
+        {
+          "variant_key": "ex06_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex06_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex06_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex06_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex06_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 7,
+      "logical_name": "Corrige antes de competir",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex07_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex07_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex07_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex07_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex07_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 8,
+      "logical_name": "Ordena la estrategia",
+      "exercise_type": "ORDER_ALGORITHM",
+      "variants": [
+        {
+          "variant_key": "ex08_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex08_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex08_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex08_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex08_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 9,
+      "logical_name": "Red de salida",
+      "exercise_type": "CONNECT_NETWORK",
+      "variants": [
+        {
+          "variant_key": "ex09_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex09_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex09_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex09_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex09_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    },
+    {
+      "exercise_number": 10,
+      "logical_name": "Reto de preparación DuckyWorld",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex10_v1",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex10_v2",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex10_v3",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex10_v4",
+          "status": "pending_content",
+          "content": null
+        },
+        {
+          "variant_key": "ex10_v5",
+          "status": "pending_content",
+          "content": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react'
-import { getTrainingOverview } from './services/trainingApi'
-import DailyCycleView from './components/training/DailyCycleView' 
+// 1. Comentamos la API real
+// import { getTrainingOverview } from './services/trainingApi'
+import DailyCycleView from './components/training/DailyCycleView'
+// 2. Importamos nuestros datos de prueba (asegúrate de que la ruta sea correcta)
+import { mockOverviewData } from './data/mockTrainingData' 
 
 export default function App() {
-  const [data, setData] = useState(null)
+  // 3. Pasamos el mock directamente como estado inicial
+  const [data, setData] = useState(mockOverviewData) 
   const [error, setError] = useState(null)
 
+  // 4. Comentamos el useEffect para que no intente hacer la llamada
+  /*
   useEffect(() => {
     getTrainingOverview().then(setData).catch((e) => setError(e.message))
   }, [])
-
+  */
   if (error) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -33,6 +39,5 @@ export default function App() {
     )
   }
 
-  // Aquí ocurre la magia: Le pasamos los datos reales al componente visual
   return <DailyCycleView data={data} />
 }

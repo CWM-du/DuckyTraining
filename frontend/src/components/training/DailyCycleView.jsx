@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ExerciseShell from './ExerciseShell'; // <-- 1. Importamos el modal
 
-// Recibimos 'data' como prop desde App.jsx
 const DailyCycleView = ({ data }) => {
-  
-  // Desestructuramos los datos REALES que vienen del backend
   const { access_level, daily_limit, cycle_date, completed_count, exercises } = data;
   
-  // Mocks visuales temporales (hasta que el backend los envíe)
   const streak = 4; 
   const ducky_coins = 150; 
 
-  const renderExerciseState = (state) => {
-    switch (state) {
+  // 2. Creamos un estado para saber qué ejercicio está abierto (null = ninguno)
+  const [activeExercise, setActiveExercise] = useState(null);
+
+  // 3. Pasamos el objeto 'exercise' completo a la función
+  const renderExerciseState = (exercise) => {
+    switch (exercise.state) {
       case 'COMPLETED_TODAY':
         return (
           <div className="flex items-center text-green-500 font-bold">
@@ -20,7 +21,11 @@ const DailyCycleView = ({ data }) => {
         );
       case 'AVAILABLE':
         return (
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-transform transform hover:scale-105">
+          // 4. Al hacer clic, guardamos este ejercicio en el estado
+          <button 
+            onClick={() => setActiveExercise(exercise)}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-transform transform hover:scale-105"
+          >
             ¡Jugar! ▶️
           </button>
         );
@@ -105,12 +110,22 @@ const DailyCycleView = ({ data }) => {
               </div>
 
               <div>
-                {renderExerciseState(exercise.state)}
+                {/* 5. Le pasamos el ejercicio completo a la función */}
+                {renderExerciseState(exercise)}
               </div>
             </div>
           );
         })}
       </div>
+
+      {/* 6. Si hay un ejercicio activo, renderizamos el modal superpuesto */}
+      {activeExercise && (
+        <ExerciseShell 
+          exercise={activeExercise} 
+          onClose={() => setActiveExercise(null)} 
+        />
+      )}
+      
     </div>
   );
 };

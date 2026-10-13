@@ -15,9 +15,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.users',      # <--- Actualizado
     'apps.training',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,4 +54,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    #'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'], -- Activar esta opcion en futuro para hacer bruebas con datos reales y hackear el backend
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+CORS_ALLOW_CREDENTIALS = True

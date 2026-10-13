@@ -240,8 +240,8 @@ npm run dev
 - [ ] Implementar 1 Duki Coin por primera finalización diaria de cada juego distinto, mediante el contrato real de Duki Bank/Equipo 5.
 - [ ] Validar enunciados, variantes, soluciones y explicaciones de los 10 ejercicios.
 - [x] Definir el formato del ejercicio 10 como `FIND_ERROR`; queda pendiente crear y validar su contenido real.
-- [ ] Definir hitos concretos de racha y logros.
-- [ ] Definir cómo se registran reintentos posteriores a un ejercicio ya completado ese día.
+- [ ] Definir hitos de logros; la regla base de racha diaria ya está aprobada e implementada.
+- [x] Definir reintentos posteriores: se registran en historial, sin incrementar otra vez el progreso por habilidad en el mismo ciclo.
 - [ ] Recibir contrato oficial de identidad/perfil de Equipo 0.
 - [ ] Recibir contrato oficial de recompensas de Equipo 5.
 
@@ -249,11 +249,11 @@ npm run dev
 
 - [x] Implementar selección/asignación mensual server-side condicionada a que haya variantes publicadas.
 - [x] Implementar validadores server-side estructurales para los tres formatos; validar resultados reales cuando se cargue contenido educativo.
-- [ ] Registrar intentos correctos/incorrectos según la decisión definitiva de historial.
-- [ ] Actualizar progreso por habilidad tras un acierto válido.
+- [x] Registrar intentos correctos/incorrectos en historial según la decisión aprobada.
+- [x] Actualizar progreso por habilidad una sola vez por juego y ciclo diario; los reintentos posteriores solo se registran en el historial.
 - [ ] Integrar XP mediante el contrato real de Equipo 5.
 - [ ] Integrar finalización diaria y DuckyCoins mediante el contrato real de Equipo 5.
-- [ ] Implementar cálculo de racha según las reglas aprobadas.
+- [x] Implementar cálculo de racha al completar todo el cupo diario disponible, usando Europe/Madrid.
 - [ ] Implementar logros según los hitos aprobados.
 - [ ] Completar instrucciones y feedback de cada variante.
 
@@ -276,3 +276,16 @@ npm run dev
 - [ ] Ejecutar `makemigrations --check --dry-run`, `migrate`, `check` y tests en el entorno virtual del usuario.
 - [ ] Validar los cambios de membresía intradía con el contrato oficial de Equipo 0/Ecomotor.
 - [ ] Integrar el envío real de XP y Duki Coins solo tras recibir contratos oficiales.
+
+
+## Fase 7 · Progreso e historial — revisión entregada
+
+- [x] Mantener todos los intentos validados en el historial.
+- [x] Incrementar progreso por habilidad solo en la primera finalización de cada juego por ciclo diario.
+- [x] Actualizar racha una sola vez al completar el cupo diario disponible.
+- [x] Añadir `GET /api/training/progress/` y `GET /api/training/history/`, filtrados por usuario autenticado.
+- [x] Conectar React a las consultas de progreso e historial.
+- [ ] Ejecutar comprobaciones Django y tests de F7 en el entorno virtual del usuario.
+- [ ] Validar el comportamiento de extremo a extremo en frontend/backend.
+- [ ] Definir logros solo cuando existan hitos aprobados.
+- [ ] Integrar XP y Duki Coins únicamente con contratos oficiales.

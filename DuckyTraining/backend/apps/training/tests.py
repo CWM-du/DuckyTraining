@@ -10,7 +10,7 @@ from datetime import timedelta , date
 from .management.commands.seed_logical_exercises import Command
 from .models import (
     AccessLevel, DailyCycle, DailyExerciseProgress, Exercise,
-    MonthlyVariantAssignment, TrainingAttempt, UserTrainingProfile
+    MonthlyVariantAssignment, SkillProgress, TrainingAttempt, TrainingStreak, UserTrainingProfile
 )
 
 class TrainingOverviewTests(TestCase):
@@ -126,6 +126,30 @@ class ExerciseSubmitViewTests(TestCase):
         self.assertTrue(response.data['correct'])
         self.assertEqual(response.data['attempt_number'], 1)
         self.assertEqual(TrainingAttempt.objects.count(), 1)
+        skill_progress = SkillProgress.objects.get(user=self.user, skill=self.exercise.skill)
+        self.assertEqual(skill_progress.successful_completions, 1)
+
+    @patch('apps.training.views.get_or_assign_monthly_variant')
+    def test_repeated_correct_attempt_is_history_but_not_extra_skill_completion(self, mock_variant):
+        assignment = MonthlyVariantAssignment.objects.get(user=self.user, exercise=self.exercise)
+        variant = {
+            'variant_key': 'ex01_v1', 'exercise_number': 1, 'exercise_type': 'ORDER_ALGORITHM',
+            'instruction': 'Ordena los pasos.', 'steps': [{'id': 'a', 'text': 'Paso A'}, {'id': 'b', 'text': 'Paso B'}],
+            'expected_order': ['a', 'b'], 'explanation': 'Revisa el orden lógico.'
+        }
+        mock_variant.return_value = (assignment, variant)
+        payload = {'answer': {'ordered_ids': ['a', 'b']}}
+
+        first = self.client.post(self.url, payload, format='json')
+        second = self.client.post(self.url, payload, format='json')
+
+        self.assertEqual(first.status_code, status.HTTP_200_OK)
+        self.assertEqual(second.status_code, status.HTTP_200_OK)
+        self.assertEqual(TrainingAttempt.objects.filter(user=self.user, exercise=self.exercise).count(), 2)
+        skill_progress = SkillProgress.objects.get(user=self.user, skill=self.exercise.skill)
+        self.assertEqual(skill_progress.successful_completions, 1)
+        self.cycle.refresh_from_db()
+        self.assertEqual(self.cycle.completed_count, 1)
 
     @patch('apps.training.views.get_or_assign_monthly_variant')
     def test_five_attempt_limit_is_enforced(self, mock_variant):
@@ -240,3 +264,82 @@ class EducationalCatalogStructureTests(TestCase):
         from .validators import validate_sorting
         correct, _ = validate_sorting({'expected_order': [], 'explanation': 'Explicación'}, {'ordered_ids': []})
         self.assertFalse(correct)
+
+
+class TrainingProgressAndHistoryTests(TestCase):
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(username='f7-user', password='password123')
+        self.other_user = get_user_model().objects.create_user(username='f7-other', password='password123')
+        Command().handle()
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
+        self.exercise = Exercise.objects.get(number=1)
+        self.today = timezone.localdate()
+        self.cycle = DailyCycle.objects.create(
+            user=self.user, cycle_date=self.today, effective_access_level=AccessLevel.FREE, daily_limit=3
+        )
+        self.cycle.selected_exercises.set(Exercise.objects.filter(number__in=[1, 2, 3]))
+
+    def test_progress_endpoint_returns_only_user_skill_data_and_quota(self):
+        SkillProgress.objects.create(user=self.user, skill='Algoritmos', successful_completions=2)
+        SkillProgress.objects.create(user=self.other_user, skill='Redes', successful_completions=99)
+        response = self.client.get('/api/training/progress/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['daily_quota'], 3)
+        self.assertEqual(response.data['completed_count'], 0)
+        self.assertEqual(response.data['skills'], [{'skill': 'Algoritmos', 'successful_completions': 2}])
+        self.assertEqual(response.data['streak']['current_streak'], 0)
+
+    def test_history_endpoint_returns_only_authenticated_users_attempts(self):
+        TrainingAttempt.objects.create(
+            user=self.user, exercise=self.exercise, cycle=self.cycle, answer_payload={'ordered_ids': ['a']},
+            is_correct=False, error_explanation='Prueba', variant_reference='ex01_v1', attempt_number=1
+        )
+        other_cycle = DailyCycle.objects.create(
+            user=self.other_user, cycle_date=self.today, effective_access_level=AccessLevel.FREE, daily_limit=3
+        )
+        TrainingAttempt.objects.create(
+            user=self.other_user, exercise=self.exercise, cycle=other_cycle, answer_payload={'ordered_ids': ['b']},
+            is_correct=True, error_explanation='', variant_reference='ex01_v1', attempt_number=1
+        )
+        response = self.client.get('/api/training/history/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['count'], 1)
+        self.assertEqual(response.data['results'][0]['exercise_number'], 1)
+        self.assertFalse(response.data['results'][0]['is_correct'])
+
+    def test_history_limit_is_validated(self):
+        response = self.client.get('/api/training/history/?limit=101')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_streak_only_updates_when_daily_quota_is_complete(self):
+        from apps.training.views import update_streak_if_quota_complete
+        DailyExerciseProgress.objects.create(cycle=self.cycle, exercise=Exercise.objects.get(number=1), completed=True)
+        self.assertFalse(update_streak_if_quota_complete(self.cycle, self.today))
+        self.assertFalse(TrainingStreak.objects.filter(user=self.user).exists())
+
+        for number in (2, 3):
+            DailyExerciseProgress.objects.create(
+                cycle=self.cycle, exercise=Exercise.objects.get(number=number), completed=True
+            )
+        self.assertTrue(update_streak_if_quota_complete(self.cycle, self.today))
+        streak = TrainingStreak.objects.get(user=self.user)
+        self.assertEqual(streak.current_streak, 1)
+        self.assertEqual(streak.last_completion_date, self.today)
+        self.cycle.refresh_from_db()
+        self.assertTrue(self.cycle.streak_processed)
+        self.assertFalse(update_streak_if_quota_complete(self.cycle, self.today))
+        self.assertEqual(TrainingStreak.objects.get(user=self.user).current_streak, 1)
+
+    def test_streak_increments_only_for_consecutive_completed_days(self):
+        from apps.training.views import update_streak_if_quota_complete
+        yesterday = self.today - timedelta(days=1)
+        TrainingStreak.objects.create(user=self.user, current_streak=3, last_completion_date=yesterday)
+        for number in (1, 2, 3):
+            DailyExerciseProgress.objects.create(
+                cycle=self.cycle, exercise=Exercise.objects.get(number=number), completed=True
+            )
+        self.assertTrue(update_streak_if_quota_complete(self.cycle, self.today))
+        streak = TrainingStreak.objects.get(user=self.user)
+        self.assertEqual(streak.current_streak, 4)
+        self.assertEqual(streak.last_completion_date, self.today)

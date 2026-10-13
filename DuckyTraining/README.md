@@ -69,3 +69,8 @@ npm run dev
 ## Fase 6 · Ciclo diario y acceso
 
 Consultar `docs/FASE_6_CICLO_DIARIO.md` para reglas implementadas, excepción heredada y comprobaciones pendientes. La integración de recompensas no se simula: XP depende de Ecomotor y Duki Coins de Duki Bank/Equipo 5.
+
+
+## Fase 7 · Progreso e historial
+
+La implementación de revisión está documentada en `docs/FASE_7_PROGRESO_HISTORIAL.md`. Incluye progreso por habilidad, racha al completar el cupo diario, consulta de historial propio y visualización React. XP, Duki Coins y logros permanecen fuera de alcance hasta que se aprueben las reglas/contratos correspondientes. Los tests de esta revisión deben ejecutarse en el entorno virtual local.

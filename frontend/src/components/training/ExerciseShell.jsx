@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import OrderAlgorithmGame from './OrderAlgorithmGame'; // Asegúrate de que este archivo está en la misma carpeta
 
 const ExerciseShell = ({ exercise, onClose }) => {
   // Fases: 'INSTRUCTIONS' -> 'PLAYING' -> 'VALIDATING' -> 'FEEDBACK'
@@ -42,15 +43,23 @@ const ExerciseShell = ({ exercise, onClose }) => {
         {/* CONTENIDO PRINCIPAL (Cambia según la fase) */}
         <div className="p-8 overflow-y-auto flex-grow flex flex-col justify-center min-h-[400px]">
           
-          {/* FASE 1: INSTRUCCIONES */}
+          {/* FASE 1: INSTRUCCIONES DINÁMICAS */}
           {phase === 'INSTRUCTIONS' && (
             <div className="text-center max-w-lg mx-auto">
               <div className="text-5xl mb-6">🎯</div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Objetivo</h3>
-              <p className="text-gray-600 mb-8 text-lg">
-                Analiza el código y encuentra la línea exacta donde se está produciendo el error de seguridad. 
-                Haz clic en la línea incorrecta para seleccionarla.
-              </p>
+              
+              {/* Cambiamos el texto según el tipo de ejercicio */}
+              {exercise.type === 'ORDER_ALGORITHM' ? (
+                <p className="text-gray-600 mb-8 text-lg">
+                  Lee los bloques de código desordenados y colócalos en la secuencia lógica correcta para que el algoritmo funcione.
+                </p>
+              ) : (
+                <p className="text-gray-600 mb-8 text-lg">
+                  Analiza el código y encuentra la línea exacta donde se está produciendo el error de seguridad o lógico.
+                </p>
+              )}
+
               <button 
                 onClick={handleStart}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105"
@@ -63,8 +72,16 @@ const ExerciseShell = ({ exercise, onClose }) => {
           {/* FASE 2: RESOLUCIÓN (El Juego) */}
           {phase === 'PLAYING' && (
             <div className="flex flex-col items-center w-full">
-              <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600 mb-8">
-                <p>[Aquí irá el componente específico del juego: {exercise.type}]</p>
+              
+              {/* Aquí renderizamos el juego según el tipo */}
+              <div className="w-full mb-8">
+                {exercise.type === 'ORDER_ALGORITHM' ? (
+                  <OrderAlgorithmGame />
+                ) : (
+                  <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600">
+                    <p>Componente {exercise.type} en construcción...</p>
+                  </div>
+                )}
               </div>
               
               {/* Botones temporales para simular acierto o fallo al maquetar */}
@@ -94,7 +111,7 @@ const ExerciseShell = ({ exercise, onClose }) => {
             </div>
           )}
 
-          {/* FASE 4: FEEDBACK */}
+          {/* FASE 4: FEEDBACK DINÁMICO */}
           {phase === 'FEEDBACK' && (
             <div className="text-center max-w-lg mx-auto">
               {feedbackResult === 'SUCCESS' ? (
@@ -114,7 +131,10 @@ const ExerciseShell = ({ exercise, onClose }) => {
                   <div className="text-6xl mb-6">💡</div>
                   <h3 className="text-3xl font-black text-red-600 mb-4">Hay un error</h3>
                   <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg mb-8 text-left">
-                    <strong>Feedback del servidor:</strong> La línea seleccionada ejecuta la función, pero el error lógico está en la condición del bucle while (línea 4), que provoca un bucle infinito.
+                    <strong>Feedback del servidor:</strong> 
+                    {exercise.type === 'ORDER_ALGORITHM' 
+                      ? " El orden lógico no es correcto. Recuerda que no puedes usar una variable antes de declararla." 
+                      : " La línea seleccionada ejecuta la función, pero el error está en la condición del bucle while (línea 4)."}
                   </div>
                   <button 
                     onClick={handleRetry}

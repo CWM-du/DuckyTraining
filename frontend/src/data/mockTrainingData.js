@@ -16,8 +16,8 @@ export const mockOverviewData = {
     },
     {
       number: 2,
-      name: "Bug en el Bucle",
-      type: "FIND_ERROR",
+      name: "Ordena el Algoritmo",
+      type: "ORDER_ALGORITHM",
       difficulty: "MEDIUM",
       skill: "Debugging",
       state: "AVAILABLE" // Botón "¡Jugar!" brillante

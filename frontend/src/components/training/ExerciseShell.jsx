@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import OrderAlgorithmGame from './OrderAlgorithmGame'; // Asegúrate de que este archivo está en la misma carpeta
+import FindErrorGame from './FindErrorGame';
 
 const ExerciseShell = ({ exercise, onClose }) => {
   // Fases: 'INSTRUCTIONS' -> 'PLAYING' -> 'VALIDATING' -> 'FEEDBACK'
@@ -75,9 +76,9 @@ const ExerciseShell = ({ exercise, onClose }) => {
               
               {/* Aquí renderizamos el juego según el tipo */}
               <div className="w-full mb-8">
-                {exercise.type === 'ORDER_ALGORITHM' ? (
-                  <OrderAlgorithmGame />
-                ) : (
+                {exercise.type === 'ORDER_ALGORITHM' && <OrderAlgorithmGame />}
+                {exercise.type === 'FIND_ERROR' && <FindErrorGame />}
+                {exercise.type !== 'ORDER_ALGORITHM' && exercise.type !== 'FIND_ERROR' && (
                   <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600">
                     <p>Componente {exercise.type} en construcción...</p>
                   </div>

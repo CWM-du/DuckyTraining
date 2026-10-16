@@ -16,8 +16,8 @@ export const mockOverviewData = {
     },
     {
       number: 2,
-      name: "Ordena el Algoritmo",
-      type: "ORDER_ALGORITHM",
+      name: "Testeo",
+      type: "FIND_ERROR",
       difficulty: "MEDIUM",
       skill: "Debugging",
       state: "AVAILABLE" // Botón "¡Jugar!" brillante

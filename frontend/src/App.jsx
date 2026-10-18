@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 // import { getTrainingOverview } from './services/trainingApi'
 import DailyCycleView from './components/training/DailyCycleView'
 // 2. Importamos nuestros datos de prueba (asegúrate de que la ruta sea correcta)
-import { mockOverviewData } from './data/mockTrainingData' 
+import mockTrainingData from './data/mockTrainingData' 
 
 export default function App() {
   // 3. Pasamos el mock directamente como estado inicial
-  const [data, setData] = useState(mockOverviewData) 
+  const [data, setData] = useState(mockTrainingData) 
   const [error, setError] = useState(null)
 
   // 4. Comentamos el useEffect para que no intente hacer la llamada

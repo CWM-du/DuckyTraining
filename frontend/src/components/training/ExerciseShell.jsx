@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import OrderAlgorithmGame from './OrderAlgorithmGame'; // Asegúrate de que este archivo está en la misma carpeta
 import FindErrorGame from './FindErrorGame';
+import MatchConceptsGame from './MatchConceptsGame';
+
 
 const ExerciseShell = ({ exercise, onClose }) => {
   // Fases: 'INSTRUCTIONS' -> 'PLAYING' -> 'VALIDATING' -> 'FEEDBACK'
@@ -50,14 +52,19 @@ const ExerciseShell = ({ exercise, onClose }) => {
               <div className="text-5xl mb-6">🎯</div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Objetivo</h3>
               
-              {/* Cambiamos el texto según el tipo de ejercicio */}
-              {exercise.type === 'ORDER_ALGORITHM' ? (
+              {exercise.type === 'ORDER_ALGORITHM' && (
                 <p className="text-gray-600 mb-8 text-lg">
                   Lee los bloques de código desordenados y colócalos en la secuencia lógica correcta para que el algoritmo funcione.
                 </p>
-              ) : (
+              )}
+              {exercise.type === 'FIND_ERROR' && (
                 <p className="text-gray-600 mb-8 text-lg">
                   Analiza el código y encuentra la línea exacta donde se está produciendo el error de seguridad o lógico.
+                </p>
+              )}
+              {exercise.type === 'MATCH_CONCEPTS' && (
+                <p className="text-gray-600 mb-8 text-lg">
+                  Selecciona un concepto de la izquierda y conéctalo con su definición correcta a la derecha.
                 </p>
               )}
 
@@ -78,7 +85,9 @@ const ExerciseShell = ({ exercise, onClose }) => {
               <div className="w-full mb-8">
                 {exercise.type === 'ORDER_ALGORITHM' && <OrderAlgorithmGame />}
                 {exercise.type === 'FIND_ERROR' && <FindErrorGame />}
-                {exercise.type !== 'ORDER_ALGORITHM' && exercise.type !== 'FIND_ERROR' && (
+                {exercise.type === 'MATCH_CONCEPTS' && <MatchConceptsGame />}
+                
+                {exercise.type !== 'ORDER_ALGORITHM' && exercise.type !== 'FIND_ERROR' && exercise.type !== 'MATCH_CONCEPTS' && (
                   <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600">
                     <p>Componente {exercise.type} en construcción...</p>
                   </div>

@@ -1,42 +1,50 @@
-export const mockOverviewData = {
-  access_level: "FREE",
-  daily_limit: 3,
-  cycle_date: "2026-10-13",
-  completed_count: 1,
-  streak: 4, // Dato visual para tu cabecera
-  ducky_coins: 150, // Dato visual para tu cabecera
+const mockTrainingData = {
+  access_level: "PRO",
+  daily_limit: 10,
+  cycle_date: "2026-10-18",
+  completed_count: 0,
   exercises: [
     {
       number: 1,
-      name: "Algoritmo de Login",
+      name: "Flujo de Autenticación",
       type: "ORDER_ALGORITHM",
       difficulty: "EASY",
-      skill: "Logic",
-      state: "COMPLETED_TODAY" // Check verde
+      skill: "Lógica",
+      state: "AVAILABLE" // ¡Botón 1 activado!
     },
     {
       number: 2,
-      name: "Testeo",
+      name: "Inyección SQL clásica",
       type: "FIND_ERROR",
       difficulty: "MEDIUM",
-      skill: "Debugging",
-      state: "AVAILABLE" // Botón "¡Jugar!" brillante
+      skill: "Seguridad",
+      state: "AVAILABLE" // ¡Botón 2 activado!
     },
     {
       number: 3,
-      name: "Red de Oficina",
-      type: "CONNECT_NETWORK",
-      difficulty: "HARD",
-      skill: "Networking",
-      state: "BLOCKED_BY_SEQUENCE" // Candado
+      name: "Diccionario Hacker",
+      type: "MATCH_CONCEPTS",
+      difficulty: "EASY",
+      skill: "Teoría",
+      state: "AVAILABLE" // ¡Botón 3 activado!
     },
     {
       number: 4,
-      name: "Ataque SQLi",
-      type: "FIND_ERROR",
-      difficulty: "EASY",
-      skill: "Security",
-      state: "NOT_ACCESSIBLE_BY_LEVEL" // Grisáceo, etiqueta "PLUS/PRO"
+      name: "Refactorización Limpia",
+      type: "FILL_BLANKS",
+      difficulty: "HARD",
+      skill: "Clean Code",
+      state: "BLOCKED_BY_SEQUENCE" // Bloqueado para ver que el diseño sigue funcionando
+    },
+    {
+      number: 5,
+      name: "Arquitectura de API",
+      type: "MULTIPLE_CHOICE",
+      difficulty: "MEDIUM",
+      skill: "Sistemas",
+      state: "NOT_ACCESSIBLE_BY_LEVEL" // Bloqueado por nivel
     }
   ]
 };
+
+export default mockTrainingData;

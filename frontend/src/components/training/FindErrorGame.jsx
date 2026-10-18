@@ -24,7 +24,7 @@ const FindErrorGame = () => {
       {/* Cabecera del juego */}
       <div className="mb-6 flex justify-between items-center">
         <h4 className="text-white font-bold text-lg flex items-center gap-2">
-          <span>🔍</span> Encuentra la vulnerabilidad
+           Encuentra la vulnerabilidad
         </h4>
         <span className="bg-gray-800 text-gray-400 text-xs px-3 py-1 rounded-full border border-gray-600">
           FIND_ERROR

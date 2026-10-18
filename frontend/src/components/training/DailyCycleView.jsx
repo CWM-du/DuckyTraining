@@ -16,7 +16,7 @@ const DailyCycleView = ({ data }) => {
       case 'COMPLETED_TODAY':
         return (
           <div className="flex items-center text-green-500 font-bold">
-            <span className="text-2xl mr-2">✅</span> Completado
+             Completado
           </div>
         );
       case 'AVAILABLE':
@@ -26,19 +26,19 @@ const DailyCycleView = ({ data }) => {
             onClick={() => setActiveExercise(exercise)}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-transform transform hover:scale-105"
           >
-            ¡Jugar! ▶️
+            ¡Jugar! ▶
           </button>
         );
       case 'BLOCKED_BY_SEQUENCE':
         return (
           <div className="flex items-center text-gray-400 font-semibold">
-            <span className="text-xl mr-2">🔒</span> Bloqueado
+             Bloqueado
           </div>
         );
       case 'NOT_ACCESSIBLE_BY_LEVEL':
         return (
           <div className="flex flex-col items-end text-gray-500 text-sm">
-            <span>🔒 Nivel Insuficiente</span>
+            <span> Nivel Insuficiente</span>
             <span className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded mt-1 text-xs font-bold">
               Requiere PLUS / PRO
             </span>
@@ -61,15 +61,15 @@ const DailyCycleView = ({ data }) => {
         <div className="flex gap-6 text-center">
           <div className="bg-orange-100 px-4 py-2 rounded-lg">
             <p className="text-xs text-orange-600 font-bold uppercase">Racha</p>
-            <p className="text-2xl font-black text-orange-500">🔥 {streak}</p>
+            <p className="text-2xl font-black text-orange-500"> {streak}</p>
           </div>
           <div className="bg-yellow-100 px-4 py-2 rounded-lg">
             <p className="text-xs text-yellow-600 font-bold uppercase">DuckyCoins</p>
-            <p className="text-2xl font-black text-yellow-500">🪙 {ducky_coins}</p>
+            <p className="text-2xl font-black text-yellow-500"> {ducky_coins} pts</p>
           </div>
           <div className="bg-purple-100 px-4 py-2 rounded-lg">
             <p className="text-xs text-purple-600 font-bold uppercase">Plan</p>
-            <p className="text-2xl font-black text-purple-500">👑 {access_level}</p>
+            <p className="text-2xl font-black text-purple-500"> {access_level}</p>
             <p className="text-xs text-purple-400">{daily_limit} retos diarios</p>
           </div>
         </div>

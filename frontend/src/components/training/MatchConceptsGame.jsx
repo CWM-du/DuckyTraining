@@ -55,7 +55,7 @@ const MatchConceptsGame = () => {
       {/* Cabecera */}
       <div className="mb-6 flex justify-between items-center">
         <h4 className="text-white font-bold text-lg flex items-center gap-2">
-          <span>🔗</span> Conecta los conceptos
+           Conecta los conceptos
         </h4>
         <div className="flex gap-4">
           <button 

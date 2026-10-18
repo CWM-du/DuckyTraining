@@ -24,7 +24,7 @@ const OrderAlgorithmGame = () => {
     <div className="w-full max-w-2xl mx-auto bg-gray-900 p-6 rounded-2xl shadow-inner border border-gray-700">
       <div className="mb-6 flex justify-between items-center">
         <h4 className="text-white font-bold text-lg flex items-center gap-2">
-          <span>🧩</span> Ordena la secuencia de Login
+          Ordena la secuencia de Login
         </h4>
         <span className="bg-gray-800 text-gray-400 text-xs px-3 py-1 rounded-full border border-gray-600">
           ORDER_ALGORITHM

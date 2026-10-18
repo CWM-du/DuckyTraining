@@ -49,7 +49,6 @@ const ExerciseShell = ({ exercise, onClose }) => {
           {/* FASE 1: INSTRUCCIONES DINÁMICAS */}
           {phase === 'INSTRUCTIONS' && (
             <div className="text-center max-w-lg mx-auto">
-              <div className="text-5xl mb-6">🎯</div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Objetivo</h3>
               
               {exercise.type === 'ORDER_ALGORITHM' && (
@@ -86,7 +85,7 @@ const ExerciseShell = ({ exercise, onClose }) => {
                 {exercise.type === 'ORDER_ALGORITHM' && <OrderAlgorithmGame />}
                 {exercise.type === 'FIND_ERROR' && <FindErrorGame />}
                 {exercise.type === 'MATCH_CONCEPTS' && <MatchConceptsGame />}
-                
+
                 {exercise.type !== 'ORDER_ALGORITHM' && exercise.type !== 'FIND_ERROR' && exercise.type !== 'MATCH_CONCEPTS' && (
                   <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600">
                     <p>Componente {exercise.type} en construcción...</p>
@@ -126,7 +125,6 @@ const ExerciseShell = ({ exercise, onClose }) => {
             <div className="text-center max-w-lg mx-auto">
               {feedbackResult === 'SUCCESS' ? (
                 <>
-                  <div className="text-6xl mb-6">🎉</div>
                   <h3 className="text-3xl font-black text-green-600 mb-4">¡Respuesta Correcta!</h3>
                   <p className="text-gray-600 mb-8 text-lg">Has completado el ejercicio perfectamente. +10 XP</p>
                   <button 
@@ -138,7 +136,6 @@ const ExerciseShell = ({ exercise, onClose }) => {
                 </>
               ) : (
                 <>
-                  <div className="text-6xl mb-6">💡</div>
                   <h3 className="text-3xl font-black text-red-600 mb-4">Hay un error</h3>
                   <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg mb-8 text-left">
                     <strong>Feedback del servidor:</strong> 

@@ -5,7 +5,12 @@ import DailyCycleView from './components/training/DailyCycleView'
 // 2. Importamos nuestros datos de prueba (asegúrate de que la ruta sea correcta)
 import mockTrainingData from './data/mockTrainingData' 
 
+import Login from './components/auth/Login'
+
 export default function App() {
+  // --- NUEVO ESTADO PARA EL LOGIN ---
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+
   // 3. Pasamos el mock directamente como estado inicial
   const [data, setData] = useState(mockTrainingData) 
   const [error, setError] = useState(null)
@@ -13,9 +18,21 @@ export default function App() {
   // 4. Comentamos el useEffect para que no intente hacer la llamada
   /*
   useEffect(() => {
-    getTrainingOverview().then(setData).catch((e) => setError(e.message))
-  }, [])
+    // Cuando conectemos el backend, esta llamada SOLO debería hacerse 
+    // si el usuario está autenticado.
+    if (isAuthenticated) {
+      getTrainingOverview().then(setData).catch((e) => setError(e.message))
+    }
+  }, [isAuthenticated])
   */
+
+  // --- 1º BARRERA: SEGURIDAD ---
+  // Si no está logueado, cortamos aquí y mostramos el Login.
+  if (!isAuthenticated) {
+    return <Login onLoginSuccess={() => setIsAuthenticated(true)} />
+  }
+
+  // --- 2º BARRERA: ERRORES DE CARGA ---
   if (error) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -27,6 +44,7 @@ export default function App() {
     )
   }
 
+  // --- 3º BARRERA: ESPERANDO DATOS ---
   if (!data) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -39,5 +57,6 @@ export default function App() {
     )
   }
 
+  // --- ÉXITO: MOSTRAR JUEGO ---
   return <DailyCycleView data={data} />
 }

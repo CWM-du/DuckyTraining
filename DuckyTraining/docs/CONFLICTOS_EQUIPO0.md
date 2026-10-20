@@ -2,7 +2,7 @@
 
 ## Estado
 
-Revisado el 2026-10-07 con las decisiones funcionales proporcionadas por Equipo 3.
+Actualizado el 2026-10-20 con las decisiones funcionales proporcionadas por Equipo 3.
 
 ## Decisiones cerradas
 
@@ -16,13 +16,13 @@ El perfil deberá poder consultar la experiencia/XP, nivel general y resumen de 
 
 ### Membresía
 
-La clasificación de acceso de Training queda simplificada a:
+El perfil/contrato oficial de Equipo 0 sigue pendiente. En el entorno provisional,
+Training soporta estos estados:
 
 - `FREE`: sin membresía.
 - `PLUS`: con membresía.
 - `PRO`: con membresía.
-
-No se mantiene `ALUMNO_PLUS_TEMPORAL` como nivel funcional de acceso.
+- `ALUMNO_PLUS_TEMPORAL`: acceso Plus hasta su fecha de caducidad.
 
 ### Zona horaria
 
@@ -43,18 +43,23 @@ La membresía y el nivel general son conceptos distintos.
 
 ### XP
 
-Cada partida completada puede conceder XP, incluso si es una repetición del mismo juego durante el día. La propuesta inicial es de 2–5 XP según juego y resultado. El importe definitivo pertenece al contrato del Ecomotor/Equipo 5.
+La regla actual es de **5 XP por juego completado** para Free, Plus, Pro y Alumno
+Plus temporal vigente. La concesión real está desactivada hasta acordar los contratos
+de Rewards con Equipo 5; no se simulan concesiones.
 
 ### Duki Coins
 
 La primera partida completada de cada juego durante el día concede 1 Duki Coin. Repeticiones del mismo juego conceden XP, pero no otra moneda. Otro juego distinto puede conceder su propia moneda diaria.
 
-Duki Training no actualiza directamente la wallet.
+Duki Training no actualiza directamente la wallet. Rewards (validación/evaluación
+inicial y persistencia/servicio de procesamiento) y Duki Bank/cartera de monedas
+quedan **pendientes de implementar el jueves 22**.
 
 ### Acceso diario
 
-- FREE: selección diaria de 3 juegos, renovada al día siguiente. Los juegos seleccionados se pueden repetir.
-- PLUS/PRO: acceso al catálogo completo.
+- FREE: selección diaria aleatoria de 3 juegos entre los números 1–6.
+- PLUS/PRO y Alumno Plus temporal vigente: acceso a los diez juegos.
+- Máximo de 5 intentos por juego y día.
 
 La selección se almacena en servidor.
 

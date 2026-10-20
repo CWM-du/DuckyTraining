@@ -1,93 +1,76 @@
-import React, { useState } from 'react';
-import ExerciseShell from './ExerciseShell'; // <-- 1. Importamos el modal
+import React, { useState } from 'react'
+import ExerciseShell from './ExerciseShell'
 
-const DailyCycleView = ({ data }) => {
-  const { access_level, daily_limit, cycle_date, completed_count, exercises } = data;
-  
-  const streak = 4; 
-  const ducky_coins = 150; 
+const DailyCycleView = ({ data, progress, history, onRefresh, onExerciseSubmit }) => {
+  const { access_level, daily_limit, cycle_date, completed_count, exercises } = data
+  const [activeExercise, setActiveExercise] = useState(null)
 
-  // 2. Creamos un estado para saber qué ejercicio está abierto (null = ninguno)
-  const [activeExercise, setActiveExercise] = useState(null);
-
-  // 3. Pasamos el objeto 'exercise' completo a la función
   const renderExerciseState = (exercise) => {
     switch (exercise.state) {
       case 'COMPLETED_TODAY':
-        return (
-          <div className="flex items-center text-green-500 font-bold">
-            <span className="text-2xl mr-2">✅</span> Completado
-          </div>
-        );
+        return <span className="font-bold text-green-600">Completado</span>
       case 'AVAILABLE':
         return (
-          // 4. Al hacer clic, guardamos este ejercicio en el estado
-          <button 
+          <button
             onClick={() => setActiveExercise(exercise)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-transform transform hover:scale-105"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full"
           >
-            ¡Jugar! ▶️
+            ¡Jugar!
           </button>
-        );
-      case 'BLOCKED_BY_SEQUENCE':
-        return (
-          <div className="flex items-center text-gray-400 font-semibold">
-            <span className="text-xl mr-2">🔒</span> Bloqueado
-          </div>
-        );
+        )
+      case 'CONTENT_PENDING':
+        return <span className="text-sm text-amber-700">Contenido educativo pendiente</span>
       case 'NOT_ACCESSIBLE_BY_LEVEL':
-        return (
-          <div className="flex flex-col items-end text-gray-500 text-sm">
-            <span>🔒 Nivel Insuficiente</span>
-            <span className="bg-yellow-200 text-yellow-800 px-2 py-1 rounded mt-1 text-xs font-bold">
-              Requiere PLUS / PRO
-            </span>
-          </div>
-        );
+        return <span className="text-sm text-gray-500">No incluido en la selección de hoy</span>
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-50 min-h-screen">
-      
-      {/* CABECERA DE PROGRESO */}
-      <div className="bg-white rounded-2xl shadow-sm p-6 mb-8 flex justify-between items-center border border-gray-100">
-        <div>
-          <h1 className="text-3xl font-extrabold text-gray-800">DuckyTraining</h1>
-          <p className="text-gray-500 mt-1">Práctica individual - Fecha: {cycle_date}</p>
-        </div>
-        <div className="flex gap-6 text-center">
-          <div className="bg-orange-100 px-4 py-2 rounded-lg">
-            <p className="text-xs text-orange-600 font-bold uppercase">Racha</p>
-            <p className="text-2xl font-black text-orange-500">🔥 {streak}</p>
-          </div>
-          <div className="bg-yellow-100 px-4 py-2 rounded-lg">
-            <p className="text-xs text-yellow-600 font-bold uppercase">DuckyCoins</p>
-            <p className="text-2xl font-black text-yellow-500">🪙 {ducky_coins}</p>
-          </div>
-          <div className="bg-purple-100 px-4 py-2 rounded-lg">
-            <p className="text-xs text-purple-600 font-bold uppercase">Plan</p>
-            <p className="text-2xl font-black text-purple-500">👑 {access_level}</p>
-            <p className="text-xs text-purple-400">{daily_limit} retos diarios</p>
-          </div>
-        </div>
-      </div>
+    <main className="max-w-5xl mx-auto p-6 bg-gray-50 min-h-screen">
+      <aside className="mb-6 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950">
+        <strong>Entorno virtual provisional.</strong> Rewards (validación y evaluación inicial,
+        persistencia y servicio de procesamiento) y Duki Bank/cartera de monedas: «Pendiente de
+        implementar el jueves 22». No se conceden recompensas ni monedas reales hasta acordar
+        los contratos de integración con Equipo 5.
+      </aside>
 
-      {/* LISTA DE EJERCICIOS */}
-      <div className="space-y-4">
+      <header className="bg-white rounded-2xl shadow-sm p-6 mb-8 border border-gray-100">
+        <div className="flex flex-wrap justify-between gap-6 items-center">
+          <div>
+            <h1 className="text-3xl font-extrabold text-gray-800">DuckyTraining</h1>
+            <p className="text-gray-500 mt-1">Práctica individual · Fecha: {cycle_date}</p>
+          </div>
+          <div className="flex flex-wrap gap-4 text-center">
+            <div className="bg-orange-100 px-4 py-2 rounded-lg">
+              <p className="text-xs text-orange-700 font-bold uppercase">Racha</p>
+              <p className="text-2xl font-black text-orange-600">
+                {progress?.streak.current ?? '—'}
+              </p>
+            </div>
+            <div className="bg-purple-100 px-4 py-2 rounded-lg">
+              <p className="text-xs text-purple-700 font-bold uppercase">Plan</p>
+              <p className="text-2xl font-black text-purple-700">{access_level}</p>
+              <p className="text-xs text-purple-500">{daily_limit} juegos diarios</p>
+            </div>
+            <div className="bg-blue-100 px-4 py-2 rounded-lg">
+              <p className="text-xs text-blue-700 font-bold uppercase">Progreso diario</p>
+              <p className="text-2xl font-black text-blue-700">{completed_count}/{daily_limit}</p>
+              <p className="text-xs text-blue-500">5 XP por juego completado · concesión pendiente</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section aria-label="Juegos del ciclo diario" className="space-y-4">
         {exercises.map((exercise) => {
-          const isAccessible = exercise.state !== 'NOT_ACCESSIBLE_BY_LEVEL';
-          const isCompleted = exercise.state === 'COMPLETED_TODAY';
-          
+          const isCompleted = exercise.state === 'COMPLETED_TODAY'
           return (
-            <div 
-              key={exercise.number} 
-              className={`flex items-center justify-between p-6 rounded-2xl border-2 transition-all ${
-                isCompleted ? 'bg-green-50 border-green-200' :
-                isAccessible ? 'bg-white border-transparent shadow-sm hover:shadow-md' : 
-                'bg-gray-100 border-gray-200 opacity-70'
+            <article
+              key={exercise.number}
+              className={`flex items-center justify-between gap-4 p-6 rounded-2xl border-2 ${
+                isCompleted ? 'bg-green-50 border-green-200' : 'bg-white border-gray-100'
               }`}
             >
               <div className="flex items-center gap-4">
@@ -97,37 +80,59 @@ const DailyCycleView = ({ data }) => {
                   {exercise.number}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800">{exercise.name}</h3>
-                  <div className="flex gap-2 mt-1 text-sm font-medium">
-                    <span className="text-blue-500">{exercise.type ? exercise.type.replace('_', ' ') : 'Formato por confirmar'}</span>
-                    <span className="text-gray-300">•</span>
-                    <span className={`${exercise.difficulty === 'HARD' ? 'text-red-500' : exercise.difficulty === 'MEDIUM' ? 'text-yellow-500' : 'text-green-500'}`}>
-                      {exercise.difficulty}
-                    </span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-1">Habilidad: {exercise.skill}</p>
+                  <h2 className="text-xl font-bold text-gray-800">{exercise.name}</h2>
+                  <p className="text-sm text-blue-600">
+                    {exercise.type?.replaceAll('_', ' ') || 'Formato por confirmar'} · {exercise.skill}
+                  </p>
+                  <p className="text-xs text-gray-500">{exercise.difficulty}</p>
                 </div>
               </div>
-
-              <div>
-                {/* 5. Le pasamos el ejercicio completo a la función */}
-                {renderExerciseState(exercise)}
-              </div>
-            </div>
-          );
+              {renderExerciseState(exercise)}
+            </article>
+          )
         })}
-      </div>
+      </section>
 
-      {/* 6. Si hay un ejercicio activo, renderizamos el modal superpuesto */}
+      <section className="grid gap-6 md:grid-cols-2 mt-10">
+        <div className="bg-white rounded-2xl border border-gray-100 p-6">
+          <h2 className="text-xl font-bold mb-3">Progreso por habilidad</h2>
+          {progress?.skills?.length ? (
+            <ul className="space-y-2">
+              {progress.skills.map((skill) => (
+                <li key={skill.skill} className="flex justify-between">
+                  <span>{skill.skill}</span>
+                  <span>{skill.successful_completions} juegos completados</span>
+                </li>
+              ))}
+            </ul>
+          ) : <p className="text-gray-500">Aún no hay juegos completados.</p>}
+        </div>
+        <div className="bg-white rounded-2xl border border-gray-100 p-6">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-xl font-bold">Historial</h2>
+            <button onClick={onRefresh} className="text-sm text-blue-600 underline">Actualizar</button>
+          </div>
+          {history.length ? (
+            <ul className="space-y-2">
+              {history.map((attempt, index) => (
+                <li key={`${attempt.exercise_number}-${attempt.submitted_at}-${index}`} className="text-sm">
+                  {attempt.cycle_date} · Juego {attempt.exercise_number} · Intento {attempt.attempt_number} · {attempt.is_correct ? 'Correcto' : 'Incorrecto'}
+                </li>
+              ))}
+            </ul>
+          ) : <p className="text-gray-500">Todavía no hay intentos registrados.</p>}
+        </div>
+      </section>
+
       {activeExercise && (
-        <ExerciseShell 
-          exercise={activeExercise} 
-          onClose={() => setActiveExercise(null)} 
+        <ExerciseShell
+          exercise={activeExercise}
+          onClose={() => setActiveExercise(null)}
+          onSubmit={onExerciseSubmit}
         />
       )}
-      
-    </div>
-  );
-};
+    </main>
+  )
+}
 
-export default DailyCycleView;
+export default DailyCycleView

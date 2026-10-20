@@ -43,12 +43,12 @@ class ProfileUserTraining(models.Model):
     @property
     def daily_quota(self):
         """
-        Devuelve el cupo heredado del perfil provisional. FREE tiene cupo 3, PLUS/PRO acceden a 10.
-        ALUMNO_PLUS_TEMPORAL conserva provisionalmente el cupo heredado de 5 hasta confirmación de Equipo 0.
+        Devuelve la cantidad de ejercicios permitidos según el nivel temporal.
+        Evita tener que reescribir esta lógica en las vistas o serializadores.
         """
         quotas = {
             'FREE': 3,
-            'ALUMNO_PLUS_TEMPORAL': 5,
+            'ALUMNO_PLUS_TEMPORAL': 10,
             'PLUS': 10,
             'PRO': 10
         }

@@ -38,9 +38,10 @@ Solo existen tres estados funcionales de acceso:
 
 | Membresía | Acceso DuckyTraining |
 |---|---|
-| `FREE` | Sin membresía. Ve una selección diaria configurable de juegos. |
-| `PLUS` | Con membresía. Accede a todo el catálogo. |
-| `PRO` | Con membresía. Accede a todo el catálogo. |
+| `FREE` | Tres juegos aleatorios diarios entre los números 1–6. |
+| `PLUS` | Accede a los diez juegos. |
+| `PRO` | Accede a los diez juegos. |
+| `ALUMNO_PLUS_TEMPORAL` vigente | Accede a los diez juegos hasta su caducidad. |
 
 La membresía no se confunde con el **nivel general** del usuario. El nivel por XP/progreso pertenece al Ecomotor.
 
@@ -64,8 +65,7 @@ La wallet completa pertenece a Duki Bank. Duki Bank conserva total ganado histó
 
 ### Usuarios FREE
 
-- Reciben una selección diaria de **3 juegos** como valor actual.
-- La selección puede configurarse dentro del rango previsto por producto (2–4) sin cambiar el motor.
+- Reciben una selección diaria aleatoria de **3 juegos entre los números 1–6**.
 - Pueden repetir los juegos seleccionados durante ese día.
 - Al día siguiente la selección se renueva.
 - Los juegos fuera de la selección diaria se muestran como no disponibles por membresía/selección.
@@ -74,7 +74,11 @@ La wallet completa pertenece a Duki Bank. Duki Bank conserva total ganado histó
 
 - Tienen acceso al catálogo completo de DuckyTraining.
 - No dependen de una selección diaria limitada para poder jugar.
-- También mantienen la regla de Duki Coin: una moneda como máximo por juego y día.
+
+### Alumno Plus temporal
+
+- Tiene acceso a los diez juegos solo mientras el acceso temporal esté vigente.
+- Al caducar, se aplica el acceso Free en las siguientes consultas del ciclo.
 
 ### Estados diarios
 
@@ -90,20 +94,20 @@ No existe ya el antiguo bloqueo secuencial 1→2→3→... como regla de acceso 
 
 ### XP por partida
 
-Cada partida completada correctamente concede una pequeña cantidad de XP. La propuesta de producto sitúa la recompensa entre **2 y 5 XP**, según el juego y el resultado.
-
-La cantidad final no debe quedar hardcodeada en DuckyTraining: será definida por el contrato del Ecomotor/Equipo 5.
-
-La XP puede concederse en partidas repetidas del mismo juego durante el día.
+Cada juego completado correctamente tiene una recompensa prevista de **5 XP** para
+Free, Plus, Pro y Alumno Plus temporal vigente. La concesión real sigue desactivada
+hasta disponer de los contratos de Rewards y Equipo 5.
 
 ### Duki Coin por juego y día
 
-- La primera partida completada del día de cada juego concede **1 Duki Coin**.
-- Repeticiones del mismo juego ese día: **0 Duki Coins adicionales**, pero sí pueden conceder XP.
-- Otro juego distinto completado ese día puede conceder su propia Duki Coin.
-- La wallet y el historial monetario son responsabilidad de Duki Bank.
+- La regla de producto prevista es una Duki Coin por primera partida completada del
+  día de cada juego, sin monedas adicionales por repetición.
+- Esta regla no se procesa en el entorno provisional: no se conceden monedas ni se
+  modifica una cartera local.
+- La validación de Rewards, su persistencia/servicio de procesamiento y la cartera
+  de Duki Bank quedan **pendientes de implementar el jueves 22**.
 
-Ejemplo: tres partidas del mismo juego → XP en las tres si son válidas + una única Duki Coin para ese juego ese día.
+La wallet y el historial monetario son responsabilidad de Duki Bank.
 
 ## Cambio de nivel durante el día
 
@@ -142,8 +146,8 @@ El catálogo lógico mantiene los diez ejercicios definidos previamente. El form
 - Cada envío debe poder registrarse como intento, correcto o incorrecto.
 - El progreso por habilidad permanece de forma permanente.
 - Los fallos no conceden XP ni Duki Coin.
-- Los aciertos actualizan el progreso educativo.
-- Las reglas definitivas de racha y sus hitos siguen pendientes de aprobación porque la nueva regla de repetición ya no utiliza un cupo secuencial 3/5/7/10.
+- Los aciertos actualizan el progreso educativo una sola vez por juego y ciclo.
+- La racha se procesa una vez al completar toda la selección diaria.
 - Los logros de Training deben basarse en hitos verificables y no inventar recompensas económicas locales.
 
 ## Dependencias externas
@@ -163,11 +167,12 @@ Gestiona la wallet de Duki Coins y su historial. DuckyTraining enviará el event
 ## Decisiones cerradas en esta revisión
 
 - Identidad/autenticación: se integra posteriormente; durante desarrollo se usa configuración temporal y sustituible.
-- Membresías de acceso: Free, Plus y Pro.
-- Free: selección diaria de 3 juegos como valor actual y configurable.
-- Plus/Pro: catálogo completo.
+- Membresías de acceso: Free, Plus, Pro y Alumno Plus temporal vigente.
+- Free: selección diaria aleatoria de 3 juegos entre 1–6.
+- Plus/Pro/Alumno Plus temporal vigente: catálogo completo de 10 juegos.
 - Repetición: permitida durante el día.
-- XP: por partida completada, también en repeticiones; propuesta inicial 2–5 XP.
+- Intentos: máximo de 5 por juego y día.
+- XP previsto: 5 por juego completado en los cuatro tipos de acceso; concesión real pendiente.
 - Duki Coin: 1 por juego y día, solo en la primera partida completada de ese juego.
 - Zona horaria: Madrid (`Europe/Madrid`).
 - Nivel general: lo gestiona Ecomotor según progreso/XP.
@@ -178,6 +183,7 @@ Gestiona la wallet de Duki Coins y su historial. DuckyTraining enviará el event
 - Contrato técnico definitivo de identidad/perfil de Equipo 0.
 - Contrato definitivo de XP con Ecomotor/Equipo 5.
 - Contrato definitivo de Duki Coins con Duki Bank/Equipo 5.
-- Hitos concretos de racha y logros.
-- Formato educativo definitivo del ejercicio 10.
+- Rewards: validación/evaluación inicial y persistencia/servicio de procesamiento.
+- Duki Bank y cartera de monedas.
+- Hitos concretos de logros.
 - Enunciados, soluciones, explicaciones y variantes educativas definitivas de los diez ejercicios.

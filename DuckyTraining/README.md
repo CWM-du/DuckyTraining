@@ -1,76 +1,81 @@
 # Equipo 3 · DuckyTraining
 
-Módulo individual de práctica de DuckyWorld/DuckyArenas.
+Módulo individual de práctica de DuckyWorld/DuckyArenas. El estado actual es un
+entorno virtual provisional; no representa una integración de recompensas real.
 
-## Estado
+## Implementado
 
-Base de Equipo 3 construida a partir de `logica.md`. F4 y F5 se consideran concluidas en su estado estructural; el contenido educativo real se incorporará a futuro. F6 incorpora selección diaria para Free y acceso completo para Plus/Pro. El estado heredado `ALUMNO_PLUS_TEMPORAL` conserva temporalmente sus reglas antiguas hasta confirmación de Equipo 0.
+- Catálogo lógico de diez juegos.
+- Ciclo diario individual con fecha local `Europe/Madrid`.
+- Free recibe tres juegos aleatorios de los juegos 1–6, persistidos durante el ciclo.
+- Plus, Pro y Alumno Plus temporal vigente reciben los diez juegos. El acceso temporal
+  solo está vigente si `access_expires_at` está definido y es posterior a la hora actual.
+- Los juegos seleccionados no requieren desbloqueo secuencial.
+- Límite de cinco intentos por juego y ciclo diario.
+- Progreso por habilidad: una suma por primera finalización correcta de cada juego
+  durante el ciclo.
+- Racha: se procesa una vez al completar todos los juegos seleccionados para el día.
+- `GET /api/training/progress/` y `GET /api/training/history/?limit=20`, protegidos
+  por autenticación y limitados al usuario autenticado.
+- Autenticación SimpleJWT: `POST /api/token/` recibe `username` y `password`, y
+  devuelve `access` y `refresh`; `POST /api/token/refresh/` renueva el access token.
+  React guarda ambos tokens en `sessionStorage` y envía `Authorization: Bearer ...`
+  a las rutas protegidas.
+- XP previsto de 5 por juego completado para Free, Plus, Pro y Alumno Plus temporal
+  vigente. El código no concede ni persiste XP real hasta disponer del contrato.
+- Modelos sincronizados con las migraciones, incluida la selección diaria, el estado
+  separado de procesamiento de XP/monedas y la caducidad del acceso temporal.
+- El frontend consulta Training, progreso e historial al backend; no presenta saldos
+  ficticios ni decide aleatoriamente si una respuesta es correcta.
 
-## Stack
+## Pendiente de implementar el jueves 22
 
-- Frontend: React + Vite
-- Backend: Python + Django + Django REST Framework
-- Base de desarrollo: SQLite
+Se mantiene el entorno virtual provisional. No se conceden recompensas reales:
 
-## Alcance implementado en esta base
+- **Rewards: validación y evaluación inicial.**
+- **Rewards persistente y servicio de procesamiento.**
+- **Duki Bank y cartera de monedas.**
 
-- Catálogo lógico de 10 ejercicios; el juego 10 utiliza `FIND_ERROR`.
-- Plantilla JSON para cinco variantes por juego, sin enunciados ni soluciones inventadas.
-- Validación estructural de variantes y respuestas en servidor.
-- Asignación mensual estable solo para variantes publicadas.
-- Niveles provisionales `FREE`, `ALUMNO_PLUS_TEMPORAL`, `PLUS`, `PRO`.
-- FREE: tres juegos elegidos aleatoriamente entre los juegos 1–6, selección persistente por ciclo diario.
-- PLUS/PRO: catálogo completo de diez juegos, sin secuencia obligatoria.
-- `ALUMNO_PLUS_TEMPORAL`: reglas heredadas 5 juegos secuenciales, pendientes de confirmación de Equipo 0.
-- Ciclo diario por usuario usando `Europe/Madrid`.
-- Máximo de cinco intentos por juego y ciclo diario.
-- Estructuras para variantes mensuales, intentos, progreso por habilidad, racha y logros.
-- Frontend que muestra el estado del Training.
+La concesión de 5 XP está definida como regla de producto, pero su procesamiento
+queda desactivado hasta que el contrato de Rewards y el servicio de Duki Bank estén
+disponibles y acordados con Equipo 5. Las respuestas de la API indican explícitamente
+que XP y Duki Coins no se han concedido.
 
-## Pendiente por especificación
+## Pendiente de contenido educativo e integración
 
-- Contenido educativo definitivo, soluciones y explicaciones (las 50 variantes siguen pendientes).
-- Revisión pedagógica de variantes y pruebas de respuestas reales.
-- Importes de XP y DuckyCoins.
-- Contrato real con Equipos 0 y 5.
-- Integración definitiva de cambios de membresía durante el día, pendiente del contrato de Equipo 0/Ecomotor.
-- Regla definitiva ante cambios de nivel durante un ciclo.
-- Hitos concretos de racha y logros.
-- Política de historial para reintentos tras completar un ejercicio el mismo día.
-
-## Documentación de las fases 4 y 5
-
-Consultar `docs/FASE_4_5_ESTRUCTURA_TECNICA.md` para el contrato del catálogo JSON, los campos requeridos por formato y el comportamiento cuando una variante aún no está publicada.
+- Preparar y aprobar enunciados, soluciones y explicaciones de las diez actividades.
+- Publicar variantes educativas válidas en `backend/apps/training/content/catalog.json`.
+  Mientras no haya variantes publicadas, el juego se muestra como pendiente y el
+  backend no simula una respuesta.
+- Acordar con Equipo 5 los contratos de Rewards/Duki Bank y la idempotencia del
+  procesamiento antes de activar cualquier concesión.
+- Conectar la identidad y el acceso del entorno con los contratos de los equipos
+  correspondientes; `UserTrainingProfile` sigue siendo una fuente provisional.
 
 ## Ejecución local
 
 ### Backend
 
-```bash
-cd backend
-python -m venv .venv
-# activar .venv según el sistema operativo
-pip install -r requirements.txt
-python manage.py makemigrations --check --dry-run
+Desde `backend`:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 python manage.py migrate
+python manage.py seed_logical_exercises
 python manage.py runserver
 ```
 
 ### Frontend
 
-```bash
-cd frontend
+Desde `frontend`:
+
+```powershell
 npm install
 npm run dev
 ```
 
-> La autenticación y el contrato final de identidad todavía dependen de la integración con el resto del proyecto.
-
-## Fase 6 · Ciclo diario y acceso
-
-Consultar `docs/FASE_6_CICLO_DIARIO.md` para reglas implementadas, excepción heredada y comprobaciones pendientes. La integración de recompensas no se simula: XP depende de Ecomotor y Duki Coins de Duki Bank/Equipo 5.
-
-
-## Fase 7 · Progreso e historial
-
-La implementación de revisión está documentada en `docs/FASE_7_PROGRESO_HISTORIAL.md`. Incluye progreso por habilidad, racha al completar el cupo diario, consulta de historial propio y visualización React. XP, Duki Coins y logros permanecen fuera de alcance hasta que se aprueben las reglas/contratos correspondientes. Los tests de esta revisión deben ejecutarse en el entorno virtual local.
+La interfaz usa `VITE_TRAINING_API_URL` si está configurada; por defecto consulta
+`http://localhost:8000/api/training`. Para cambiar solo el prefijo API, configura
+`VITE_API_BASE_URL` (por defecto `http://localhost:8000/api`); el login y refresh
+usan ese mismo prefijo.

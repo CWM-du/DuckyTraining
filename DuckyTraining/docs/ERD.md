@@ -20,7 +20,8 @@ erDiagram
 
     USER_TRAINING_PROFILE {
         bigint id PK
-        string membership
+        string access_level
+        datetime access_expires_at
     }
     EXERCISE {
         bigint id PK
@@ -35,15 +36,17 @@ erDiagram
     DAILY_CYCLE {
         bigint id PK
         date cycle_date
-        string effective_membership
+        string effective_access_level
         smallint daily_limit
         smallint completed_count
         boolean streak_processed
+        relation selected_exercises
     }
     DAILY_EXERCISE_PROGRESS {
         bigint id PK
         boolean completed
         datetime completed_at
+        boolean xp_reward_processed
         boolean ducky_coin_reward_processed
     }
     MONTHLY_VARIANT_ASSIGNMENT {
@@ -86,10 +89,12 @@ erDiagram
 La guía PR07 propone una app `users` y un `CustomUser`. DuckyTraining no fija todavía ese contrato porque la especificación funcional asigna la identidad/autenticación definitiva a Equipo 0. Por tanto, se utiliza `AUTH_USER_MODEL` de Django como punto de integración y no se inventa un usuario definitivo.
 
 
-## Reglas actualizadas 2026-10-07
+## Reglas actualizadas 2026-10-20
 
-- `UserTrainingProfile.membership` distingue FREE/PLUS/PRO; no representa el nivel general.
+- `UserTrainingProfile.access_level` distingue FREE/PLUS/PRO/ALUMNO_PLUS_TEMPORAL; no representa el nivel general.
 - `DailyCycle.selected_exercises` conserva la selección diaria aleatoria de FREE (3 juegos entre los números 1–6).
-- PLUS/PRO acceden al catálogo completo de diez juegos sin bloqueo secuencial.
-- `DailyExerciseProgress.ducky_coin_reward_processed` reserva el control idempotente de la Duki Coin diaria por juego; el envío real depende del contrato de Equipo 5.
-- XP y nivel general no se gestionan directamente desde Training; la integración depende de Ecomotor/Equipo 0.
+- PLUS/PRO y Alumno Plus temporal vigente acceden al catálogo completo de diez juegos.
+- El acceso temporal requiere `access_expires_at`; al caducar deja de habilitar el catálogo completo.
+- Los indicadores `xp_reward_processed` y `ducky_coin_reward_processed` son independientes.
+- El valor de XP es 5 por juego completado para los cuatro niveles; la concesión real permanece pendiente del contrato de Rewards/Equipo 5.
+- El entorno no actualiza la wallet; Duki Bank y la cartera de monedas quedan pendientes de implementar el jueves 22.

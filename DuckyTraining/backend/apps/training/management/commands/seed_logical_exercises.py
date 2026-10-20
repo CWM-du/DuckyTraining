@@ -16,7 +16,7 @@ class Command(BaseCommand):
             (7, 'Corrige antes de competir', ExerciseType.FIND_ERROR, Difficulty.MEDIUM, 'Validación', 'Práctica relacionada con DuckyClash'),
             (8, 'Ordena la estrategia', ExerciseType.ORDER_ALGORITHM, Difficulty.HARD, 'Planificación', 'Práctica relacionada con DuckyEscape'),
             (9, 'Red de salida', ExerciseType.CONNECT_NETWORK, Difficulty.HARD, 'Resolución de problemas', 'Práctica relacionada con DuckyEscape'),
-            (10, 'Reto de preparación DuckyWorld', ExerciseType.FIND_ERROR, Difficulty.HARD, 'Integración de habilidad', 'Práctica de detección de errores'),
+            (10, 'Encuentra el fallo', ExerciseType.FIND_ERROR, Difficulty.HARD, 'Detección de errores', 'Cierre de secuencia'),
         ]
         for number, name, kind, difficulty, skill, relation in exercises:
             Exercise.objects.update_or_create(

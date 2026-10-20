@@ -1,43 +1,96 @@
-import { useEffect, useState } from 'react'
-// 1. Comentamos la API real
-// import { getTrainingOverview } from './services/trainingApi'
+import { useCallback, useEffect, useState } from 'react'
+import Login from './components/auth/Login'
 import DailyCycleView from './components/training/DailyCycleView'
-// 2. Importamos nuestros datos de prueba (asegúrate de que la ruta sea correcta)
-import { mockOverviewData } from './data/mockTrainingData' 
+import {
+  getTrainingHistory,
+  getTrainingOverview,
+  getTrainingProgress,
+  submitTrainingAnswer,
+} from './services/trainingApi'
+import { clearTokens, hasStoredTokens } from './services/authApi'
 
 export default function App() {
-  // 3. Pasamos el mock directamente como estado inicial
-  const [data, setData] = useState(mockOverviewData) 
+  const [isAuthenticated, setIsAuthenticated] = useState(hasStoredTokens)
+  const [data, setData] = useState(null)
+  const [progress, setProgress] = useState(null)
+  const [history, setHistory] = useState([])
   const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
-  // 4. Comentamos el useEffect para que no intente hacer la llamada
-  /*
-  useEffect(() => {
-    getTrainingOverview().then(setData).catch((e) => setError(e.message))
+  const refreshTraining = useCallback(async () => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const overview = await getTrainingOverview()
+      const [currentProgress, currentHistory] = await Promise.all([
+        getTrainingProgress(),
+        getTrainingHistory(),
+      ])
+      setData(overview)
+      setProgress(currentProgress)
+      setHistory(currentHistory.results)
+    } catch (requestError) {
+      setError(requestError.message)
+      if (!hasStoredTokens()) {
+        clearTokens()
+        setIsAuthenticated(false)
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }, [])
-  */
-  if (error) {
+
+  useEffect(() => {
+    if (isAuthenticated) refreshTraining()
+  }, [isAuthenticated, refreshTraining])
+
+  const handleExerciseSubmit = async (exerciseNumber, answer) => {
+    try {
+      const result = await submitTrainingAnswer(exerciseNumber, answer)
+      await refreshTraining()
+      return result
+    } catch (requestError) {
+      if (!hasStoredTokens()) setIsAuthenticated(false)
+      throw requestError
+    }
+  }
+
+  if (!isAuthenticated) {
+    return <Login onLoginSuccess={() => setIsAuthenticated(true)} />
+  }
+
+  if (isLoading && !data) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-gray-600">Cargando ciclo diario…</p>
+      </main>
+    )
+  }
+
+  if (error && !data) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-red-500 mb-2">DuckyTraining</h1>
-          <p className="text-gray-600">No se pudo cargar Training: {error}</p>
+          <p className="text-gray-600">{error}</p>
+          <button className="mt-4 underline" onClick={refreshTraining}>Reintentar</button>
         </div>
       </main>
     )
   }
 
-  if (!data) {
-    return (
-      <main className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-blue-600 mb-4">DuckyTraining</h1>
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="text-gray-500 mt-4">Cargando ciclo diario…</p>
-        </div>
-      </main>
-    )
-  }
-
-  return <DailyCycleView data={data} />
+  return (
+    <>
+      {error && <p role="alert" className="bg-red-100 text-red-800 p-3 text-center">{error}</p>}
+      {data && (
+        <DailyCycleView
+          data={data}
+          progress={progress}
+          history={history}
+          onRefresh={refreshTraining}
+          onExerciseSubmit={handleExerciseSubmit}
+        />
+      )}
+    </>
+  )
 }

@@ -1,35 +1,33 @@
-# Fase 3 · Implementación base
+# Fase 3 · Implementación técnica
 
-## Alcance
+## Implementado
 
-Se implementó la base técnica de Equipo 3 · DuckyTraining conforme a `logica.md`, sin inventar contenido educativo ni contratos de otros equipos.
+- Backend Django + Django REST Framework y frontend React + Vite.
+- Catálogo lógico de diez juegos y validación server-side contra variantes publicadas.
+- Perfil provisional de acceso, ciclo diario, selección Free, intentos, progreso por
+  habilidad e historial.
+- Free recibe 3 juegos aleatorios del rango 1–6. Plus, Pro y Alumno Plus temporal
+  vigente reciben los 10 juegos, sin desbloqueo secuencial.
+- Se conserva el máximo de 5 intentos por juego y ciclo.
+- Las migraciones 0001–0009 mantienen los modelos sincronizados, incluyendo
+  `selected_exercises`, los indicadores separados de XP/monedas y la caducidad temporal.
+- El frontend consume el overview, progreso e historial y envía las respuestas al
+  backend; no genera resultados aleatorios.
 
-## Backend
+## Pendiente
 
-- Django + Django REST Framework.
-- Modelos para ciclo diario, progreso, intentos, variantes, habilidades, racha y logros.
-- Niveles temporales y cupos 3/5/7/10.
-- Estado secuencial de los ejercicios.
-- Migración inicial.
-- Endpoint de overview.
-- Endpoint de envío preparado para aplicar validación server-side cuando existan las variantes y soluciones definitivas.
+- Contenido educativo aprobado y variantes publicadas para los diez juegos.
+- Contrato de identidad/acceso externo.
+- Rewards: validación y evaluación inicial, persistencia y servicio de procesamiento.
+- Duki Bank y cartera de monedas.
+- Habilitar recompensas reales solo después de acordar las integraciones con Equipo 5.
 
-## Frontend
-
-- React + Vite.
-- Consulta del overview de Training.
-- Presentación del nivel, cupo y estado de los ejercicios.
-
-## Límites respetados
-
-No se implementaron:
-
-- preguntas o soluciones inventadas;
-- importes de XP o DuckyCoins;
-- contratos simulados de Equipos 0/5;
-- formato inventado para el ejercicio 10;
-- funcionalidades no autorizadas por `logica.md`.
+Los trabajos de Rewards y Duki Bank están **pendientes de implementar el jueves 22**.
+El entorno continúa siendo provisional; no se conceden XP ni monedas reales.
 
 ## Verificación
 
-La sintaxis de Python fue comprobada. La ejecución completa de Django y el build de React quedan pendientes de disponer de las dependencias del proyecto en un entorno con acceso a ellas.
+Se añadieron tests para las reglas de acceso, XP en estado pendiente, intentos,
+progreso, racha y aislamiento por usuario. La ejecución de tests y build debe
+confirmarse en el entorno del proyecto; esta documentación no marca resultados no
+ejecutados.

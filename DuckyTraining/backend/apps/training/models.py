@@ -9,14 +9,18 @@ class AccessLevel(models.TextChoices):
     PRO = 'PRO', 'Pro'
 
 
-# Acceso F6: Free selecciona 3 juegos entre 1-6; Plus/Pro ven el catálogo completo.
-# ALUMNO_PLUS_TEMPORAL conserva su comportamiento heredado (5 juegos secuenciales)
-# hasta que Equipo 0 confirme cómo convertir ese estado.
 DAILY_LIMITS = {
     AccessLevel.FREE: 3,
-    AccessLevel.ALUMNO_PLUS_TEMPORAL: 5,
+    AccessLevel.ALUMNO_PLUS_TEMPORAL: 10,
     AccessLevel.PLUS: 10,
     AccessLevel.PRO: 10,
+}
+
+XP_REWARDS = {
+    AccessLevel.FREE: 5,
+    AccessLevel.ALUMNO_PLUS_TEMPORAL: 5,
+    AccessLevel.PLUS: 5,
+    AccessLevel.PRO: 5,
 }
 
 
@@ -48,8 +52,12 @@ class Exercise(models.Model):
 
 class UserTrainingProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # TEMP_REPLACE: sustituible por el contrato oficial de Equipos 0/5.
     access_level = models.CharField(max_length=32, choices=AccessLevel.choices, default=AccessLevel.FREE)
+    access_expires_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text='Caducidad del acceso temporal; debe definirse para activar Alumno Plus temporal.',
+    )
 
 
 class MonthlyVariantAssignment(models.Model):
@@ -70,9 +78,8 @@ class DailyCycle(models.Model):
     completed_count = models.PositiveSmallIntegerField(default=0)
     final_reward_processed = models.BooleanField(default=False)
     streak_processed = models.BooleanField(default=False)
-    # Para FREE, conserva exactamente los tres juegos elegidos al crear el ciclo.
     selected_exercises = models.ManyToManyField(
-        'Exercise', blank=True, related_name='daily_cycles'
+        Exercise, blank=True, related_name='daily_cycles'
     )
 
     class Meta:
@@ -84,6 +91,7 @@ class DailyExerciseProgress(models.Model):
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
     completed_at = models.DateTimeField(null=True, blank=True)
+    xp_reward_processed = models.BooleanField(default=False)
     ducky_coin_reward_processed = models.BooleanField(default=False)
 
     class Meta:

@@ -1,36 +1,42 @@
 # Fase 7 · Progreso e historial
 
-## Implementado en esta revisión
+## Implementado en el entorno provisional
 
-- Cada intento validado se conserva en `TrainingAttempt`, tanto si es correcto como incorrecto. Los reintentos posteriores siguen apareciendo en el historial.
-- Una primera finalización correcta de un juego dentro del ciclo diario incrementa `SkillProgress.successful_completions` una sola vez para la habilidad de ese juego. Volver a acertar el mismo juego ese día no vuelve a incrementar el progreso.
-- `DailyCycle.completed_count` se sincroniza con el número de juegos distintos completados en el ciclo.
-- La racha se actualiza una sola vez al completar el cupo diario disponible: selección de Free, catálogo activo completo para Plus/Pro o cupo heredado para `ALUMNO_PLUS_TEMPORAL`. Las fechas usan `timezone.localdate()` con la zona `Europe/Madrid`.
-- Si la última racha registrada fue anterior al día local de ayer, el endpoint de progreso informa una racha actual de cero. El historial de la última finalización se conserva.
-- `GET /api/training/progress/` devuelve progreso por habilidad, estado del cupo y racha del usuario autenticado.
-- `GET /api/training/history/?limit=20` devuelve los últimos intentos del usuario autenticado; el límite permitido es de 1 a 100. Las consultas filtran siempre por `request.user`.
-- React consulta y muestra progreso, habilidades e historial a través de `trainingApi.js`.
+- Los intentos validados se guardan en `TrainingAttempt`, incluidos los fallos y
+  reintentos. El historial se limita a los intentos del usuario autenticado.
+- La primera finalización correcta de un juego durante el ciclo incrementa
+  `SkillProgress.successful_completions` para la habilidad del juego. Un acierto
+  repetido el mismo día se conserva en historial, pero no incrementa dos veces el
+  progreso de habilidad.
+- `DailyCycle.completed_count` refleja los juegos distintos seleccionados que se
+  completaron en el ciclo.
+- La racha avanza una sola vez al completar toda la selección diaria; el endpoint
+  devuelve cero si la última finalización fue anterior al día local de ayer.
+- `GET /api/training/progress/` devuelve progreso por habilidad, cupo y racha.
+- `GET /api/training/history/?limit=20` devuelve los intentos más recientes; acepta
+  límites de 1 a 100. Ambas vistas exigen autenticación y filtran por `request.user`.
+- React consulta estas rutas y muestra progreso e historial.
 
-## Fuera de alcance por decisión explícita
+## XP, Rewards y monedas
 
-- XP y Duki Coins: no se calculan ni se envían a servicios externos. Requieren los contratos aprobados de Ecomotor y Duki Bank/Equipo 5.
-- Logros: no se conceden ni se definen hitos en esta fase, a la espera de reglas aprobadas. El modelo existente se conserva sin lógica nueva.
-- No se ha añadido migración: esta implementación reutiliza los modelos y campos existentes.
+- Regla definida: 5 XP por juego completado para Free, Plus, Pro y Alumno Plus
+  temporal vigente.
+- La concesión no está activa: la API comunica que XP no fue concedido y tampoco
+  concede Duki Coins. El estado de procesamiento permanece pendiente.
+- Rewards (validación/evaluación inicial y persistencia/servicio de procesamiento)
+  y Duki Bank/cartera de monedas: **pendiente de implementar el jueves 22**.
+- Los logros se conservan sin lógica de concesión en esta fase.
 
-## Pruebas añadidas; ejecución pendiente del usuario
+## Pruebas
 
-- Actualización de progreso por habilidad tras un primer acierto.
-- Reintento correcto registrado en historial sin duplicar el progreso de habilidad.
-- Endpoints de progreso e historial limitados al usuario autenticado.
-- Validación del límite de historial.
-- Racha que no se actualiza antes de completar el cupo, se procesa una sola vez y continúa en días consecutivos.
-
-Ejecutar en el entorno virtual del proyecto desde `backend`:
+La suite incluye casos para selección y acceso, caducidad temporal, límite de
+intentos, ausencia de concesiones reales, progreso por habilidad, racha e
+aislamiento de historial/progreso. Ejecutar desde `backend`:
 
 ```powershell
-py -3.15 manage.py makemigrations --check --dry-run
-py -3.15 manage.py check
-py -3.15 manage.py test apps.training
+python manage.py check
+python manage.py makemigrations --check --dry-run
+python manage.py test apps.training
 ```
 
-No se han ejecutado comandos Django ni tests durante la preparación de este ZIP.
+La ejecución de esas comprobaciones queda pendiente; no se afirma que hayan pasado.

@@ -9,8 +9,14 @@
       "variants": [
         {
           "variant_key": "ex01_v1",
-          "status": "pending_content",
-          "content": null
+            "instruction": "TEST ONLY: arrange these steps in order.",
+          "steps": [
+            { "id": "start", "text": "Start the process" },
+            { "id": "check", "text": "Check the result" },
+            { "id": "finish", "text": "Finish the process" }
+          ],
+          "expected_order": ["start", "check", "finish"],
+          "explanation": "The process starts, checks the result, then finishes."
         },
         {
           "variant_key": "ex01_v2",
@@ -73,8 +79,13 @@
       "variants": [
         {
           "variant_key": "ex03_v1",
-          "status": "pending_content",
-          "content": null
+          "instruction": "TEST ONLY: select the line with the error.",
+          "code_items": [
+            { "id": "valid", "text": "result = 2 + 2" },
+            { "id": "bug", "text": "print(result)" }
+        ],
+        "expected_bug_id": "bug",
+        "explanation": "For this test, the second line is designated as the error."
         },
         {
           "variant_key": "ex03_v2",
@@ -136,7 +147,17 @@
       "exercise_type": "CONNECT_NETWORK",
       "variants": [
         {
-          "variant_key": "ex05_v1",
+        "variant_key": "ex05_v1",
+        "instruction": "TEST ONLY: connect the two nodes.",
+        "nodes": [
+          { "id": "node-a", "label": "Node A" },
+          { "id": "node-b", "label": "Node B" }
+        ],
+        "expected_connections": [["node-a", "node-b"]],
+        "explanation": "Connect Node A to Node B."
+        },
+        {
+          "variant_key": "ex05_v2",
           "status": "pending_content",
           "content": null
         },
@@ -292,7 +313,7 @@
     },
     {
       "exercise_number": 10,
-      "logical_name": "Reto de preparación DuckyWorld",
+      "logical_name": "Encuentra el fallo",
       "exercise_type": "FIND_ERROR",
       "variants": [
         {
@@ -324,3 +345,4 @@
     }
   ]
 }
+

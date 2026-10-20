@@ -1,136 +1,123 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import ConnectNetworkGame from './ConnectNetworkGame'
+import FindErrorGame from './FindErrorGame'
+import OrderAlgorithmGame from './OrderAlgorithmGame'
 
-const ExerciseShell = ({ exercise, onClose }) => {
-  // Fases: 'INSTRUCTIONS' -> 'PLAYING' -> 'VALIDATING' -> 'FEEDBACK'
-  const [phase, setPhase] = useState('INSTRUCTIONS');
-  
-  // Resultado simulado para la fase de feedback: 'SUCCESS' o 'ERROR'
-  const [feedbackResult, setFeedbackResult] = useState(null);
+const initialAnswer = (exercise) => {
+  if (exercise.type === 'ORDER_ALGORITHM') {
+    return { ordered_ids: exercise.content.steps.map((step) => step.id) }
+  }
+  if (exercise.type === 'FIND_ERROR') return { selected_bug_id: null }
+  if (exercise.type === 'CONNECT_NETWORK') return { connections: [] }
+  return {}
+}
 
-  // Funciones para simular el flujo (tu compañero las conectará a la API real)
-  const handleStart = () => setPhase('PLAYING');
-  
-  const handleSubmit = (simulatedResult) => {
-    setPhase('VALIDATING');
-    // Simulamos un tiempo de carga del servidor de 1.5 segundos
-    setTimeout(() => {
-      setFeedbackResult(simulatedResult);
-      setPhase('FEEDBACK');
-    }, 1500);
-  };
+const ExerciseShell = ({ exercise, onClose, onSubmit }) => {
+  const [phase, setPhase] = useState('INSTRUCTIONS')
+  const [answer, setAnswer] = useState(() => initialAnswer(exercise))
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState(null)
 
-  const handleRetry = () => setPhase('PLAYING');
+  const handleSubmit = async () => {
+    setPhase('VALIDATING')
+    setError(null)
+    try {
+      const response = await onSubmit(exercise.number, answer)
+      setResult(response)
+      setPhase('FEEDBACK')
+    } catch (submitError) {
+      setError(submitError.message)
+      setPhase('FEEDBACK')
+    }
+  }
+
+  const game = exercise.type === 'ORDER_ALGORITHM'
+    ? <OrderAlgorithmGame content={exercise.content} onAnswerChange={setAnswer} />
+    : exercise.type === 'FIND_ERROR'
+      ? <FindErrorGame content={exercise.content} onAnswerChange={setAnswer} />
+      : exercise.type === 'CONNECT_NETWORK'
+        ? <ConnectNetworkGame content={exercise.content} onAnswerChange={setAnswer} />
+        : <p className="text-gray-600">Formato no disponible en este entorno provisional.</p>
 
   return (
     <div className="fixed inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        
-        {/* HEADER DEL SHELL */}
-        <div className="bg-gray-50 border-b border-gray-100 px-6 py-4 flex justify-between items-center">
+      <section className="bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        <header className="bg-gray-50 border-b border-gray-100 px-6 py-4 flex justify-between items-center">
           <div>
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Ejercicio {exercise.number}</span>
+            <span className="text-xs font-bold text-gray-500 uppercase">Ejercicio {exercise.number}</span>
             <h2 className="text-xl font-bold text-gray-800">{exercise.name}</h2>
           </div>
-          <button 
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 bg-gray-200 hover:bg-gray-300 rounded-full w-8 h-8 flex items-center justify-center transition-colors"
-          >
-            ✕
-          </button>
-        </div>
+          <button onClick={onClose} aria-label="Cerrar" className="rounded-full bg-gray-200 w-8 h-8">✕</button>
+        </header>
 
-        {/* CONTENIDO PRINCIPAL (Cambia según la fase) */}
-        <div className="p-8 overflow-y-auto flex-grow flex flex-col justify-center min-h-[400px]">
-          
-          {/* FASE 1: INSTRUCCIONES */}
+        <div className="p-8 overflow-y-auto flex-grow">
           {phase === 'INSTRUCTIONS' && (
-            <div className="text-center max-w-lg mx-auto">
-              <div className="text-5xl mb-6">🎯</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Objetivo</h3>
-              <p className="text-gray-600 mb-8 text-lg">
-                Analiza el código y encuentra la línea exacta donde se está produciendo el error de seguridad. 
-                Haz clic en la línea incorrecta para seleccionarla.
-              </p>
-              <button 
-                onClick={handleStart}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105"
+            <div className="text-center">
+              <p className="text-gray-700 mb-6">{exercise.content.instruction}</p>
+              <button
+                onClick={() => setPhase('PLAYING')}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full"
               >
-                Comenzar Reto
+                Comenzar reto
               </button>
             </div>
           )}
 
-          {/* FASE 2: RESOLUCIÓN (El Juego) */}
           {phase === 'PLAYING' && (
-            <div className="flex flex-col items-center w-full">
-              <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600 mb-8">
-                <p>[Aquí irá el componente específico del juego: {exercise.type}]</p>
-              </div>
-              
-              {/* Botones temporales para simular acierto o fallo al maquetar */}
-              <div className="flex gap-4">
-                <button 
-                  onClick={() => handleSubmit('ERROR')}
-                  className="bg-red-100 hover:bg-red-200 text-red-600 font-bold py-3 px-6 rounded-xl transition-colors"
+            <>
+              {game}
+              <div className="mt-6 flex justify-end border-t pt-5">
+                <button
+                  onClick={handleSubmit}
+                  disabled={exercise.type === 'FIND_ERROR' && !answer.selected_bug_id}
+                  className="bg-gray-800 hover:bg-black disabled:opacity-40 text-white font-bold py-3 px-8 rounded-xl"
                 >
-                  Simular Fallo
-                </button>
-                <button 
-                  onClick={() => handleSubmit('SUCCESS')}
-                  className="bg-green-100 hover:bg-green-200 text-green-700 font-bold py-3 px-6 rounded-xl transition-colors"
-                >
-                  Simular Acierto
+                  Comprobar respuesta
                 </button>
               </div>
-            </div>
+            </>
           )}
 
-          {/* FASE 3: VALIDANDO (Loading) */}
           {phase === 'VALIDATING' && (
-            <div className="text-center flex flex-col items-center justify-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600 mb-6"></div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">Validando solución...</h3>
-              <p className="text-gray-500">Comprobando con el servidor</p>
-            </div>
+            <p className="text-center text-gray-600">Validando respuesta en el servidor…</p>
           )}
 
-          {/* FASE 4: FEEDBACK */}
           {phase === 'FEEDBACK' && (
-            <div className="text-center max-w-lg mx-auto">
-              {feedbackResult === 'SUCCESS' ? (
+            <div role="status" className="text-center">
+              {error ? (
                 <>
-                  <div className="text-6xl mb-6">🎉</div>
-                  <h3 className="text-3xl font-black text-green-600 mb-4">¡Respuesta Correcta!</h3>
-                  <p className="text-gray-600 mb-8 text-lg">Has completado el ejercicio perfectamente. +10 XP</p>
-                  <button 
-                    onClick={onClose}
-                    className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105"
-                  >
+                  <h3 className="text-2xl font-bold text-red-600 mb-3">No se pudo validar</h3>
+                  <p className="text-gray-700 mb-6">{error}</p>
+                  <button onClick={() => setPhase('PLAYING')} className="underline">Volver al juego</button>
+                </>
+              ) : result?.correct ? (
+                <>
+                  <h3 className="text-3xl font-black text-green-600 mb-4">¡Respuesta correcta!</h3>
+                  <p className="text-gray-700 mb-2">
+                    +{result.xp_per_completed_game} XP previstos; concesión pendiente de contrato.
+                  </p>
+                  <p className="text-sm text-amber-800 mb-6">
+                    No se ha concedido XP real ni Duki Coins.
+                  </p>
+                  <button onClick={onClose} className="bg-green-600 text-white font-bold py-3 px-8 rounded-full">
                     Continuar
                   </button>
                 </>
               ) : (
                 <>
-                  <div className="text-6xl mb-6">💡</div>
-                  <h3 className="text-3xl font-black text-red-600 mb-4">Hay un error</h3>
-                  <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg mb-8 text-left">
-                    <strong>Feedback del servidor:</strong> La línea seleccionada ejecuta la función, pero el error lógico está en la condición del bucle while (línea 4), que provoca un bucle infinito.
-                  </div>
-                  <button 
-                    onClick={handleRetry}
-                    className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105"
-                  >
+                  <h3 className="text-2xl font-bold text-red-600 mb-3">Respuesta incorrecta</h3>
+                  <p className="text-gray-700 mb-6">{result?.explanation || 'Revisa la respuesta e inténtalo de nuevo.'}</p>
+                  <button onClick={() => setPhase('PLAYING')} className="bg-gray-800 text-white font-bold py-3 px-8 rounded-full">
                     Intentarlo de nuevo
                   </button>
                 </>
               )}
             </div>
           )}
-
         </div>
-      </div>
+      </section>
     </div>
-  );
-};
+  )
+}
 
-export default ExerciseShell;
+export default ExerciseShell

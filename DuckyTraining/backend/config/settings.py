@@ -15,9 +15,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.users',      # <--- Actualizado
     'apps.training',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -44,7 +46,7 @@ DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DI
 
 AUTH_PASSWORD_VALIDATORS = []
 LANGUAGE_CODE = 'es-es'
-TIME_ZONE = 'Europe/Madrid'  # Zona horaria oficial del ciclo diario de DuckyTraining.
+TIME_ZONE = 'Europe/Madrid'
 USE_I18N = True
 USE_TZ = True
 STATIC_URL = 'static/'
@@ -52,4 +54,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+CORS_ALLOW_CREDENTIALS = True

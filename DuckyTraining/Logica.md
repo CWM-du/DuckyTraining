@@ -2,7 +2,8 @@
 
 ## Estado del documento
 
-- Estado: definición funcional consolidada, pendiente de implementación.
+- Estado: reglas de acceso y progreso implementadas en entorno provisional; contenido
+  educativo y contratos de Rewards/Duki Bank pendientes.
 - Alcance: Equipo 3 · DuckyTraining.
 - No contiene código, migraciones ni datos educativos definitivos.
 - Regla de prioridad: la especificación concreta de DuckyTraining prevalece ante conflictos con instrucciones generales.
@@ -20,9 +21,11 @@ No es un requisito para abrir QuizArenas, DuckyClash, DuckyEscape ni DuckyBank. 
 - El cliente no determina si una respuesta es correcta, qué XP recibe ni si obtiene DuckyCoins.
 - Las instrucciones aparecen antes de resolver cada ejercicio.
 - Un fallo registra un intento, muestra una explicación y permite reintentar.
-- Las recompensas solo pueden concederse una vez por ejercicio completado y día natural.
-- Las DuckyCoins se conceden una vez al día al completar el cupo de retos del nivel del usuario.
-- Los ejercicios diarios son secuenciales: para acceder al siguiente debe completarse el anterior dentro del ciclo de ese día.
+- XP prevista: 5 por juego completado para Free, Plus, Pro y Alumno Plus temporal vigente.
+- No se conceden XP ni DuckyCoins reales hasta acordar los contratos de Rewards y Duki Bank con Equipo 5.
+- Los juegos seleccionados están disponibles sin desbloqueo secuencial.
+- Máximo de cinco intentos por juego y día.
+- La fecha diaria usa `Europe/Madrid`.
 - La racha depende de completar el cupo diario, no de entrar ni de realizar intentos fallidos.
 - El historial educativo y el progreso por habilidad permanecen; el estado de retos se reinicia cada día.
 
@@ -30,12 +33,12 @@ No es un requisito para abrir QuizArenas, DuckyClash, DuckyEscape ni DuckyBank. 
 
 Hasta que los Equipos 0 y 5 proporcionen el sistema oficial de perfil, suscripción o nivel, DuckyTraining usa un dato temporal propio y explícitamente sustituible.
 
-| Nivel temporal | Naturaleza indicada | Ejercicios diarios accesibles | Condición de recompensa final |
+| Nivel temporal | Naturaleza indicada | Ejercicios diarios accesibles | Estado |
 |---|---|---:|---|
-| `FREE` | Free | 3 | Completar ejercicios 1 a 3 del día |
-| `ALUMNO_PLUS_TEMPORAL` | Alumno con Plus temporal | 5 | Completar ejercicios 1 a 5 del día |
-| `PLUS` | Plus de pago | 7 | Completar ejercicios 1 a 7 del día |
-| `PRO` | Pro de pago | 10 | Completar ejercicios 1 a 10 del día |
+| `FREE` | Free | 3 aleatorios de los juegos 1–6 | Completar la selección diaria |
+| `ALUMNO_PLUS_TEMPORAL` vigente | Alumno con Plus temporal | 10 | Completar los diez juegos |
+| `PLUS` | Plus de pago | 10 | Completar los diez juegos |
+| `PRO` | Pro de pago | 10 | Completar los diez juegos |
 
 ### Sustitución futura
 
@@ -50,31 +53,17 @@ El dato temporal no debe usarse como sistema final de suscripción. En la integr
 
 Cada día natural comienza un nuevo ciclo diario de DuckyTraining.
 
-### Inicio del ciclo
+### Inicio y disponibilidad
 
-- Los diez ejercicios son visibles todos los días.
-- El ejercicio 1 está disponible al comenzar el ciclo.
-- Los demás ejercicios se muestran como bloqueados por secuencia o no accesibles por límite de nivel.
-- El número de ejercicios que forman parte del ciclo depende del nivel de acceso efectivo del usuario.
-- El reinicio se rige por la zona horaria oficial que establezca el Equipo 0.
-
-### Secuencia
-
-| Nivel | Secuencia diaria necesaria |
-|---|---|
-| Free | 1 → 2 → 3 |
-| Alumno con Plus temporal | 1 → 2 → 3 → 4 → 5 |
-| Plus | 1 → 2 → 3 → 4 → 5 → 6 → 7 |
-| Pro | 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 |
-
-Un ejercicio puede estar visible sin estar disponible:
-
-- **Bloqueado por secuencia:** falta completar correctamente el ejercicio anterior en el ciclo diario actual.
-- **No accesible por nivel:** queda por encima del cupo del nivel del usuario.
-- **Disponible:** está dentro del cupo y el anterior ya se completó, o es el ejercicio 1.
-- **Completado hoy:** fue resuelto correctamente durante el ciclo actual.
-
-A las 00:00 se reinicia la secuencia diaria. Esto no borra el historial total de intentos, XP concedida, rachas, logros ni progreso por habilidad.
+- La fecha del ciclo se calcula con `Europe/Madrid`.
+- Free recibe tres juegos elegidos aleatoriamente entre los números 1–6. La elección
+  queda persistida hasta el siguiente ciclo local.
+- Plus, Pro y Alumno Plus temporal vigente acceden a los diez juegos.
+- El acceso temporal requiere una caducidad futura; al caducar se aplica Free.
+- Todos los juegos incluidos en la selección diaria se pueden jugar sin desbloqueo
+  secuencial.
+- El reinicio diario no borra intentos históricos ni el progreso por habilidad.
+- El máximo es de cinco intentos por juego y ciclo diario.
 
 ## Diez ejercicios base
 
@@ -91,7 +80,7 @@ Los formatos exigidos para la primera entrega se mantienen: Ordena el algoritmo,
 | 7 | Corrige antes de competir | Encuentra el fallo | Media | Validación | Práctica relacionada con DuckyClash |
 | 8 | Ordena la estrategia | Ordena el algoritmo | Difícil | Planificación | Práctica relacionada con DuckyEscape |
 | 9 | Red de salida | Conecta la red | Difícil | Resolución de problemas | Práctica relacionada con DuckyEscape |
-| 10 | Reto de preparación DuckyWorld | Formato por confirmar | Difícil | Integración de habilidad | Cierre de secuencia Pro |
+| 10 | Encuentra el fallo | Encuentra el fallo | Difícil | Detección de errores | Cierre de secuencia |
 
 Los nombres son lógicos de trabajo. Los enunciados, soluciones, explicaciones y recompensas concretas requieren validación educativa antes de convertirse en contenido definitivo.
 
@@ -114,12 +103,12 @@ El usuario autenticado entra en Training y ve:
 
 - Su nivel de acceso vigente: Free, Alumno con Plus temporal, Plus o Pro.
 - El número de retos que puede completar ese día.
-- El progreso de la secuencia diaria.
-- El estado de cada ejercicio: disponible, bloqueado por secuencia, no accesible por nivel o completado hoy.
+- El progreso del cupo diario.
+- El estado de cada ejercicio: disponible, no incluido en la selección o completado hoy.
 - Su racha actual.
 - Sus logros relacionados con Training.
 - Su progreso por habilidad.
-- Un siguiente paso claro, por ejemplo: “Completa el ejercicio 2 para continuar”.
+- Un siguiente paso claro para los juegos de la selección diaria que sigan pendientes.
 
 ### 2. Instrucciones
 
@@ -129,8 +118,8 @@ Antes de comenzar un ejercicio, el usuario ve:
 - Forma de interacción o envío.
 - Cómo se valida la respuesta.
 - Qué sucede si falla.
-- Que la XP se concede una vez al día por ese ejercicio completado.
-- Qué falta para completar el cupo diario y optar a DuckyCoins.
+- Que se prevén 5 XP por juego completado y que la concesión real está pendiente.
+- Qué falta para completar la selección diaria. No se presenta un saldo de DukiCoins.
 
 La solución correcta no se muestra antes de validar la respuesta.
 
@@ -151,38 +140,33 @@ Si falla:
 - Se registra el intento diario y en el historial general.
 - Se muestra la explicación de error configurada para la variante.
 - El ejercicio sigue disponible para reintentar.
-- No se concede XP ni se desbloquea el siguiente ejercicio.
+- No se concede XP real.
 
 Si acierta por primera vez ese día:
 
 - Se registra el ejercicio como completado para la fecha actual.
 - Se actualiza el historial y el progreso por habilidad.
-- Se solicita la XP mediante el servicio común de recompensas del Equipo 5.
-- Se desbloquea el siguiente ejercicio si forma parte del cupo del usuario.
-- Si se completa el último ejercicio del cupo, se procesa la finalización diaria.
+- El progreso por habilidad aumenta una sola vez por juego y ciclo diario.
+- Si se completa toda la selección diaria, se actualiza la racha una sola vez.
 
 Si vuelve a acertar un ejercicio ya completado ese día:
 
 - Puede registrarse el intento conforme a la decisión de historial.
-- No recibe XP adicional por ese ejercicio y día.
-- No altera la finalización ya concedida ni la racha.
+- No vuelve a incrementar el progreso por habilidad de ese juego y ciclo.
+- No vuelve a procesar la finalización diaria ni la racha.
 
 ## XP y DuckyCoins
 
 ### XP
 
-La XP se concede por la primera resolución correcta de cada ejercicio en cada día natural. El importe exacto por ejercicio debe definirse con el contenido educativo y el Equipo 5.
+La regla prevista es 5 XP por juego completado para los cuatro niveles de acceso. La
+concesión real está desactivada hasta acordar el contrato de Rewards con Equipo 5.
 
 ### DuckyCoins
 
-DuckyCoins se conceden una única vez al completar todos los ejercicios diarios disponibles según el nivel actual:
-
-- Free: después de completar 3.
-- Alumno con Plus temporal: después de completar 5.
-- Plus: después de completar 7.
-- Pro: después de completar 10.
-
-DuckyTraining no actualiza directamente la cartera ni el saldo. Envía el evento validado al servicio del Equipo 5.
+La validación/evaluación inicial de Rewards, su persistencia y servicio de
+procesamiento, y Duki Bank/cartera de monedas quedan **pendientes de implementar el
+jueves 22**. DuckyTraining no actualiza directamente la cartera ni el saldo.
 
 ### Identificadores únicos de recompensa
 
@@ -241,51 +225,47 @@ Training puede incluir secuencias y conexiones como práctica relacionada con Du
 
 ### DuckyBank y ecomotor
 
-Training comunica resultados validados al servicio de recompensas. Debe aportar como mínimo identificador de actividad, usuario, tipo de juego, resultado validado, fecha/hora y datos de recompensa. El Equipo 5 devuelve XP, DuckyCoins, evolución o logro si corresponde, y una indicación de duplicado.
+La integración con Rewards/Equipo 5 deberá comunicar resultados validados con un
+identificador idempotente. La validación inicial de Rewards, su persistencia y
+servicio de procesamiento, y Duki Bank/cartera de monedas quedan **pendientes de
+implementar el jueves 22**. El entorno actual no concede XP ni DukiCoins reales.
 
 ## Datos funcionales necesarios
 
-Además de los datos generales de ejercicios, el futuro modelo debe poder representar:
+Los modelos provisionales representan:
 
-- Nivel temporal de acceso del usuario, identificable como `TEMP_REPLACE` hasta la integración con Equipos 0 y 5.
+- Nivel temporal de acceso del usuario y caducidad de Alumno Plus temporal.
 - Ciclo diario por usuario y fecha.
 - Progreso diario por ejercicio y fecha.
 - Variante mensual asignada por usuario, mes y ejercicio.
-- Recompensa XP procesada por ejercicio y día.
-- Recompensa final de DuckyCoins procesada por ciclo y día.
+- Indicadores independientes de procesamiento de XP y Duki Coins, pendientes del contrato.
 - Racha: contador y última fecha de finalización.
 - Logros de Training ya otorgados.
 - Historial permanente de intentos y progreso por habilidad.
 
 ## Gestión de cambios de nivel durante el día
 
-No se debe implementar una regla improvisada para cambios de nivel dentro de un ciclo abierto. La regla pendiente es:
-
-- Determinar si el cupo se fija al abrir el primer ejercicio del día o se recalcula al cambiar el nivel.
-- Evitar que un cambio de nivel permita cobrar dos recompensas finales en la misma fecha.
-- Si un usuario pasa temporalmente de Free a Alumno con Plus temporal, definir si puede continuar del ejercicio 4 al 5 durante ese mismo ciclo o si el cambio aplica al día siguiente.
-
-Hasta que exista una decisión oficial, la alternativa segura para implementación será fijar el nivel efectivo al crear el ciclo diario y usarlo durante todo ese día.
+El nivel efectivo queda guardado en el ciclo diario. Si Alumno Plus temporal caduca,
+se aplica Free en las siguientes consultas del mismo día y se fija una selección
+Free. La sincronización con la fuente oficial de membresía sigue pendiente.
 
 ## Límites y no incluidos
 
-Este documento no autoriza todavía:
+Siguen pendientes:
 
-- Código, migraciones o endpoints.
-- Simulación final de los contratos de Equipo 0 o Equipo 5.
-- Enunciados, soluciones y explicaciones definitivas.
-- Valores numéricos de XP o DuckyCoins.
-- Multiplicadores de racha.
+- Contratos reales de identidad/acceso, Rewards y Duki Bank.
+- Enunciados, soluciones, explicaciones y variantes educativas definitivas.
+- Concesiones reales de XP y monedas.
+- Logros y multiplicadores de racha.
 - Nuevos minijuegos fuera de los tres formatos establecidos.
 - Especializaciones, árbol de habilidades o contenidos de pago adicionales.
 - Desbloqueo de otros sectores mediante Training.
 
 ## Decisiones pendientes antes de implementar
 
-1. Confirmar la zona horaria que usará el ciclo diario; provisionalmente debe ser la configuración global del Equipo 0.
-2. Confirmar si el nivel efectivo se fija al inicio del ciclo diario, opción recomendada para evitar doble recompensa.
-3. Definir importes de XP por ejercicio y DuckyCoins por finalización diaria con el Equipo 5.
-4. Validar enunciados, variantes, soluciones y explicaciones educativas de los diez ejercicios.
-5. Definir el formato del ejercicio 10, manteniéndolo dentro de Ordena el algoritmo, Encuentra el fallo o Conecta la red, salvo autorización explícita de un formato adicional.
-6. Definir los hitos concretos de logro y racha, sin introducir recompensas no aprobadas.
-7. Confirmar cómo se registrará el historial de intentos repetidos tras un ejercicio ya completado en el mismo día.
+1. Acordar con Equipo 5 los contratos de Rewards y Duki Bank antes de conceder
+   recompensas reales.
+2. Validar enunciados, variantes, soluciones y explicaciones educativas de los diez
+   ejercicios.
+3. Completar la integración de identidad y acceso temporal con los equipos responsables.
+4. Definir hitos de logro sin introducir recompensas no aprobadas.

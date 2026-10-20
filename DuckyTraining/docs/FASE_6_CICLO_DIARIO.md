@@ -2,31 +2,35 @@
 
 ## Reglas implementadas
 
-- Zona horaria del proyecto: `Europe/Madrid`; `timezone.localdate()` determina la fecha local del ciclo y de los intentos diarios.
-- FREE: el backend elige hasta tres juegos activos entre los números 1–6 al crear el ciclo. La relación `DailyCycle.selected_exercises` persiste la selección para que las consultas posteriores del mismo día no vuelvan a sortearla. Con el catálogo normal de diez juegos, se seleccionan tres.
-- PLUS y PRO: los diez juegos activos son accesibles y no existe bloqueo por secuencia. `daily_limit=10` representa el tamaño del catálogo definido actualmente.
-- `ALUMNO_PLUS_TEMPORAL`: se conserva como estado heredado, con cinco juegos secuenciales, hasta que Equipo 0 confirme su conversión. No se trata como Plus/Pro por su nombre ni se le asigna una regla nueva.
-- Se conserva el límite de cinco intentos por juego y ciclo diario en el endpoint de envío.
-- El historial de ciclos anteriores no se elimina; al cambiar la fecha local se crea un ciclo nuevo.
-- `DailyExerciseProgress.ducky_coin_reward_processed` identifica el procesamiento de la recompensa de moneda por juego/ciclo. El evento externo no se simula.
+- La fecha diaria usa `timezone.localdate()` con `Europe/Madrid`.
+- Free recibe tres juegos aleatorios de los números 1–6. `DailyCycle.selected_exercises`
+  conserva la selección para todo el ciclo local del día.
+- Plus, Pro y Alumno Plus temporal vigente reciben los diez juegos activos. El nivel
+  temporal requiere `access_expires_at` futuro; al caducar durante el día, el ciclo
+  se ajusta a Free y obtiene una selección válida de tres juegos.
+- Todos los juegos incluidos en la selección están disponibles sin desbloqueo
+  secuencial.
+- Se permiten hasta cinco intentos por juego y ciclo diario.
+- Al cambiar la fecha local se crea un ciclo nuevo y se conserva el historial previo.
 
-## Límites conocidos / integración pendiente
+## Recompensas e integración
 
-- El nivel de acceso se captura en `DailyCycle` al crearlo. El cambio de membresía durante el mismo día requiere el contrato de Equipo 0/Ecomotor para aplicar el orden acordado de notificación, actualización de XP y habilitación de acceso. No se ha inventado un evento de integración.
-- Los importes acordados siguen siendo: 2 XP por juego completado para Free y 5 XP para Plus/Pro; una Duki Coin por la primera finalización diaria de cada juego distinto. El envío de esos eventos queda pendiente de los contratos reales de Ecomotor y Duki Bank/Equipo 5.
-- La selección aleatoria se protege con transacción y bloqueo de fila donde el motor de base de datos lo soporta. SQLite no garantiza el mismo comportamiento de concurrencia que PostgreSQL; la concurrencia debe comprobarse en el motor de despliegue definitivo.
-- Si hay menos de tres juegos activos entre 1–6, se seleccionan los disponibles. En la carga normal deben existir los seis primeros juegos.
-- El contenido educativo sigue pendiente por decisión del equipo; un juego disponible en F6 no implica que tenga una variante publicada y pueda validarse.
+- El valor previsto es de 5 XP por juego completado para Free, Plus, Pro y Alumno
+  Plus temporal vigente.
+- La API deja claro que no concede XP real ni Duki Coins. Los indicadores
+  `xp_reward_processed` y `ducky_coin_reward_processed` permanecen sin procesar.
+- Rewards (validación/evaluación inicial, persistencia y servicio de procesamiento)
+  y Duki Bank/cartera de monedas quedan **pendientes de implementar el jueves 22**.
+- El nivel y la fecha de caducidad se mantienen en el perfil temporal hasta que se
+  acuerde la fuente oficial de identidad/acceso.
 
-## Validación local pendiente
+## Configuración y validación
 
-Desde `DuckyTraining/backend`, con el entorno virtual del proyecto activado:
-
-```powershell
-py -3.15 manage.py makemigrations --check --dry-run
-py -3.15 manage.py check
-py -3.15 manage.py migrate
-py -3.15 manage.py test apps.training
-```
-
-No se ejecutaron comandos de Django durante la preparación de este ZIP.
+- El catálogo debe tener al menos tres juegos activos del rango Free (1–6) y los
+  diez juegos activos para planes con acceso completo.
+- Si el catálogo no cumple el mínimo, el endpoint devuelve un error explícito en
+  lugar de crear una selección incompleta.
+- Las variantes educativas pendientes no crean intentos ficticios y no pueden
+  validar respuestas.
+- Se añadieron pruebas de selección fija, acceso temporal vencido y las reglas de
+  acceso; la ejecución está pendiente de autorización en el entorno local.

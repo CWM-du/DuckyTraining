@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import ExerciseShell from './ExerciseShell'; // <-- 1. Importamos el modal
+import ExerciseShell from './ExerciseShell';
 
 const DailyCycleView = ({ data }) => {
-  const { access_level, daily_limit, cycle_date, completed_count, exercises } = data;
+  // 1. Extraemos los datos basándonos en el NUEVO contrato de la API
+  const userProfile = data?.user_profile || {};
+  const dailyCycle = data?.daily_cycle || {};
   
-  const streak = 4; 
-  const ducky_coins = 150; 
+  // Extraemos las variables específicas (con valores por defecto por seguridad)
+  const exercises = dailyCycle.exercises || [];
+  const streak = userProfile.streak_days || 0;
+  const ducky_coins = userProfile.ducky_coins || 0;
+  const access_level = userProfile.level || 'FREE';
+  const cycle_date = dailyCycle.date || 'Sin fecha';
+  // En el nuevo contrato no hay daily_limit, puedes calcularlo o dejarlo fijo de momento
+  const daily_limit = access_level === 'FREE' ? 1 : 3; 
 
-  // 2. Creamos un estado para saber qué ejercicio está abierto (null = ninguno)
   const [activeExercise, setActiveExercise] = useState(null);
 
-  // 3. Pasamos el objeto 'exercise' completo a la función
   const renderExerciseState = (exercise) => {
     switch (exercise.state) {
       case 'COMPLETED_TODAY':
@@ -21,7 +27,6 @@ const DailyCycleView = ({ data }) => {
         );
       case 'AVAILABLE':
         return (
-          // 4. Al hacer clic, guardamos este ejercicio en el estado
           <button 
             onClick={() => setActiveExercise(exercise)}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-transform transform hover:scale-105"
@@ -77,13 +82,14 @@ const DailyCycleView = ({ data }) => {
 
       {/* LISTA DE EJERCICIOS */}
       <div className="space-y-4">
-        {exercises.map((exercise) => {
+        {/* El ? nos protege de errores si exercises es undefined */}
+        {exercises?.map((exercise) => {
           const isAccessible = exercise.state !== 'NOT_ACCESSIBLE_BY_LEVEL';
           const isCompleted = exercise.state === 'COMPLETED_TODAY';
           
           return (
             <div 
-              key={exercise.number} 
+              key={exercise.id} // Cambiado a exercise.id
               className={`flex items-center justify-between p-6 rounded-2xl border-2 transition-all ${
                 isCompleted ? 'bg-green-50 border-green-200' :
                 isAccessible ? 'bg-white border-transparent shadow-sm hover:shadow-md' : 
@@ -94,23 +100,24 @@ const DailyCycleView = ({ data }) => {
                 <div className={`w-12 h-12 flex items-center justify-center rounded-full font-black text-lg ${
                   isCompleted ? 'bg-green-200 text-green-700' : 'bg-blue-100 text-blue-600'
                 }`}>
-                  {exercise.number}
+                  {exercise.order} {/* Cambiado a exercise.order */}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800">{exercise.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-800">{exercise.title}</h3> {/* Cambiado a exercise.title */}
                   <div className="flex gap-2 mt-1 text-sm font-medium">
                     <span className="text-blue-500">{exercise.type ? exercise.type.replace('_', ' ') : 'Formato por confirmar'}</span>
                     <span className="text-gray-300">•</span>
-                    <span className={`${exercise.difficulty === 'HARD' ? 'text-red-500' : exercise.difficulty === 'MEDIUM' ? 'text-yellow-500' : 'text-green-500'}`}>
-                      {exercise.difficulty}
+                    {/* Mostramos las monedas de recompensa */}
+                    <span className="text-yellow-500 font-bold">
+                      +{exercise.reward_coins} Coins
                     </span>
                   </div>
-                  <p className="text-xs text-gray-400 mt-1">Habilidad: {exercise.skill}</p>
+                  {/* Mostramos las instrucciones */}
+                  <p className="text-xs text-gray-400 mt-1 line-clamp-1">{exercise.instructions}</p>
                 </div>
               </div>
 
               <div>
-                {/* 5. Le pasamos el ejercicio completo a la función */}
                 {renderExerciseState(exercise)}
               </div>
             </div>
@@ -118,7 +125,6 @@ const DailyCycleView = ({ data }) => {
         })}
       </div>
 
-      {/* 6. Si hay un ejercicio activo, renderizamos el modal superpuesto */}
       {activeExercise && (
         <ExerciseShell 
           exercise={activeExercise} 

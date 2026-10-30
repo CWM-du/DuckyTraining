@@ -10,7 +10,18 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from . import catalog, validators
+from .integrations.rewards import prepare_reward_intents
 from .catalog import CatalogError
+from .integrations.config import IntegrationConfigurationError
+from .integrations.membership import get_membership_for_training
+from .provided_games import (
+    GAME_FILES,
+    ProvidedGameError,
+    ProvidedGameRequestError,
+    get_random_challenge,
+    list_games,
+    validate_answer,
+)
 from .models import (
     AccessLevel,
     DAILY_LIMITS,
@@ -30,11 +41,12 @@ class TrainingConfigurationError(Exception):
 
 
 def get_effective_access_level(profile, now=None):
-    if profile.access_level == AccessLevel.ALUMNO_PLUS_TEMPORAL:
-        now = now or timezone.now()
-        if profile.access_expires_at is None or profile.access_expires_at <= now:
-            return AccessLevel.FREE
-    return profile.access_level
+    # Adaptador local sustituible; Equipo 0/Core conserva la fuente oficial.
+    try:
+        return get_membership_for_training(profile.user, now=now)
+    except IntegrationConfigurationError:
+        # Fallo cerrado: configuración inválida nunca eleva privilegios.
+        return AccessLevel.FREE
 
 
 def ensure_cycle_selection(cycle):
@@ -61,6 +73,23 @@ def ensure_cycle_selection(cycle):
     cycle.save(update_fields=['daily_limit'])
 
 
+def count_completed_published_exercises(cycle, cycle_date):
+    completed_progress = DailyExerciseProgress.objects.filter(
+        cycle=cycle,
+        completed=True,
+        exercise__in=cycle.selected_exercises.all(),
+    ).select_related('exercise')
+    month = cycle_date.replace(day=1)
+    completed_count = 0
+    for progress in completed_progress:
+        _, variant = catalog.get_or_assign_monthly_variant(
+            cycle.user, progress.exercise, month
+        )
+        if variant is not None and variant.get('content_status') == 'published':
+            completed_count += 1
+    return completed_count
+
+
 @transaction.atomic
 def get_or_create_daily_cycle(user, cycle_date):
     profile, _ = UserTrainingProfile.objects.get_or_create(user=user)
@@ -83,11 +112,7 @@ def get_or_create_daily_cycle(user, cycle_date):
         cycle.daily_limit = DAILY_LIMITS[AccessLevel.FREE]
         cycle.save(update_fields=['effective_access_level', 'daily_limit'])
     ensure_cycle_selection(cycle)
-    cycle.completed_count = DailyExerciseProgress.objects.filter(
-        cycle=cycle,
-        completed=True,
-        exercise__in=cycle.selected_exercises.all(),
-    ).count()
+    cycle.completed_count = count_completed_published_exercises(cycle, cycle_date)
     cycle.save(update_fields=['completed_count'])
     return cycle
 
@@ -113,6 +138,7 @@ def public_variant_content(content):
             'expected_bug_id',
             'expected_connections',
             'explanation',
+            'error_explanation',
         }
     }
     if isinstance(public_content.get('steps'), list):
@@ -167,7 +193,9 @@ class TrainingOverviewView(APIView):
                     'type': exercise.exercise_type,
                     'difficulty': exercise.difficulty,
                     'skill': exercise.skill,
-                    'state': state if content is not None or state != 'AVAILABLE' else 'CONTENT_PENDING',
+                    'state': state if content is not None or state == 'NOT_ACCESSIBLE_BY_LEVEL' else 'CONTENT_PENDING',
+                    'content_status': variant.get('content_status') if content is not None else None,
+                    'content_version': variant.get('content_version') if content is not None else None,
                     'content': content,
                 })
         except TrainingConfigurationError as exc:
@@ -191,6 +219,72 @@ class TrainingOverviewView(APIView):
             'rewards_status': 'Pendiente de implementar el jueves 22',
             'exercises': exercises,
         })
+
+
+class ProvidedGamesView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            return Response({'games': list_games()})
+        except ProvidedGameError as exc:
+            return Response(
+                {'error': 'practice_content_unavailable', 'message': str(exc)},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+
+
+class ProvidedGameChallengeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, game_id, level):
+        if game_id not in GAME_FILES:
+            return Response(
+                {'error': 'invalid_request', 'message': 'Juego de práctica no encontrado.'},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+        try:
+            return Response(get_random_challenge(game_id, level))
+        except ProvidedGameRequestError as exc:
+            return Response(
+                {'error': 'invalid_request', 'message': str(exc)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        except ProvidedGameError as exc:
+            return Response(
+                {'error': 'practice_content_unavailable', 'message': str(exc)},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+
+    def post(self, request, game_id, level):
+        if game_id not in GAME_FILES:
+            return Response(
+                {'error': 'invalid_request', 'message': 'Juego de práctica no encontrado.'},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+        if not isinstance(request.data, dict):
+            return Response(
+                {'error': 'invalid_request', 'message': 'El cuerpo debe ser un objeto JSON.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        try:
+            result = validate_answer(
+                game_id,
+                request.data.get('exercise_id'),
+                request.data.get('answer'),
+                level,
+            )
+            return Response(result)
+        except ProvidedGameRequestError as exc:
+            return Response(
+                {'error': 'invalid_request', 'message': str(exc)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        except ProvidedGameError as exc:
+            return Response(
+                {'error': 'practice_content_unavailable', 'message': str(exc)},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
 
 
 class ExerciseSubmitView(APIView):
@@ -218,6 +312,11 @@ class ExerciseSubmitView(APIView):
         except TrainingConfigurationError as exc:
             return Response(
                 {'error': 'training_catalog_unavailable', 'message': str(exc)},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+        except CatalogError as exc:
+            return Response(
+                {'error': 'training_content_unavailable', 'message': str(exc)},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
 
@@ -283,11 +382,7 @@ class ExerciseSubmitView(APIView):
             progress.completed = True
             progress.completed_at = timezone.now()
             progress.save(update_fields=['completed', 'completed_at'])
-            cycle.completed_count = DailyExerciseProgress.objects.filter(
-                cycle=cycle,
-                completed=True,
-                exercise__in=cycle.selected_exercises.all(),
-            ).count()
+            cycle.completed_count = count_completed_published_exercises(cycle, cycle_date)
             cycle.save(update_fields=['completed_count'])
             skill_progress, _ = SkillProgress.objects.get_or_create(
                 user=request.user, skill=exercise.skill
@@ -297,6 +392,11 @@ class ExerciseSubmitView(APIView):
             )
             update_streak_after_daily_completion(request.user, cycle, cycle_date)
 
+        reward_intents = prepare_reward_intents(
+            user_id=request.user.pk, cycle_date=cycle_date, exercise_number=exercise.number,
+            attempt_number=attempt_number, is_correct=is_correct, first_completion=first_completion,
+            xp_amount=XP_REWARDS[cycle.effective_access_level],
+        )
         response_data = {
             'success': True,
             'correct': is_correct,
@@ -307,9 +407,13 @@ class ExerciseSubmitView(APIView):
             'xp_granted': False,
             'xp_grant_status': 'pending_rewards_contract',
             'ducky_coins_granted': False,
+            'reward_intents': reward_intents,
+            'rewards_status': 'Pendiente de implementar el jueves 22',
         }
         if not is_correct:
             response_data['explanation'] = explanation
+        else:
+            response_data['solution_explanation'] = variant_data.get('explanation', '')
         return Response(response_data, status=status.HTTP_200_OK)
 
 
@@ -325,6 +429,11 @@ class TrainingProgressView(APIView):
                 {'error': 'training_catalog_unavailable', 'message': str(exc)},
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
+        except CatalogError as exc:
+            return Response(
+                {'error': 'training_content_unavailable', 'message': str(exc)},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
 
         streak = TrainingStreak.objects.filter(user=request.user).first()
         current_streak = streak.current_streak if streak else 0
@@ -332,11 +441,7 @@ class TrainingProgressView(APIView):
             current_streak = 0
 
         skills = SkillProgress.objects.filter(user=request.user).order_by('skill')
-        completed_count = DailyExerciseProgress.objects.filter(
-            cycle=cycle,
-            completed=True,
-            exercise__in=cycle.selected_exercises.all(),
-        ).count()
+        completed_count = cycle.completed_count
         return Response({
             'cycle_date': cycle_date,
             'daily_limit': cycle.daily_limit,
@@ -379,7 +484,7 @@ class TrainingHistoryView(APIView):
 
         attempts = TrainingAttempt.objects.filter(user=request.user).select_related(
             'exercise', 'cycle'
-        ).order_by('-submitted_at')[:limit]
+        ).order_by('-submitted_at', '-pk')[:limit]
         return Response({
             'results': [
                 {

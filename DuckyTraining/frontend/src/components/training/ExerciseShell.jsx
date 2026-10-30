@@ -53,6 +53,13 @@ const ExerciseShell = ({ exercise, onClose, onSubmit }) => {
         <div className="p-8 overflow-y-auto flex-grow">
           {phase === 'INSTRUCTIONS' && (
             <div className="text-center">
+              {exercise.content_status === 'provisional' && (
+                <aside className="text-left rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-amber-950 mb-4">
+                  <strong>{exercise.content.provisional_notice}</strong>
+                  <p>Esta variante es una demostración técnica y no contenido curricular aprobado.</p>
+                </aside>
+              )}
+              <p className="font-semibold text-gray-800 mb-2">{exercise.content.prompt}</p>
               <p className="text-gray-700 mb-6">{exercise.content.instruction}</p>
               <button
                 onClick={() => setPhase('PLAYING')}
@@ -96,6 +103,9 @@ const ExerciseShell = ({ exercise, onClose, onSubmit }) => {
                   <p className="text-gray-700 mb-2">
                     +{result.xp_per_completed_game} XP previstos; concesión pendiente de contrato.
                   </p>
+                  {result.solution_explanation && (
+                    <p className="text-gray-700 mb-4">{result.solution_explanation}</p>
+                  )}
                   <p className="text-sm text-amber-800 mb-6">
                     No se ha concedido XP real ni Duki Coins.
                   </p>

@@ -13,6 +13,7 @@ from .models import (
     DailyCycle,
     DailyExerciseProgress,
     Exercise,
+    MonthlyVariantAssignment,
     SkillProgress,
     TrainingAttempt,
     TrainingStreak,
@@ -80,6 +81,7 @@ class TrainingApiTests(TestCase):
                 self.assertEqual(len(response.data['exercises']), 10)
                 self.assertTrue(all(
                     exercise['state'] == 'CONTENT_PENDING'
+                    and exercise['content_status'] is None
                     for exercise in response.data['exercises']
                 ))
 
@@ -127,6 +129,7 @@ class TrainingApiTests(TestCase):
         variant = {
             'expected_order': ['first', 'second'],
             'explanation': 'Orden incorrecto.',
+            'content_status': 'published',
         }
         with patch(
             'apps.training.views.catalog.get_or_assign_monthly_variant',
@@ -164,7 +167,11 @@ class TrainingApiTests(TestCase):
             'apps.training.views.catalog.get_or_assign_monthly_variant',
             return_value=(
                 SimpleNamespace(variant_key='test-variant'),
-                {'expected_order': ['right'], 'explanation': 'Orden incorrecto.'},
+                {
+                    'expected_order': ['right'],
+                    'explanation': 'Orden incorrecto.',
+                    'content_status': 'published',
+                },
             ),
         ):
             for expected_attempt in range(1, 6):
@@ -270,7 +277,11 @@ class TrainingApiTests(TestCase):
             'apps.training.views.catalog.get_or_assign_monthly_variant',
             return_value=(
                 SimpleNamespace(variant_key='test-variant'),
-                {'expected_bug_id': 'bug', 'explanation': 'Error incorrecto.'},
+                {
+                    'expected_bug_id': 'bug',
+                    'explanation': 'Error incorrecto.',
+                    'content_status': 'published',
+                },
             ),
         ):
             response = self.client.post(
@@ -284,3 +295,205 @@ class TrainingApiTests(TestCase):
         self.assertEqual(streak.current_streak, 1)
         cycle.refresh_from_db()
         self.assertTrue(cycle.streak_processed)
+    def test_catalog_has_one_explicit_provisional_variant_for_each_game(self):
+        from .catalog import get_catalog, clear_catalog_cache, validate_variant_content
+
+        clear_catalog_cache()
+        catalog = get_catalog()
+        self.assertEqual([item['exercise_number'] for item in catalog['exercises']], list(range(1, 11)))
+        for item in catalog['exercises']:
+            self.assertEqual(len(item['variants']), 1)
+            variant = item['variants'][0]
+            self.assertEqual(variant['status'], 'provisional')
+            self.assertTrue(variant['variant_key'])
+            self.assertIn('CONTENIDO EDUCATIVO PROVISIONAL', variant['content']['provisional_notice'])
+            validate_variant_content(item['exercise_type'], variant['content'])
+
+    def test_provisional_variant_cannot_be_submitted_or_completed(self):
+        from .catalog import get_variant
+
+        self.create_profile(AccessLevel.PLUS)
+        self.assertIsNone(get_variant(
+            'ex01_temp_v1',
+            expected_exercise_number=1,
+            expected_type='ORDER_ALGORITHM',
+        ))
+
+        response = self.client.post(
+            '/api/training/exercises/1/submit/',
+            {'answer': {'ordered_ids': ['start', 'check', 'finish']}},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.data['error'], 'educational_content_pending')
+        self.assertEqual(TrainingAttempt.objects.filter(user=self.user).count(), 0)
+        progress = DailyExerciseProgress.objects.get(
+            cycle__user=self.user, exercise__number=1
+        )
+        self.assertFalse(progress.completed)
+
+    def test_removed_variant_assignment_is_pending_without_reassignment(self):
+        self.create_profile(AccessLevel.PLUS)
+        exercise = Exercise.objects.get(number=3)
+        assignment = MonthlyVariantAssignment.objects.create(
+            user=self.user,
+            exercise=exercise,
+            month=timezone.localdate().replace(day=1),
+            variant_key='ex03_v1',
+        )
+
+        overview = self.client.get('/api/training/')
+        exercise_data = next(
+            item for item in overview.data['exercises'] if item['number'] == 3
+        )
+        self.assertEqual(overview.status_code, 200)
+        self.assertEqual(exercise_data['state'], 'CONTENT_PENDING')
+        self.assertIsNone(exercise_data['content'])
+
+        response = self.client.post(
+            '/api/training/exercises/3/submit/',
+            {'answer': {'selected_bug_id': 'bug'}},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.data['error'], 'educational_content_pending')
+        self.assertEqual(TrainingAttempt.objects.filter(user=self.user).count(), 0)
+        assignment.refresh_from_db()
+        self.assertEqual(assignment.variant_key, 'ex03_v1')
+        progress = DailyExerciseProgress.objects.get(
+            cycle__user=self.user, exercise=exercise
+        )
+        self.assertFalse(progress.completed)
+
+    def test_associate_concepts_type_is_not_supported_by_catalog_validator(self):
+        from .catalog import CatalogError, validate_variant_content
+
+        content = {
+            'instruction': 'Relaciona conceptos.',
+            'explanation': 'Explicación.',
+            'prompt': 'Asocia.',
+            'content_version': 'source-v1',
+            'validation_rules': 'Pending contract.',
+            'error_explanation': 'Respuesta incorrecta.',
+            'provisional_notice': 'CONTENIDO EDUCATIVO PROVISIONAL',
+            'input_data': {},
+        }
+
+        with self.assertRaises(CatalogError):
+            validate_variant_content('asociar_conceptos', content)
+
+    def test_provided_practice_games_hide_solutions_until_submission(self):
+        response = self.client.get('/api/training/provided-games/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            {game['id'] for game in response.data['games']},
+            {'asociar_conceptos', 'detectar_error', 'ordenar_codigo'},
+        )
+        self.assertTrue(all(
+            game['content_status'] == 'provisional'
+            for game in response.data['games']
+        ))
+
+        paths = {
+            'asociar_conceptos': ('asociaciones',),
+            'detectar_error': ('error',),
+            'ordenar_codigo': ('orden_correcto',),
+        }
+        for game_id, forbidden_fields in paths.items():
+            with self.subTest(game_id=game_id):
+                challenge = self.client.get(
+                    f'/api/training/provided-games/{game_id}/1/'
+                )
+                self.assertEqual(challenge.status_code, 200)
+                self.assertEqual(challenge.data['game']['content_status'], 'provisional')
+                self.assertTrue(all(
+                    field not in challenge.data['content']
+                    for field in forbidden_fields
+                ))
+
+    def test_provided_practice_answers_are_server_validated_without_daily_progress(self):
+        from .provided_games import _load_game
+
+        def association_answer(exercise):
+            concepts = {item['id']: item['texto'] for item in exercise['conceptos']}
+            explanations = {item['id']: item['texto'] for item in exercise['explicaciones']}
+            return {
+                'asociaciones': [
+                    {
+                        'concepto': concepts[pair['concepto_id']],
+                        'explicacion': explanations[pair['explicacion_id']],
+                    }
+                    for pair in exercise['asociaciones']
+                ],
+            }
+
+        cases = {
+            'asociar_conceptos': association_answer,
+            'detectar_error': lambda exercise: {
+                'selected_line': next(line['linea'] for line in exercise['codigo'] if line['error'] is True),
+            },
+            'ordenar_codigo': lambda exercise: {
+                'ordered_ids': exercise['orden_correcto'],
+            },
+        }
+        for game_id, make_answer in cases.items():
+            with self.subTest(game_id=game_id):
+                challenge = self.client.get(
+                    f'/api/training/provided-games/{game_id}/1/'
+                )
+                source = _load_game(game_id)
+                exercise = next(
+                    item
+                    for level in source['niveles']
+                    for item in level['pruebas']
+                    if item['id'] == challenge.data['exercise_id']
+                )
+                response = self.client.post(
+                    f'/api/training/provided-games/{game_id}/1/',
+                    {
+                        'exercise_id': challenge.data['exercise_id'],
+                        'answer': make_answer(exercise),
+                    },
+                    format='json',
+                )
+
+                self.assertEqual(response.status_code, 200)
+                self.assertTrue(response.data['correct'])
+                self.assertNotIn('xp_granted', response.data)
+                self.assertFalse(TrainingAttempt.objects.filter(user=self.user).exists())
+                self.assertFalse(DailyExerciseProgress.objects.filter(
+                    cycle__user=self.user, completed=True
+                ).exists())
+
+    def test_existing_provisional_completion_is_not_counted_in_daily_progress(self):
+        self.create_profile(AccessLevel.PLUS)
+        self.client.get('/api/training/')
+        cycle = DailyCycle.objects.get(user=self.user)
+        exercise = Exercise.objects.get(number=1)
+        DailyExerciseProgress.objects.create(
+            cycle=cycle, exercise=exercise, completed=True
+        )
+        MonthlyVariantAssignment.objects.create(
+            user=self.user,
+            exercise=exercise,
+            month=timezone.localdate().replace(day=1),
+            variant_key='ex01_temp_v1',
+        )
+
+        response = self.client.get('/api/training/')
+
+        self.assertEqual(response.data['completed_count'], 0)
+        exercise_state = next(
+            item for item in response.data['exercises'] if item['number'] == 1
+        )
+        self.assertEqual(exercise_state['state'], 'CONTENT_PENDING')
+
+    def test_empty_expected_answer_cannot_be_correct(self):
+        from .validators import validate_sorting, validate_networking, validate_bug_finding
+
+        self.assertFalse(validate_sorting({'expected_order': [], 'explanation': 'x'}, {'ordered_ids': []})[0])
+        self.assertFalse(validate_networking({'expected_connections': [], 'explanation': 'x'}, {'connections': []})[0])
+        self.assertFalse(validate_bug_finding({'expected_bug_id': '', 'explanation': 'x'}, {'selected_bug_id': ''})[0])

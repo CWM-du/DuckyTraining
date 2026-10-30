@@ -51,3 +51,18 @@ export function submitTrainingAnswer(exerciseNumber, answer) {
     body: JSON.stringify({ answer }),
   })
 }
+
+export function getProvidedGames() {
+  return request('/provided-games/')
+}
+
+export function getProvidedGameChallenge(gameId, level) {
+  return request(`/provided-games/${gameId}/${level}/`)
+}
+
+export function submitProvidedGameAnswer(gameId, level, exerciseId, answer) {
+  return request(`/provided-games/${gameId}/${level}/`, {
+    method: 'POST',
+    body: JSON.stringify({ exercise_id: exerciseId, answer }),
+  })
+}

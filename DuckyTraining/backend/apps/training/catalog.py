@@ -1,8 +1,7 @@
-"""Carga y valida el catálogo educativo JSON de DuckyTraining.
+"""Carga y valida contenido publicado del catálogo educativo de DuckyTraining.
 
-El catálogo inicial solo contiene plantillas pendientes. No se generan preguntas
-ni soluciones automáticamente: una variante solo puede usarse cuando su estado
-es ``published`` y su contenido supera la validación del formato.
+Las variantes provisionales se conservan para revisión, pero no son ejecutables.
+Toda variante publicada debe superar la validación estructural de su formato.
 """
 from __future__ import annotations
 
@@ -60,6 +59,11 @@ def validate_variant_content(exercise_type, content):
         raise CatalogError("La variante necesita una instrucción no vacía ('instruction').")
     if not isinstance(content.get('explanation'), str) or not content['explanation'].strip():
         raise CatalogError("La variante necesita una explicación no vacía ('explanation').")
+    for field in ('prompt', 'content_version', 'validation_rules', 'error_explanation', 'provisional_notice'):
+        if not isinstance(content.get(field), str) or not content[field].strip():
+            raise CatalogError(f"La variante necesita el campo no vacío '{field}'.")
+    if not isinstance(content.get('input_data'), dict):
+        raise CatalogError("'input_data' debe ser un objeto JSON.")
 
     if exercise_type == ExerciseType.ORDER_ALGORITHM:
         steps, expected = content.get('steps'), content.get('expected_order')
@@ -113,7 +117,7 @@ def validate_variant_content(exercise_type, content):
 
 
 def get_variant(variant_key, expected_exercise_number=None, expected_type=None):
-    """Devuelve contenido publicado validado; None si la variante está pendiente."""
+    """Devuelve contenido publicado validado; None si falta o no está disponible."""
     for entry in get_catalog()['exercises']:
         if not isinstance(entry, dict):
             continue
@@ -123,16 +127,17 @@ def get_variant(variant_key, expected_exercise_number=None, expected_type=None):
                     raise CatalogError('La variante asignada no corresponde a este juego.')
                 if expected_type is not None and entry.get('exercise_type') != expected_type:
                     raise CatalogError('El formato de la variante no coincide con el juego.')
-                if variant.get('status') != 'published' or variant.get('content') is None:
+                if variant.get('status') != 'published' or not isinstance(variant.get('content'), dict):
                     return None
                 content = validate_variant_content(entry.get('exercise_type'), variant.get('content'))
                 return {'variant_key': variant_key, 'exercise_number': entry['exercise_number'],
-                        'exercise_type': entry['exercise_type'], **content}
-    raise CatalogError(f'La clave de variante {variant_key!r} no existe en el catálogo.')
+                        'exercise_type': entry['exercise_type'], 'content_status': variant['status'],
+                        'content_version': variant.get('content_version'), **content}
+    return None
 
 
-def choose_published_variant(exercise_number, exercise_type):
-    """Elige una variante publicada; no crea ni inventa contenido educativo."""
+def choose_available_variant(exercise_number, exercise_type):
+    """Elige solo contenido publicado; las variantes provisionales no son ejecutables."""
     entry = _exercise_entry(exercise_number)
     if entry.get('exercise_type') != exercise_type:
         raise CatalogError('El tipo del juego no coincide con el catálogo.')
@@ -140,19 +145,24 @@ def choose_published_variant(exercise_number, exercise_type):
     for variant in entry.get('variants', []):
         if not isinstance(variant, dict) or variant.get('status') != 'published':
             continue
-        content = validate_variant_content(exercise_type, variant.get('content'))
-        published.append((variant.get('variant_key'), content))
+        if not isinstance(variant.get('content'), dict):
+            continue
+        content = validate_variant_content(exercise_type, variant['content'])
+        if not isinstance(variant.get('variant_key'), str) or not variant['variant_key'].strip():
+            raise CatalogError('Cada variante necesita un identificador estable.')
+        published.append((variant.get('variant_key'), variant.get('status'), variant.get('content_version'), content))
     if not published:
         return None
-    key, content = random.choice(published)
+    key, content_status, content_version, content = random.choice(published)
     return key, {'variant_key': key, 'exercise_number': exercise_number,
-                 'exercise_type': exercise_type, **content}
+                 'exercise_type': exercise_type, 'content_status': content_status,
+                 'content_version': content_version, **content}
 
 
 def get_or_assign_monthly_variant(user, exercise, month):
-    """Recupera o asigna una variante publicada estable para usuario/juego/mes.
+    """Recupera o asigna una variante estable para usuario/juego/mes.
 
-    Devuelve (asignación, contenido). Si aún no hay contenido publicado devuelve
+    Devuelve (asignación, contenido). Si no hay contenido utilizable devuelve
     (None, None), sin fabricar preguntas ni crear asignaciones ficticias.
     """
     from django.db import IntegrityError, transaction
@@ -168,7 +178,7 @@ def get_or_assign_monthly_variant(user, exercise, month):
             expected_type=exercise.exercise_type,
         )
 
-    selected = choose_published_variant(exercise.number, exercise.exercise_type)
+    selected = choose_available_variant(exercise.number, exercise.exercise_type)
     if selected is None:
         return None, None
     variant_key, content = selected

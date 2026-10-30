@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "mode": "provisional",
+  "timezone": "Europe/Madrid",
+  "access_levels": {
+    "FREE": {"daily_games": 3, "exercise_numbers": [1, 2, 3, 4, 5, 6]},
+    "PLUS": {"daily_games": 10, "exercise_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
+    "PRO": {"daily_games": 10, "exercise_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]},
+    "ALUMNO_PLUS_TEMPORAL": {"daily_games": 10, "requires_verified_future_expiry": true}
+  },
+  "rewards": {
+    "xp_per_correct_attempt": 5,
+    "coin_candidate_on_first_daily_completion": true,
+    "grant_enabled": false,
+    "provider_id": "team5_rewards_pending_contract"
+  },
+  "membership": {
+    "provider_id": "team0_identity_membership_pending_contract",
+    "mode": "local_provisional_profile"
+  },
+  "ducky_bank": {
+    "provider_id": "team5_ducky_bank_pending_contract",
+    "grant_enabled": false
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "description": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO. Variantes de demostración; no constituyen contenido educativo aprobado. Sustituir cada variante por contenido aprobado manteniendo los contratos de formato.",
+  "content_status": "provisional",
+  "exercises": [
+    {
+      "exercise_number": 1,
+      "logical_name": "Secuencia de inicio",
+      "exercise_type": "ORDER_ALGORITHM",
+      "variants": [
+        {
+          "variant_key": "ex01_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Ordena los pasos del flujo de ejemplo en la secuencia indicada por su lógica.",
+            "prompt": "Inicio → comprobar → finalizar",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "steps": [
+              {
+                "id": "start",
+                "text": "Iniciar el proceso"
+              },
+              {
+                "id": "check",
+                "text": "Comprobar el resultado"
+              },
+              {
+                "id": "finish",
+                "text": "Finalizar el proceso"
+              }
+            ],
+            "expected_order": [
+              "start",
+              "check",
+              "finish"
+            ],
+            "explanation": "Ejemplo temporal: el proceso comienza, comprueba el resultado y termina.",
+            "error_explanation": "El orden no coincide con la secuencia esperada del ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 2,
+      "logical_name": "Orden de una respuesta",
+      "exercise_type": "ORDER_ALGORITHM",
+      "variants": [
+        {
+          "variant_key": "ex02_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Ordena los pasos de un flujo sencillo de respuesta.",
+            "prompt": "Preparar → responder → revisar",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "steps": [
+              {
+                "id": "prepare",
+                "text": "Preparar la respuesta"
+              },
+              {
+                "id": "answer",
+                "text": "Enviar la respuesta"
+              },
+              {
+                "id": "review",
+                "text": "Revisar el resultado"
+              }
+            ],
+            "expected_order": [
+              "prepare",
+              "answer",
+              "review"
+            ],
+            "explanation": "Ejemplo temporal de secuencia lineal; sustituir por material aprobado.",
+            "error_explanation": "El orden no coincide con la secuencia esperada del ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 3,
+      "logical_name": "El error visible",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex03_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Selecciona la línea marcada como incorrecta en este ejemplo de demostración.",
+            "prompt": "Ejemplo de código con una referencia no definida.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "code_items": [
+              {
+                "id": "value",
+                "text": "result = 2 + 2"
+              },
+              {
+                "id": "bug",
+                "text": "print(total)"
+              }
+            ],
+            "expected_bug_id": "bug",
+            "explanation": "La variable total no está definida en este fragmento; el ejemplo es temporal.",
+            "error_explanation": "La línea elegida no corresponde al fallo de este ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 4,
+      "logical_name": "La opción correcta",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex04_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Selecciona la línea que contiene el fallo de referencia en el ejemplo.",
+            "prompt": "Ejemplo de código de demostración.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "code_items": [
+              {
+                "id": "setup",
+                "text": "result = 10"
+              },
+              {
+                "id": "use",
+                "text": "print(answer)"
+              },
+              {
+                "id": "end",
+                "text": "print(result)"
+              }
+            ],
+            "expected_bug_id": "use",
+            "explanation": "La variable answer no está definida en el fragmento mostrado; ejemplo temporal.",
+            "error_explanation": "La línea elegida no corresponde al fallo de este ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 5,
+      "logical_name": "Primera conexión",
+      "exercise_type": "CONNECT_NETWORK",
+      "variants": [
+        {
+          "variant_key": "ex05_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Selecciona dos nodos para crear la conexión de demostración requerida.",
+            "prompt": "Conecta A con B.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "nodes": [
+              {
+                "id": "node-a",
+                "label": "Nodo A"
+              },
+              {
+                "id": "node-b",
+                "label": "Nodo B"
+              },
+              {
+                "id": "node-c",
+                "label": "Nodo C"
+              }
+            ],
+            "expected_connections": [
+              [
+                "node-a",
+                "node-b"
+              ]
+            ],
+            "explanation": "En este ejemplo temporal solo se requiere conectar A con B.",
+            "error_explanation": "Las conexiones no coinciden con las requeridas en este ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 6,
+      "logical_name": "Ruta sin interrupciones",
+      "exercise_type": "CONNECT_NETWORK",
+      "variants": [
+        {
+          "variant_key": "ex06_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Construye las conexiones de la ruta de ejemplo.",
+            "prompt": "Conecta el inicio con el paso intermedio y este con la salida.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "nodes": [
+              {
+                "id": "start",
+                "label": "Inicio"
+              },
+              {
+                "id": "middle",
+                "label": "Intermedio"
+              },
+              {
+                "id": "end",
+                "label": "Salida"
+              }
+            ],
+            "expected_connections": [
+              [
+                "start",
+                "middle"
+              ],
+              [
+                "middle",
+                "end"
+              ]
+            ],
+            "explanation": "La ruta temporal une inicio–intermedio–salida.",
+            "error_explanation": "Las conexiones no coinciden con las requeridas en este ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 7,
+      "logical_name": "Corrige antes de competir",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex07_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Identifica la línea con el nombre de variable incoherente.",
+            "prompt": "Ejemplo de código de demostración.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "code_items": [
+              {
+                "id": "define",
+                "text": "score = 1"
+              },
+              {
+                "id": "bug",
+                "text": "print(scores)"
+              },
+              {
+                "id": "valid",
+                "text": "print(score)"
+              }
+            ],
+            "expected_bug_id": "bug",
+            "explanation": "scores no coincide con el identificador score; ejemplo temporal.",
+            "error_explanation": "La línea elegida no corresponde al fallo de este ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 8,
+      "logical_name": "Ordena la estrategia",
+      "exercise_type": "ORDER_ALGORITHM",
+      "variants": [
+        {
+          "variant_key": "ex08_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Ordena las fases de una estrategia de resolución de ejemplo.",
+            "prompt": "Analizar → planificar → ejecutar → verificar",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "steps": [
+              {
+                "id": "analyze",
+                "text": "Analizar el objetivo"
+              },
+              {
+                "id": "plan",
+                "text": "Planificar los pasos"
+              },
+              {
+                "id": "execute",
+                "text": "Ejecutar el plan"
+              },
+              {
+                "id": "verify",
+                "text": "Verificar el resultado"
+              }
+            ],
+            "expected_order": [
+              "analyze",
+              "plan",
+              "execute",
+              "verify"
+            ],
+            "explanation": "Ejemplo temporal de planificación; no es contenido curricular aprobado.",
+            "error_explanation": "El orden no coincide con la secuencia esperada del ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 9,
+      "logical_name": "Red de salida",
+      "exercise_type": "CONNECT_NETWORK",
+      "variants": [
+        {
+          "variant_key": "ex09_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Crea la conexión de demostración entre el nodo de entrada y la salida.",
+            "prompt": "Conecta entrada con salida.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "nodes": [
+              {
+                "id": "input",
+                "label": "Entrada"
+              },
+              {
+                "id": "relay",
+                "label": "Nodo intermedio"
+              },
+              {
+                "id": "output",
+                "label": "Salida"
+              }
+            ],
+            "expected_connections": [
+              [
+                "input",
+                "output"
+              ]
+            ],
+            "explanation": "En este ejemplo temporal se requiere una conexión directa entre entrada y salida.",
+            "error_explanation": "Las conexiones no coinciden con las requeridas en este ejemplo temporal."
+          }
+        }
+      ]
+    },
+    {
+      "exercise_number": 10,
+      "logical_name": "Encuentra el fallo",
+      "exercise_type": "FIND_ERROR",
+      "variants": [
+        {
+          "variant_key": "ex10_temp_v1",
+          "status": "provisional",
+          "content_version": "ducky-temp-v1",
+          "content": {
+            "instruction": "Selecciona la línea con la referencia no definida.",
+            "prompt": "Ejemplo mínimo de detección de errores.",
+            "content_version": "ducky-temp-v1",
+            "provisional_notice": "CONTENIDO EDUCATIVO PROVISIONAL — SUSTITUIR POR CONTENIDO APROBADO",
+            "validation_rules": "Validación estricta en servidor según el tipo de juego; la respuesta del cliente no determina el resultado.",
+            "input_data": {
+              "source": "demostracion_tecnica_temporal"
+            },
+            "code_items": [
+              {
+                "id": "define",
+                "text": "attempts = 0"
+              },
+              {
+                "id": "bug",
+                "text": "attempts = attempts + step"
+              },
+              {
+                "id": "show",
+                "text": "print(attempts)"
+              }
+            ],
+            "expected_bug_id": "bug",
+            "explanation": "step no se define en el fragmento; ejemplo temporal.",
+            "error_explanation": "La línea elegida no corresponde al fallo de este ejemplo temporal."
+          }
+        }
+      ]
+    }
+  ]
+}

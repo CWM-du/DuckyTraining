@@ -1,0 +1,7031 @@
+{
+  "tipo_juego": "CONNECT_NETWORK",
+  "instrucciones": "Relaciona cada concepto con su explicación.",
+  "niveles": [
+    {
+      "nivel": 1,
+      "pruebas": [
+        {
+          "id": "ASO-1-01",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "f-string"
+            },
+            {
+              "id": "C2",
+              "texto": "int"
+            },
+            {
+              "id": "C3",
+              "texto": "len()"
+            },
+            {
+              "id": "C4",
+              "texto": "=="
+            },
+            {
+              "id": "C5",
+              "texto": "bool"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Cadena que permite insertar expresiones con llaves."
+            },
+            {
+              "id": "E2",
+              "texto": "Tipo de dato con los valores True y False."
+            },
+            {
+              "id": "E3",
+              "texto": "Tipo de dato para números enteros."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve la longitud de una secuencia o colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que compara dos valores por igualdad."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-02",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "int"
+            },
+            {
+              "id": "C2",
+              "texto": "None"
+            },
+            {
+              "id": "C3",
+              "texto": "str"
+            },
+            {
+              "id": "C4",
+              "texto": "float"
+            },
+            {
+              "id": "C5",
+              "texto": "="
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Tipo de dato para cadenas de texto."
+            },
+            {
+              "id": "E2",
+              "texto": "Tipo de dato para números enteros."
+            },
+            {
+              "id": "E3",
+              "texto": "Tipo de dato para números con decimales."
+            },
+            {
+              "id": "E4",
+              "texto": "Valor que representa ausencia de valor."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que asigna un valor a un nombre."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-03",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "input()"
+            },
+            {
+              "id": "C2",
+              "texto": "or"
+            },
+            {
+              "id": "C3",
+              "texto": "and"
+            },
+            {
+              "id": "C4",
+              "texto": "int"
+            },
+            {
+              "id": "C5",
+              "texto": "=="
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Es verdadero si al menos un operando es verdadero."
+            },
+            {
+              "id": "E2",
+              "texto": "Lee texto introducido por el usuario."
+            },
+            {
+              "id": "E3",
+              "texto": "Tipo de dato para números enteros."
+            },
+            {
+              "id": "E4",
+              "texto": "Es verdadero si ambos operandos son verdaderos."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que compara dos valores por igualdad."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-04",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "-"
+            },
+            {
+              "id": "C2",
+              "texto": "*"
+            },
+            {
+              "id": "C3",
+              "texto": "type()"
+            },
+            {
+              "id": "C4",
+              "texto": "str"
+            },
+            {
+              "id": "C5",
+              "texto": "bool"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Tipo de dato con los valores True y False."
+            },
+            {
+              "id": "E2",
+              "texto": "Operador de resta."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador de multiplicación."
+            },
+            {
+              "id": "E4",
+              "texto": "Tipo de dato para cadenas de texto."
+            },
+            {
+              "id": "E5",
+              "texto": "Devuelve el tipo de un objeto."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-05",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "len()"
+            },
+            {
+              "id": "C2",
+              "texto": "print()"
+            },
+            {
+              "id": "C3",
+              "texto": "type()"
+            },
+            {
+              "id": "C4",
+              "texto": "!="
+            },
+            {
+              "id": "C5",
+              "texto": "not"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Invierte el valor lógico de una expresión."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve el tipo de un objeto."
+            },
+            {
+              "id": "E3",
+              "texto": "Devuelve la longitud de una secuencia o colección."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador que comprueba si dos valores son diferentes."
+            },
+            {
+              "id": "E5",
+              "texto": "Muestra información en la salida estándar."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-06",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "="
+            },
+            {
+              "id": "C2",
+              "texto": "//"
+            },
+            {
+              "id": "C3",
+              "texto": "=="
+            },
+            {
+              "id": "C4",
+              "texto": "bool"
+            },
+            {
+              "id": "C5",
+              "texto": "*"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador de división entera."
+            },
+            {
+              "id": "E2",
+              "texto": "Operador que asigna un valor a un nombre."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador que compara dos valores por igualdad."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador de multiplicación."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de dato con los valores True y False."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-07",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "type()"
+            },
+            {
+              "id": "C2",
+              "texto": "False"
+            },
+            {
+              "id": "C3",
+              "texto": "print()"
+            },
+            {
+              "id": "C4",
+              "texto": "f-string"
+            },
+            {
+              "id": "C5",
+              "texto": "len()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve el tipo de un objeto."
+            },
+            {
+              "id": "E2",
+              "texto": "Muestra información en la salida estándar."
+            },
+            {
+              "id": "E3",
+              "texto": "Cadena que permite insertar expresiones con llaves."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve la longitud de una secuencia o colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Valor booleano que representa falso."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-08",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "or"
+            },
+            {
+              "id": "C2",
+              "texto": "not"
+            },
+            {
+              "id": "C3",
+              "texto": "and"
+            },
+            {
+              "id": "C4",
+              "texto": "="
+            },
+            {
+              "id": "C5",
+              "texto": "float"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador que asigna un valor a un nombre."
+            },
+            {
+              "id": "E2",
+              "texto": "Es verdadero si al menos un operando es verdadero."
+            },
+            {
+              "id": "E3",
+              "texto": "Invierte el valor lógico de una expresión."
+            },
+            {
+              "id": "E4",
+              "texto": "Tipo de dato para números con decimales."
+            },
+            {
+              "id": "E5",
+              "texto": "Es verdadero si ambos operandos son verdaderos."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-09",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "*"
+            },
+            {
+              "id": "C2",
+              "texto": "True"
+            },
+            {
+              "id": "C3",
+              "texto": "//"
+            },
+            {
+              "id": "C4",
+              "texto": "=="
+            },
+            {
+              "id": "C5",
+              "texto": "len()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador de multiplicación."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve la longitud de una secuencia o colección."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador de división entera."
+            },
+            {
+              "id": "E4",
+              "texto": "Valor booleano que representa verdadero."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que compara dos valores por igualdad."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-10",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "="
+            },
+            {
+              "id": "C2",
+              "texto": "True"
+            },
+            {
+              "id": "C3",
+              "texto": "**"
+            },
+            {
+              "id": "C4",
+              "texto": "%"
+            },
+            {
+              "id": "C5",
+              "texto": "-"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador que obtiene el resto de una división."
+            },
+            {
+              "id": "E2",
+              "texto": "Operador de resta."
+            },
+            {
+              "id": "E3",
+              "texto": "Valor booleano que representa verdadero."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador de potenciación."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que asigna un valor a un nombre."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-11",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "type()"
+            },
+            {
+              "id": "C2",
+              "texto": "**"
+            },
+            {
+              "id": "C3",
+              "texto": "//"
+            },
+            {
+              "id": "C4",
+              "texto": "*"
+            },
+            {
+              "id": "C5",
+              "texto": "=="
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador de multiplicación."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve el tipo de un objeto."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador de potenciación."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador de división entera."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que compara dos valores por igualdad."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-12",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "!="
+            },
+            {
+              "id": "C2",
+              "texto": "//"
+            },
+            {
+              "id": "C3",
+              "texto": "False"
+            },
+            {
+              "id": "C4",
+              "texto": "/"
+            },
+            {
+              "id": "C5",
+              "texto": "bool"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Valor booleano que representa falso."
+            },
+            {
+              "id": "E2",
+              "texto": "Operador que comprueba si dos valores son diferentes."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador de división que devuelve un flotante."
+            },
+            {
+              "id": "E4",
+              "texto": "Tipo de dato con los valores True y False."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador de división entera."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-13",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "None"
+            },
+            {
+              "id": "C2",
+              "texto": "type()"
+            },
+            {
+              "id": "C3",
+              "texto": "not"
+            },
+            {
+              "id": "C4",
+              "texto": "**"
+            },
+            {
+              "id": "C5",
+              "texto": "len()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve el tipo de un objeto."
+            },
+            {
+              "id": "E2",
+              "texto": "Invierte el valor lógico de una expresión."
+            },
+            {
+              "id": "E3",
+              "texto": "Devuelve la longitud de una secuencia o colección."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador de potenciación."
+            },
+            {
+              "id": "E5",
+              "texto": "Valor que representa ausencia de valor."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-14",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "!="
+            },
+            {
+              "id": "C2",
+              "texto": "not"
+            },
+            {
+              "id": "C3",
+              "texto": "or"
+            },
+            {
+              "id": "C4",
+              "texto": "bool"
+            },
+            {
+              "id": "C5",
+              "texto": "-"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador de resta."
+            },
+            {
+              "id": "E2",
+              "texto": "Invierte el valor lógico de una expresión."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador que comprueba si dos valores son diferentes."
+            },
+            {
+              "id": "E4",
+              "texto": "Es verdadero si al menos un operando es verdadero."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de dato con los valores True y False."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-15",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "variable"
+            },
+            {
+              "id": "C2",
+              "texto": "False"
+            },
+            {
+              "id": "C3",
+              "texto": "True"
+            },
+            {
+              "id": "C4",
+              "texto": "print()"
+            },
+            {
+              "id": "C5",
+              "texto": "%"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Valor booleano que representa verdadero."
+            },
+            {
+              "id": "E2",
+              "texto": "Nombre que hace referencia a un valor."
+            },
+            {
+              "id": "E3",
+              "texto": "Valor booleano que representa falso."
+            },
+            {
+              "id": "E4",
+              "texto": "Muestra información en la salida estándar."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador que obtiene el resto de una división."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-16",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "**"
+            },
+            {
+              "id": "C2",
+              "texto": "="
+            },
+            {
+              "id": "C3",
+              "texto": "str"
+            },
+            {
+              "id": "C4",
+              "texto": "//"
+            },
+            {
+              "id": "C5",
+              "texto": "bool"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador que asigna un valor a un nombre."
+            },
+            {
+              "id": "E2",
+              "texto": "Tipo de dato con los valores True y False."
+            },
+            {
+              "id": "E3",
+              "texto": "Operador de división entera."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador de potenciación."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de dato para cadenas de texto."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-17",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "len()"
+            },
+            {
+              "id": "C2",
+              "texto": "="
+            },
+            {
+              "id": "C3",
+              "texto": "str"
+            },
+            {
+              "id": "C4",
+              "texto": "float"
+            },
+            {
+              "id": "C5",
+              "texto": "comentario"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve la longitud de una secuencia o colección."
+            },
+            {
+              "id": "E2",
+              "texto": "Tipo de dato para cadenas de texto."
+            },
+            {
+              "id": "E3",
+              "texto": "Texto que comienza con # y no se ejecuta."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador que asigna un valor a un nombre."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de dato para números con decimales."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-18",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "input()"
+            },
+            {
+              "id": "C2",
+              "texto": "%"
+            },
+            {
+              "id": "C3",
+              "texto": "f-string"
+            },
+            {
+              "id": "C4",
+              "texto": "or"
+            },
+            {
+              "id": "C5",
+              "texto": "="
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Es verdadero si al menos un operando es verdadero."
+            },
+            {
+              "id": "E2",
+              "texto": "Operador que obtiene el resto de una división."
+            },
+            {
+              "id": "E3",
+              "texto": "Lee texto introducido por el usuario."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador que asigna un valor a un nombre."
+            },
+            {
+              "id": "E5",
+              "texto": "Cadena que permite insertar expresiones con llaves."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-19",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "float"
+            },
+            {
+              "id": "C2",
+              "texto": "f-string"
+            },
+            {
+              "id": "C3",
+              "texto": "//"
+            },
+            {
+              "id": "C4",
+              "texto": "variable"
+            },
+            {
+              "id": "C5",
+              "texto": "/"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Tipo de dato para números con decimales."
+            },
+            {
+              "id": "E2",
+              "texto": "Cadena que permite insertar expresiones con llaves."
+            },
+            {
+              "id": "E3",
+              "texto": "Nombre que hace referencia a un valor."
+            },
+            {
+              "id": "E4",
+              "texto": "Operador de división entera."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador de división que devuelve un flotante."
+            }
+          ]
+        },
+        {
+          "id": "ASO-1-20",
+          "nivel": 1,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "//"
+            },
+            {
+              "id": "C2",
+              "texto": "False"
+            },
+            {
+              "id": "C3",
+              "texto": "print()"
+            },
+            {
+              "id": "C4",
+              "texto": "/"
+            },
+            {
+              "id": "C5",
+              "texto": "True"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Operador de división entera."
+            },
+            {
+              "id": "E2",
+              "texto": "Valor booleano que representa verdadero."
+            },
+            {
+              "id": "E3",
+              "texto": "Valor booleano que representa falso."
+            },
+            {
+              "id": "E4",
+              "texto": "Muestra información en la salida estándar."
+            },
+            {
+              "id": "E5",
+              "texto": "Operador de división que devuelve un flotante."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 2,
+      "pruebas": [
+        {
+          "id": "ASO-2-01",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "range()"
+            },
+            {
+              "id": "C2",
+              "texto": "pass"
+            },
+            {
+              "id": "C3",
+              "texto": "else"
+            },
+            {
+              "id": "C4",
+              "texto": "append()"
+            },
+            {
+              "id": "C5",
+              "texto": "break"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Produce una secuencia de números enteros para iterar."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade un elemento al final de una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Sale inmediatamente del bucle más cercano."
+            },
+            {
+              "id": "E4",
+              "texto": "Sentencia nula que no hace nada."
+            },
+            {
+              "id": "E5",
+              "texto": "Define la alternativa cuando no se cumple el caso anterior."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-02",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "in"
+            },
+            {
+              "id": "C2",
+              "texto": "pop()"
+            },
+            {
+              "id": "C3",
+              "texto": "set"
+            },
+            {
+              "id": "C4",
+              "texto": "lista"
+            },
+            {
+              "id": "C5",
+              "texto": "append()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Colección ordenada y mutable entre corchetes."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade un elemento al final de una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Colección de elementos únicos sin orden garantizado."
+            },
+            {
+              "id": "E4",
+              "texto": "Comprueba la pertenencia de un elemento a una colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Extrae y devuelve un elemento de una colección."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-03",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "values()"
+            },
+            {
+              "id": "C2",
+              "texto": "elif"
+            },
+            {
+              "id": "C3",
+              "texto": "clear()"
+            },
+            {
+              "id": "C4",
+              "texto": "tupla"
+            },
+            {
+              "id": "C5",
+              "texto": "slice"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Obtiene una parte de una secuencia mediante índices."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve una vista con los valores de un diccionario."
+            },
+            {
+              "id": "E3",
+              "texto": "Comprueba otra condición si las anteriores fallan."
+            },
+            {
+              "id": "E4",
+              "texto": "Elimina todos los elementos de una colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Colección ordenada e inmutable."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-04",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "values()"
+            },
+            {
+              "id": "C2",
+              "texto": "for"
+            },
+            {
+              "id": "C3",
+              "texto": "set"
+            },
+            {
+              "id": "C4",
+              "texto": "insert()"
+            },
+            {
+              "id": "C5",
+              "texto": "range()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve una vista con los valores de un diccionario."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade un elemento en una posición específica."
+            },
+            {
+              "id": "E3",
+              "texto": "Produce una secuencia de números enteros para iterar."
+            },
+            {
+              "id": "E4",
+              "texto": "Colección de elementos únicos sin orden garantizado."
+            },
+            {
+              "id": "E5",
+              "texto": "Itera sobre elementos de un iterable."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-05",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "insert()"
+            },
+            {
+              "id": "C2",
+              "texto": "in"
+            },
+            {
+              "id": "C3",
+              "texto": "tupla"
+            },
+            {
+              "id": "C4",
+              "texto": "remove()"
+            },
+            {
+              "id": "C5",
+              "texto": "range()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Elimina la primera aparición de un valor en una lista."
+            },
+            {
+              "id": "E2",
+              "texto": "Comprueba la pertenencia de un elemento a una colección."
+            },
+            {
+              "id": "E3",
+              "texto": "Añade un elemento en una posición específica."
+            },
+            {
+              "id": "E4",
+              "texto": "Colección ordenada e inmutable."
+            },
+            {
+              "id": "E5",
+              "texto": "Produce una secuencia de números enteros para iterar."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-06",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "pop()"
+            },
+            {
+              "id": "C2",
+              "texto": "for"
+            },
+            {
+              "id": "C3",
+              "texto": "values()"
+            },
+            {
+              "id": "C4",
+              "texto": "items()"
+            },
+            {
+              "id": "C5",
+              "texto": "else"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Define la alternativa cuando no se cumple el caso anterior."
+            },
+            {
+              "id": "E2",
+              "texto": "Itera sobre elementos de un iterable."
+            },
+            {
+              "id": "E3",
+              "texto": "Extrae y devuelve un elemento de una colección."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve una vista con los valores de un diccionario."
+            },
+            {
+              "id": "E5",
+              "texto": "Devuelve una vista de pares clave-valor de un diccionario."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-07",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "pop()"
+            },
+            {
+              "id": "C2",
+              "texto": "lista"
+            },
+            {
+              "id": "C3",
+              "texto": "keys()"
+            },
+            {
+              "id": "C4",
+              "texto": "diccionario"
+            },
+            {
+              "id": "C5",
+              "texto": "break"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Sale inmediatamente del bucle más cercano."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve una vista con las claves de un diccionario."
+            },
+            {
+              "id": "E3",
+              "texto": "Extrae y devuelve un elemento de una colección."
+            },
+            {
+              "id": "E4",
+              "texto": "Colección ordenada y mutable entre corchetes."
+            },
+            {
+              "id": "E5",
+              "texto": "Colección de pares clave-valor."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-08",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "for"
+            },
+            {
+              "id": "C2",
+              "texto": "while"
+            },
+            {
+              "id": "C3",
+              "texto": "in"
+            },
+            {
+              "id": "C4",
+              "texto": "clear()"
+            },
+            {
+              "id": "C5",
+              "texto": "keys()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Itera sobre elementos de un iterable."
+            },
+            {
+              "id": "E2",
+              "texto": "Comprueba la pertenencia de un elemento a una colección."
+            },
+            {
+              "id": "E3",
+              "texto": "Repite un bloque mientras una condición sea verdadera."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve una vista con las claves de un diccionario."
+            },
+            {
+              "id": "E5",
+              "texto": "Elimina todos los elementos de una colección."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-09",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "append()"
+            },
+            {
+              "id": "C2",
+              "texto": "elif"
+            },
+            {
+              "id": "C3",
+              "texto": "extend()"
+            },
+            {
+              "id": "C4",
+              "texto": "in"
+            },
+            {
+              "id": "C5",
+              "texto": "else"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Añade múltiples elementos al final de una lista."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade un elemento al final de una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Comprueba la pertenencia de un elemento a una colección."
+            },
+            {
+              "id": "E4",
+              "texto": "Define la alternativa cuando no se cumple el caso anterior."
+            },
+            {
+              "id": "E5",
+              "texto": "Comprueba otra condición si las anteriores fallan."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-10",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "if"
+            },
+            {
+              "id": "C2",
+              "texto": "for"
+            },
+            {
+              "id": "C3",
+              "texto": "append()"
+            },
+            {
+              "id": "C4",
+              "texto": "remove()"
+            },
+            {
+              "id": "C5",
+              "texto": "keys()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Itera sobre elementos de un iterable."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve una vista con las claves de un diccionario."
+            },
+            {
+              "id": "E3",
+              "texto": "Ejecuta un bloque cuando se cumple una condición."
+            },
+            {
+              "id": "E4",
+              "texto": "Elimina la primera aparición de un valor en una lista."
+            },
+            {
+              "id": "E5",
+              "texto": "Añade un elemento al final de una lista."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-11",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "continue"
+            },
+            {
+              "id": "C2",
+              "texto": "diccionario"
+            },
+            {
+              "id": "C3",
+              "texto": "insert()"
+            },
+            {
+              "id": "C4",
+              "texto": "elif"
+            },
+            {
+              "id": "C5",
+              "texto": "lista"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Pasa directamente a la siguiente iteración."
+            },
+            {
+              "id": "E2",
+              "texto": "Colección de pares clave-valor."
+            },
+            {
+              "id": "E3",
+              "texto": "Comprueba otra condición si las anteriores fallan."
+            },
+            {
+              "id": "E4",
+              "texto": "Colección ordenada y mutable entre corchetes."
+            },
+            {
+              "id": "E5",
+              "texto": "Añade un elemento en una posición específica."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-12",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "if"
+            },
+            {
+              "id": "C2",
+              "texto": "break"
+            },
+            {
+              "id": "C3",
+              "texto": "tupla"
+            },
+            {
+              "id": "C4",
+              "texto": "append()"
+            },
+            {
+              "id": "C5",
+              "texto": "clear()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ejecuta un bloque cuando se cumple una condición."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade un elemento al final de una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Colección ordenada e inmutable."
+            },
+            {
+              "id": "E4",
+              "texto": "Elimina todos los elementos de una colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Sale inmediatamente del bucle más cercano."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-13",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "diccionario"
+            },
+            {
+              "id": "C2",
+              "texto": "pop()"
+            },
+            {
+              "id": "C3",
+              "texto": "range()"
+            },
+            {
+              "id": "C4",
+              "texto": "lista"
+            },
+            {
+              "id": "C5",
+              "texto": "continue"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Colección ordenada y mutable entre corchetes."
+            },
+            {
+              "id": "E2",
+              "texto": "Produce una secuencia de números enteros para iterar."
+            },
+            {
+              "id": "E3",
+              "texto": "Pasa directamente a la siguiente iteración."
+            },
+            {
+              "id": "E4",
+              "texto": "Extrae y devuelve un elemento de una colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Colección de pares clave-valor."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-14",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "in"
+            },
+            {
+              "id": "C2",
+              "texto": "índice negativo"
+            },
+            {
+              "id": "C3",
+              "texto": "pass"
+            },
+            {
+              "id": "C4",
+              "texto": "diccionario"
+            },
+            {
+              "id": "C5",
+              "texto": "extend()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Sentencia nula que no hace nada."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade múltiples elementos al final de una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Accede a elementos contando desde el final."
+            },
+            {
+              "id": "E4",
+              "texto": "Comprueba la pertenencia de un elemento a una colección."
+            },
+            {
+              "id": "E5",
+              "texto": "Colección de pares clave-valor."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-15",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "for"
+            },
+            {
+              "id": "C2",
+              "texto": "elif"
+            },
+            {
+              "id": "C3",
+              "texto": "diccionario"
+            },
+            {
+              "id": "C4",
+              "texto": "append()"
+            },
+            {
+              "id": "C5",
+              "texto": "items()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve una vista de pares clave-valor de un diccionario."
+            },
+            {
+              "id": "E2",
+              "texto": "Comprueba otra condición si las anteriores fallan."
+            },
+            {
+              "id": "E3",
+              "texto": "Colección de pares clave-valor."
+            },
+            {
+              "id": "E4",
+              "texto": "Itera sobre elementos de un iterable."
+            },
+            {
+              "id": "E5",
+              "texto": "Añade un elemento al final de una lista."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-16",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "índice negativo"
+            },
+            {
+              "id": "C2",
+              "texto": "remove()"
+            },
+            {
+              "id": "C3",
+              "texto": "keys()"
+            },
+            {
+              "id": "C4",
+              "texto": "if"
+            },
+            {
+              "id": "C5",
+              "texto": "append()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Añade un elemento al final de una lista."
+            },
+            {
+              "id": "E2",
+              "texto": "Elimina la primera aparición de un valor en una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Accede a elementos contando desde el final."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve una vista con las claves de un diccionario."
+            },
+            {
+              "id": "E5",
+              "texto": "Ejecuta un bloque cuando se cumple una condición."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-17",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "clear()"
+            },
+            {
+              "id": "C2",
+              "texto": "lista"
+            },
+            {
+              "id": "C3",
+              "texto": "append()"
+            },
+            {
+              "id": "C4",
+              "texto": "insert()"
+            },
+            {
+              "id": "C5",
+              "texto": "índice negativo"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Accede a elementos contando desde el final."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade un elemento en una posición específica."
+            },
+            {
+              "id": "E3",
+              "texto": "Elimina todos los elementos de una colección."
+            },
+            {
+              "id": "E4",
+              "texto": "Colección ordenada y mutable entre corchetes."
+            },
+            {
+              "id": "E5",
+              "texto": "Añade un elemento al final de una lista."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-18",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "break"
+            },
+            {
+              "id": "C2",
+              "texto": "insert()"
+            },
+            {
+              "id": "C3",
+              "texto": "set"
+            },
+            {
+              "id": "C4",
+              "texto": "clear()"
+            },
+            {
+              "id": "C5",
+              "texto": "items()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Sale inmediatamente del bucle más cercano."
+            },
+            {
+              "id": "E2",
+              "texto": "Colección de elementos únicos sin orden garantizado."
+            },
+            {
+              "id": "E3",
+              "texto": "Añade un elemento en una posición específica."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve una vista de pares clave-valor de un diccionario."
+            },
+            {
+              "id": "E5",
+              "texto": "Elimina todos los elementos de una colección."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-19",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "items()"
+            },
+            {
+              "id": "C2",
+              "texto": "values()"
+            },
+            {
+              "id": "C3",
+              "texto": "extend()"
+            },
+            {
+              "id": "C4",
+              "texto": "pop()"
+            },
+            {
+              "id": "C5",
+              "texto": "tupla"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve una vista de pares clave-valor de un diccionario."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve una vista con los valores de un diccionario."
+            },
+            {
+              "id": "E3",
+              "texto": "Añade múltiples elementos al final de una lista."
+            },
+            {
+              "id": "E4",
+              "texto": "Colección ordenada e inmutable."
+            },
+            {
+              "id": "E5",
+              "texto": "Extrae y devuelve un elemento de una colección."
+            }
+          ]
+        },
+        {
+          "id": "ASO-2-20",
+          "nivel": 2,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "else"
+            },
+            {
+              "id": "C2",
+              "texto": "índice negativo"
+            },
+            {
+              "id": "C3",
+              "texto": "insert()"
+            },
+            {
+              "id": "C4",
+              "texto": "lista"
+            },
+            {
+              "id": "C5",
+              "texto": "extend()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Accede a elementos contando desde el final."
+            },
+            {
+              "id": "E2",
+              "texto": "Añade múltiples elementos al final de una lista."
+            },
+            {
+              "id": "E3",
+              "texto": "Añade un elemento en una posición específica."
+            },
+            {
+              "id": "E4",
+              "texto": "Define la alternativa cuando no se cumple el caso anterior."
+            },
+            {
+              "id": "E5",
+              "texto": "Colección ordenada y mutable entre corchetes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 3,
+      "pruebas": [
+        {
+          "id": "ASO-3-01",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "scope local"
+            },
+            {
+              "id": "C2",
+              "texto": "lambda"
+            },
+            {
+              "id": "C3",
+              "texto": "return"
+            },
+            {
+              "id": "C4",
+              "texto": "dict.get()"
+            },
+            {
+              "id": "C5",
+              "texto": "def"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E2",
+              "texto": "Declara una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Devuelve un resultado desde una función."
+            },
+            {
+              "id": "E4",
+              "texto": "Crea una función anónima mediante una expresión."
+            },
+            {
+              "id": "E5",
+              "texto": "Consulta una clave con un valor alternativo si falta."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-02",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "sum()"
+            },
+            {
+              "id": "C2",
+              "texto": "argumento"
+            },
+            {
+              "id": "C3",
+              "texto": "valor por defecto"
+            },
+            {
+              "id": "C4",
+              "texto": "map()"
+            },
+            {
+              "id": "C5",
+              "texto": "def"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Suma los elementos de un iterable numérico."
+            },
+            {
+              "id": "E2",
+              "texto": "Declara una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Valor pasado al invocar una función."
+            },
+            {
+              "id": "E4",
+              "texto": "Aplica una función a los elementos de uno o más iterables."
+            },
+            {
+              "id": "E5",
+              "texto": "Valor usado si no se proporciona el argumento correspondiente."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-03",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "valor por defecto"
+            },
+            {
+              "id": "C2",
+              "texto": "list comprehension"
+            },
+            {
+              "id": "C3",
+              "texto": "list.sort()"
+            },
+            {
+              "id": "C4",
+              "texto": "filter()"
+            },
+            {
+              "id": "C5",
+              "texto": "is"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Selecciona elementos según un predicado."
+            },
+            {
+              "id": "E2",
+              "texto": "Ordena una lista modificándola en el lugar."
+            },
+            {
+              "id": "E3",
+              "texto": "Valor usado si no se proporciona el argumento correspondiente."
+            },
+            {
+              "id": "E4",
+              "texto": "Construye una lista a partir de una expresión e iteración."
+            },
+            {
+              "id": "E5",
+              "texto": "Compara la identidad de dos objetos."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-04",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "list.sort()"
+            },
+            {
+              "id": "C2",
+              "texto": "scope local"
+            },
+            {
+              "id": "C3",
+              "texto": "list comprehension"
+            },
+            {
+              "id": "C4",
+              "texto": "global"
+            },
+            {
+              "id": "C5",
+              "texto": "map()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Aplica una función a los elementos de uno o más iterables."
+            },
+            {
+              "id": "E2",
+              "texto": "Declara que una asignación se refiere a un nombre del módulo."
+            },
+            {
+              "id": "E3",
+              "texto": "Construye una lista a partir de una expresión e iteración."
+            },
+            {
+              "id": "E4",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E5",
+              "texto": "Ordena una lista modificándola en el lugar."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-05",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "scope local"
+            },
+            {
+              "id": "C2",
+              "texto": "from ... import"
+            },
+            {
+              "id": "C3",
+              "texto": "parámetro"
+            },
+            {
+              "id": "C4",
+              "texto": "is"
+            },
+            {
+              "id": "C5",
+              "texto": "valor por defecto"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E2",
+              "texto": "Nombre usado en la definición de una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Compara la identidad de dos objetos."
+            },
+            {
+              "id": "E4",
+              "texto": "Valor usado si no se proporciona el argumento correspondiente."
+            },
+            {
+              "id": "E5",
+              "texto": "Importa nombres específicos desde un módulo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-06",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "list.sort()"
+            },
+            {
+              "id": "C2",
+              "texto": "is"
+            },
+            {
+              "id": "C3",
+              "texto": "sorted()"
+            },
+            {
+              "id": "C4",
+              "texto": "**kwargs"
+            },
+            {
+              "id": "C5",
+              "texto": "return"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve una lista nueva con elementos ordenados."
+            },
+            {
+              "id": "E2",
+              "texto": "Compara la identidad de dos objetos."
+            },
+            {
+              "id": "E3",
+              "texto": "Ordena una lista modificándola en el lugar."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve un resultado desde una función."
+            },
+            {
+              "id": "E5",
+              "texto": "Recoge argumentos con nombre adicionales en un diccionario."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-07",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "zip()"
+            },
+            {
+              "id": "C2",
+              "texto": "enumerate()"
+            },
+            {
+              "id": "C3",
+              "texto": "sorted()"
+            },
+            {
+              "id": "C4",
+              "texto": "import"
+            },
+            {
+              "id": "C5",
+              "texto": "is"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Compara la identidad de dos objetos."
+            },
+            {
+              "id": "E2",
+              "texto": "Itera aportando índice y elemento."
+            },
+            {
+              "id": "E3",
+              "texto": "Permite acceder a módulos o nombres de módulos."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve una lista nueva con elementos ordenados."
+            },
+            {
+              "id": "E5",
+              "texto": "Agrupa elementos de varios iterables por posición."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-08",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "*args"
+            },
+            {
+              "id": "C2",
+              "texto": "zip()"
+            },
+            {
+              "id": "C3",
+              "texto": "filter()"
+            },
+            {
+              "id": "C4",
+              "texto": "from ... import"
+            },
+            {
+              "id": "C5",
+              "texto": "max()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Selecciona elementos según un predicado."
+            },
+            {
+              "id": "E2",
+              "texto": "Importa nombres específicos desde un módulo."
+            },
+            {
+              "id": "E3",
+              "texto": "Recoge argumentos posicionales adicionales en una tupla."
+            },
+            {
+              "id": "E4",
+              "texto": "Agrupa elementos de varios iterables por posición."
+            },
+            {
+              "id": "E5",
+              "texto": "Devuelve el valor máximo de un iterable."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-09",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "global"
+            },
+            {
+              "id": "C2",
+              "texto": "list.sort()"
+            },
+            {
+              "id": "C3",
+              "texto": "valor por defecto"
+            },
+            {
+              "id": "C4",
+              "texto": "*args"
+            },
+            {
+              "id": "C5",
+              "texto": "return"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Valor usado si no se proporciona el argumento correspondiente."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve un resultado desde una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Ordena una lista modificándola en el lugar."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara que una asignación se refiere a un nombre del módulo."
+            },
+            {
+              "id": "E5",
+              "texto": "Recoge argumentos posicionales adicionales en una tupla."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-10",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "parámetro"
+            },
+            {
+              "id": "C2",
+              "texto": "dict.get()"
+            },
+            {
+              "id": "C3",
+              "texto": "global"
+            },
+            {
+              "id": "C4",
+              "texto": "sorted()"
+            },
+            {
+              "id": "C5",
+              "texto": "def"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Declara que una asignación se refiere a un nombre del módulo."
+            },
+            {
+              "id": "E2",
+              "texto": "Nombre usado en la definición de una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Consulta una clave con un valor alternativo si falta."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara una función."
+            },
+            {
+              "id": "E5",
+              "texto": "Devuelve una lista nueva con elementos ordenados."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-11",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "scope local"
+            },
+            {
+              "id": "C2",
+              "texto": "**kwargs"
+            },
+            {
+              "id": "C3",
+              "texto": "lambda"
+            },
+            {
+              "id": "C4",
+              "texto": "valor por defecto"
+            },
+            {
+              "id": "C5",
+              "texto": "def"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Recoge argumentos con nombre adicionales en un diccionario."
+            },
+            {
+              "id": "E2",
+              "texto": "Crea una función anónima mediante una expresión."
+            },
+            {
+              "id": "E3",
+              "texto": "Valor usado si no se proporciona el argumento correspondiente."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara una función."
+            },
+            {
+              "id": "E5",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-12",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "lambda"
+            },
+            {
+              "id": "C2",
+              "texto": "sum()"
+            },
+            {
+              "id": "C3",
+              "texto": "max()"
+            },
+            {
+              "id": "C4",
+              "texto": "*args"
+            },
+            {
+              "id": "C5",
+              "texto": "enumerate()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Devuelve el valor máximo de un iterable."
+            },
+            {
+              "id": "E2",
+              "texto": "Crea una función anónima mediante una expresión."
+            },
+            {
+              "id": "E3",
+              "texto": "Recoge argumentos posicionales adicionales en una tupla."
+            },
+            {
+              "id": "E4",
+              "texto": "Itera aportando índice y elemento."
+            },
+            {
+              "id": "E5",
+              "texto": "Suma los elementos de un iterable numérico."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-13",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "parámetro"
+            },
+            {
+              "id": "C2",
+              "texto": "docstring"
+            },
+            {
+              "id": "C3",
+              "texto": "**kwargs"
+            },
+            {
+              "id": "C4",
+              "texto": "zip()"
+            },
+            {
+              "id": "C5",
+              "texto": "sum()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Suma los elementos de un iterable numérico."
+            },
+            {
+              "id": "E2",
+              "texto": "Nombre usado en la definición de una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Recoge argumentos con nombre adicionales en un diccionario."
+            },
+            {
+              "id": "E4",
+              "texto": "Agrupa elementos de varios iterables por posición."
+            },
+            {
+              "id": "E5",
+              "texto": "Cadena que documenta un módulo, clase o función."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-14",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "filter()"
+            },
+            {
+              "id": "C2",
+              "texto": "is"
+            },
+            {
+              "id": "C3",
+              "texto": "enumerate()"
+            },
+            {
+              "id": "C4",
+              "texto": "sorted()"
+            },
+            {
+              "id": "C5",
+              "texto": "parámetro"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Nombre usado en la definición de una función."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve una lista nueva con elementos ordenados."
+            },
+            {
+              "id": "E3",
+              "texto": "Compara la identidad de dos objetos."
+            },
+            {
+              "id": "E4",
+              "texto": "Itera aportando índice y elemento."
+            },
+            {
+              "id": "E5",
+              "texto": "Selecciona elementos según un predicado."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-15",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "map()"
+            },
+            {
+              "id": "C2",
+              "texto": "sorted()"
+            },
+            {
+              "id": "C3",
+              "texto": "valor por defecto"
+            },
+            {
+              "id": "C4",
+              "texto": "sum()"
+            },
+            {
+              "id": "C5",
+              "texto": "list.sort()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Aplica una función a los elementos de uno o más iterables."
+            },
+            {
+              "id": "E2",
+              "texto": "Ordena una lista modificándola en el lugar."
+            },
+            {
+              "id": "E3",
+              "texto": "Suma los elementos de un iterable numérico."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve una lista nueva con elementos ordenados."
+            },
+            {
+              "id": "E5",
+              "texto": "Valor usado si no se proporciona el argumento correspondiente."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-16",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "from ... import"
+            },
+            {
+              "id": "C2",
+              "texto": "list.sort()"
+            },
+            {
+              "id": "C3",
+              "texto": "parámetro"
+            },
+            {
+              "id": "C4",
+              "texto": "global"
+            },
+            {
+              "id": "C5",
+              "texto": "scope local"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Declara que una asignación se refiere a un nombre del módulo."
+            },
+            {
+              "id": "E2",
+              "texto": "Ordena una lista modificándola en el lugar."
+            },
+            {
+              "id": "E3",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E4",
+              "texto": "Importa nombres específicos desde un módulo."
+            },
+            {
+              "id": "E5",
+              "texto": "Nombre usado en la definición de una función."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-17",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "*args"
+            },
+            {
+              "id": "C2",
+              "texto": "dict.get()"
+            },
+            {
+              "id": "C3",
+              "texto": "enumerate()"
+            },
+            {
+              "id": "C4",
+              "texto": "global"
+            },
+            {
+              "id": "C5",
+              "texto": "**kwargs"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Consulta una clave con un valor alternativo si falta."
+            },
+            {
+              "id": "E2",
+              "texto": "Itera aportando índice y elemento."
+            },
+            {
+              "id": "E3",
+              "texto": "Recoge argumentos con nombre adicionales en un diccionario."
+            },
+            {
+              "id": "E4",
+              "texto": "Recoge argumentos posicionales adicionales en una tupla."
+            },
+            {
+              "id": "E5",
+              "texto": "Declara que una asignación se refiere a un nombre del módulo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-18",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "parámetro"
+            },
+            {
+              "id": "C2",
+              "texto": "sorted()"
+            },
+            {
+              "id": "C3",
+              "texto": "max()"
+            },
+            {
+              "id": "C4",
+              "texto": "scope local"
+            },
+            {
+              "id": "C5",
+              "texto": "dict.get()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E2",
+              "texto": "Devuelve el valor máximo de un iterable."
+            },
+            {
+              "id": "E3",
+              "texto": "Nombre usado en la definición de una función."
+            },
+            {
+              "id": "E4",
+              "texto": "Consulta una clave con un valor alternativo si falta."
+            },
+            {
+              "id": "E5",
+              "texto": "Devuelve una lista nueva con elementos ordenados."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-19",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "import"
+            },
+            {
+              "id": "C2",
+              "texto": "sum()"
+            },
+            {
+              "id": "C3",
+              "texto": "scope local"
+            },
+            {
+              "id": "C4",
+              "texto": "zip()"
+            },
+            {
+              "id": "C5",
+              "texto": "filter()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Permite acceder a módulos o nombres de módulos."
+            },
+            {
+              "id": "E2",
+              "texto": "Selecciona elementos según un predicado."
+            },
+            {
+              "id": "E3",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E4",
+              "texto": "Agrupa elementos de varios iterables por posición."
+            },
+            {
+              "id": "E5",
+              "texto": "Suma los elementos de un iterable numérico."
+            }
+          ]
+        },
+        {
+          "id": "ASO-3-20",
+          "nivel": 3,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "max()"
+            },
+            {
+              "id": "C2",
+              "texto": "argumento"
+            },
+            {
+              "id": "C3",
+              "texto": "global"
+            },
+            {
+              "id": "C4",
+              "texto": "scope local"
+            },
+            {
+              "id": "C5",
+              "texto": "import"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Declara que una asignación se refiere a un nombre del módulo."
+            },
+            {
+              "id": "E2",
+              "texto": "Valor pasado al invocar una función."
+            },
+            {
+              "id": "E3",
+              "texto": "Ámbito de nombres definidos dentro de una función."
+            },
+            {
+              "id": "E4",
+              "texto": "Devuelve el valor máximo de un iterable."
+            },
+            {
+              "id": "E5",
+              "texto": "Permite acceder a módulos o nombres de módulos."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 4,
+      "pruebas": [
+        {
+          "id": "ASO-4-01",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "iter()"
+            },
+            {
+              "id": "C2",
+              "texto": "@staticmethod"
+            },
+            {
+              "id": "C3",
+              "texto": "write()"
+            },
+            {
+              "id": "C4",
+              "texto": "raise"
+            },
+            {
+              "id": "C5",
+              "texto": "yield"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Escribe contenido en un archivo."
+            },
+            {
+              "id": "E2",
+              "texto": "Obtiene un iterador de un objeto iterable."
+            },
+            {
+              "id": "E3",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E4",
+              "texto": "Produce valores desde una función generadora."
+            },
+            {
+              "id": "E5",
+              "texto": "Define un método que no recibe ni la clase ni la instancia."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-02",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "super()"
+            },
+            {
+              "id": "C2",
+              "texto": "@classmethod"
+            },
+            {
+              "id": "C3",
+              "texto": "generador"
+            },
+            {
+              "id": "C4",
+              "texto": "raise"
+            },
+            {
+              "id": "C5",
+              "texto": "class"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E2",
+              "texto": "Iterable que produce valores de manera diferida."
+            },
+            {
+              "id": "E3",
+              "texto": "Declara una clase."
+            },
+            {
+              "id": "E4",
+              "texto": "Da acceso a métodos de una clase base según el MRO."
+            },
+            {
+              "id": "E5",
+              "texto": "Define un método que recibe la clase como primer argumento."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-03",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "open()"
+            },
+            {
+              "id": "C2",
+              "texto": "read()"
+            },
+            {
+              "id": "C3",
+              "texto": "TypeError"
+            },
+            {
+              "id": "C4",
+              "texto": "yield"
+            },
+            {
+              "id": "C5",
+              "texto": "ValueError"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Abre un archivo y devuelve un objeto archivo."
+            },
+            {
+              "id": "E2",
+              "texto": "Lee el contenido de un archivo."
+            },
+            {
+              "id": "E3",
+              "texto": "Excepción habitual para argumentos con valor inapropiado."
+            },
+            {
+              "id": "E4",
+              "texto": "Excepción cuando se aplica una operación a un tipo inadecuado."
+            },
+            {
+              "id": "E5",
+              "texto": "Produce valores desde una función generadora."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-04",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "self"
+            },
+            {
+              "id": "C2",
+              "texto": "@property"
+            },
+            {
+              "id": "C3",
+              "texto": "next()"
+            },
+            {
+              "id": "C4",
+              "texto": "__init__"
+            },
+            {
+              "id": "C5",
+              "texto": "yield"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Recupera el siguiente valor de un iterador."
+            },
+            {
+              "id": "E2",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E3",
+              "texto": "Inicializa una instancia recién creada."
+            },
+            {
+              "id": "E4",
+              "texto": "Produce valores desde una función generadora."
+            },
+            {
+              "id": "E5",
+              "texto": "Nombre convencional del primer parámetro de métodos de instancia."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-05",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "iter()"
+            },
+            {
+              "id": "C2",
+              "texto": "finally"
+            },
+            {
+              "id": "C3",
+              "texto": "open()"
+            },
+            {
+              "id": "C4",
+              "texto": "write()"
+            },
+            {
+              "id": "C5",
+              "texto": "KeyError"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Se ejecuta al abandonar el bloque try, incluso con excepciones."
+            },
+            {
+              "id": "E2",
+              "texto": "Excepción al acceder a una clave que no existe en el diccionario."
+            },
+            {
+              "id": "E3",
+              "texto": "Abre un archivo y devuelve un objeto archivo."
+            },
+            {
+              "id": "E4",
+              "texto": "Obtiene un iterador de un objeto iterable."
+            },
+            {
+              "id": "E5",
+              "texto": "Escribe contenido en un archivo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-06",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "@property"
+            },
+            {
+              "id": "C2",
+              "texto": "raise"
+            },
+            {
+              "id": "C3",
+              "texto": "except"
+            },
+            {
+              "id": "C4",
+              "texto": "self"
+            },
+            {
+              "id": "C5",
+              "texto": "next()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E2",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E3",
+              "texto": "Nombre convencional del primer parámetro de métodos de instancia."
+            },
+            {
+              "id": "E4",
+              "texto": "Maneja una excepción de un tipo determinado."
+            },
+            {
+              "id": "E5",
+              "texto": "Recupera el siguiente valor de un iterador."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-07",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "@classmethod"
+            },
+            {
+              "id": "C2",
+              "texto": "__init__"
+            },
+            {
+              "id": "C3",
+              "texto": "ValueError"
+            },
+            {
+              "id": "C4",
+              "texto": "read()"
+            },
+            {
+              "id": "C5",
+              "texto": "iter()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Obtiene un iterador de un objeto iterable."
+            },
+            {
+              "id": "E2",
+              "texto": "Inicializa una instancia recién creada."
+            },
+            {
+              "id": "E3",
+              "texto": "Lee el contenido de un archivo."
+            },
+            {
+              "id": "E4",
+              "texto": "Define un método que recibe la clase como primer argumento."
+            },
+            {
+              "id": "E5",
+              "texto": "Excepción habitual para argumentos con valor inapropiado."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-08",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "next()"
+            },
+            {
+              "id": "C2",
+              "texto": "except"
+            },
+            {
+              "id": "C3",
+              "texto": "yield"
+            },
+            {
+              "id": "C4",
+              "texto": "raise"
+            },
+            {
+              "id": "C5",
+              "texto": "@property"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Maneja una excepción de un tipo determinado."
+            },
+            {
+              "id": "E2",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E3",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E4",
+              "texto": "Produce valores desde una función generadora."
+            },
+            {
+              "id": "E5",
+              "texto": "Recupera el siguiente valor de un iterador."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-09",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "iter()"
+            },
+            {
+              "id": "C2",
+              "texto": "__init__"
+            },
+            {
+              "id": "C3",
+              "texto": "try"
+            },
+            {
+              "id": "C4",
+              "texto": "ValueError"
+            },
+            {
+              "id": "C5",
+              "texto": "@staticmethod"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Inicializa una instancia recién creada."
+            },
+            {
+              "id": "E2",
+              "texto": "Contiene instrucciones cuyos errores pueden capturarse."
+            },
+            {
+              "id": "E3",
+              "texto": "Define un método que no recibe ni la clase ni la instancia."
+            },
+            {
+              "id": "E4",
+              "texto": "Excepción habitual para argumentos con valor inapropiado."
+            },
+            {
+              "id": "E5",
+              "texto": "Obtiene un iterador de un objeto iterable."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-10",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "read()"
+            },
+            {
+              "id": "C2",
+              "texto": "generador"
+            },
+            {
+              "id": "C3",
+              "texto": "write()"
+            },
+            {
+              "id": "C4",
+              "texto": "open()"
+            },
+            {
+              "id": "C5",
+              "texto": "raise"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Escribe contenido en un archivo."
+            },
+            {
+              "id": "E2",
+              "texto": "Lee el contenido de un archivo."
+            },
+            {
+              "id": "E3",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E4",
+              "texto": "Iterable que produce valores de manera diferida."
+            },
+            {
+              "id": "E5",
+              "texto": "Abre un archivo y devuelve un objeto archivo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-11",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "yield"
+            },
+            {
+              "id": "C2",
+              "texto": "@property"
+            },
+            {
+              "id": "C3",
+              "texto": "class"
+            },
+            {
+              "id": "C4",
+              "texto": "finally"
+            },
+            {
+              "id": "C5",
+              "texto": "raise"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Produce valores desde una función generadora."
+            },
+            {
+              "id": "E2",
+              "texto": "Se ejecuta al abandonar el bloque try, incluso con excepciones."
+            },
+            {
+              "id": "E3",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara una clase."
+            },
+            {
+              "id": "E5",
+              "texto": "Provoca explícitamente una excepción."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-12",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "yield"
+            },
+            {
+              "id": "C2",
+              "texto": "self"
+            },
+            {
+              "id": "C3",
+              "texto": "with"
+            },
+            {
+              "id": "C4",
+              "texto": "next()"
+            },
+            {
+              "id": "C5",
+              "texto": "read()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Nombre convencional del primer parámetro de métodos de instancia."
+            },
+            {
+              "id": "E2",
+              "texto": "Gestiona entrada y salida de un contexto."
+            },
+            {
+              "id": "E3",
+              "texto": "Lee el contenido de un archivo."
+            },
+            {
+              "id": "E4",
+              "texto": "Produce valores desde una función generadora."
+            },
+            {
+              "id": "E5",
+              "texto": "Recupera el siguiente valor de un iterador."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-13",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E2"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "read()"
+            },
+            {
+              "id": "C2",
+              "texto": "@property"
+            },
+            {
+              "id": "C3",
+              "texto": "@classmethod"
+            },
+            {
+              "id": "C4",
+              "texto": "with"
+            },
+            {
+              "id": "C5",
+              "texto": "ValueError"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Excepción habitual para argumentos con valor inapropiado."
+            },
+            {
+              "id": "E2",
+              "texto": "Gestiona entrada y salida de un contexto."
+            },
+            {
+              "id": "E3",
+              "texto": "Define un método que recibe la clase como primer argumento."
+            },
+            {
+              "id": "E4",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E5",
+              "texto": "Lee el contenido de un archivo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-14",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "write()"
+            },
+            {
+              "id": "C2",
+              "texto": "class"
+            },
+            {
+              "id": "C3",
+              "texto": "KeyError"
+            },
+            {
+              "id": "C4",
+              "texto": "generador"
+            },
+            {
+              "id": "C5",
+              "texto": "@property"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Excepción al acceder a una clave que no existe en el diccionario."
+            },
+            {
+              "id": "E2",
+              "texto": "Escribe contenido en un archivo."
+            },
+            {
+              "id": "E3",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara una clase."
+            },
+            {
+              "id": "E5",
+              "texto": "Iterable que produce valores de manera diferida."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-15",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "next()"
+            },
+            {
+              "id": "C2",
+              "texto": "__init__"
+            },
+            {
+              "id": "C3",
+              "texto": "except"
+            },
+            {
+              "id": "C4",
+              "texto": "open()"
+            },
+            {
+              "id": "C5",
+              "texto": "raise"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Abre un archivo y devuelve un objeto archivo."
+            },
+            {
+              "id": "E2",
+              "texto": "Inicializa una instancia recién creada."
+            },
+            {
+              "id": "E3",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E4",
+              "texto": "Recupera el siguiente valor de un iterador."
+            },
+            {
+              "id": "E5",
+              "texto": "Maneja una excepción de un tipo determinado."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-16",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "try"
+            },
+            {
+              "id": "C2",
+              "texto": "ValueError"
+            },
+            {
+              "id": "C3",
+              "texto": "@classmethod"
+            },
+            {
+              "id": "C4",
+              "texto": "generador"
+            },
+            {
+              "id": "C5",
+              "texto": "class"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Contiene instrucciones cuyos errores pueden capturarse."
+            },
+            {
+              "id": "E2",
+              "texto": "Excepción habitual para argumentos con valor inapropiado."
+            },
+            {
+              "id": "E3",
+              "texto": "Declara una clase."
+            },
+            {
+              "id": "E4",
+              "texto": "Iterable que produce valores de manera diferida."
+            },
+            {
+              "id": "E5",
+              "texto": "Define un método que recibe la clase como primer argumento."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-17",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "ValueError"
+            },
+            {
+              "id": "C2",
+              "texto": "read()"
+            },
+            {
+              "id": "C3",
+              "texto": "@classmethod"
+            },
+            {
+              "id": "C4",
+              "texto": "raise"
+            },
+            {
+              "id": "C5",
+              "texto": "write()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Excepción habitual para argumentos con valor inapropiado."
+            },
+            {
+              "id": "E2",
+              "texto": "Lee el contenido de un archivo."
+            },
+            {
+              "id": "E3",
+              "texto": "Provoca explícitamente una excepción."
+            },
+            {
+              "id": "E4",
+              "texto": "Define un método que recibe la clase como primer argumento."
+            },
+            {
+              "id": "E5",
+              "texto": "Escribe contenido en un archivo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-18",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "iter()"
+            },
+            {
+              "id": "C2",
+              "texto": "self"
+            },
+            {
+              "id": "C3",
+              "texto": "write()"
+            },
+            {
+              "id": "C4",
+              "texto": "super()"
+            },
+            {
+              "id": "C5",
+              "texto": "@staticmethod"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Nombre convencional del primer parámetro de métodos de instancia."
+            },
+            {
+              "id": "E2",
+              "texto": "Escribe contenido en un archivo."
+            },
+            {
+              "id": "E3",
+              "texto": "Da acceso a métodos de una clase base según el MRO."
+            },
+            {
+              "id": "E4",
+              "texto": "Define un método que no recibe ni la clase ni la instancia."
+            },
+            {
+              "id": "E5",
+              "texto": "Obtiene un iterador de un objeto iterable."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-19",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "yield"
+            },
+            {
+              "id": "C2",
+              "texto": "read()"
+            },
+            {
+              "id": "C3",
+              "texto": "@property"
+            },
+            {
+              "id": "C4",
+              "texto": "super()"
+            },
+            {
+              "id": "C5",
+              "texto": "open()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Produce valores desde una función generadora."
+            },
+            {
+              "id": "E2",
+              "texto": "Lee el contenido de un archivo."
+            },
+            {
+              "id": "E3",
+              "texto": "Permite acceder a un método como atributo administrado."
+            },
+            {
+              "id": "E4",
+              "texto": "Da acceso a métodos de una clase base según el MRO."
+            },
+            {
+              "id": "E5",
+              "texto": "Abre un archivo y devuelve un objeto archivo."
+            }
+          ]
+        },
+        {
+          "id": "ASO-4-20",
+          "nivel": 4,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "finally"
+            },
+            {
+              "id": "C2",
+              "texto": "KeyError"
+            },
+            {
+              "id": "C3",
+              "texto": "except"
+            },
+            {
+              "id": "C4",
+              "texto": "yield"
+            },
+            {
+              "id": "C5",
+              "texto": "@classmethod"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Se ejecuta al abandonar el bloque try, incluso con excepciones."
+            },
+            {
+              "id": "E2",
+              "texto": "Maneja una excepción de un tipo determinado."
+            },
+            {
+              "id": "E3",
+              "texto": "Define un método que recibe la clase como primer argumento."
+            },
+            {
+              "id": "E4",
+              "texto": "Excepción al acceder a una clave que no existe en el diccionario."
+            },
+            {
+              "id": "E5",
+              "texto": "Produce valores desde una función generadora."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 5,
+      "pruebas": [
+        {
+          "id": "ASO-5-01",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "type hint"
+            },
+            {
+              "id": "C2",
+              "texto": "metaclass"
+            },
+            {
+              "id": "C3",
+              "texto": "closure"
+            },
+            {
+              "id": "C4",
+              "texto": "descriptor"
+            },
+            {
+              "id": "C5",
+              "texto": "__enter__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Función que conserva referencias a variables de un ámbito envolvente."
+            },
+            {
+              "id": "E2",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E3",
+              "texto": "Objeto cuyo protocolo controla el acceso a atributos."
+            },
+            {
+              "id": "E4",
+              "texto": "Clase cuyo objeto instancia es una clase."
+            },
+            {
+              "id": "E5",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-02",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "dataclass"
+            },
+            {
+              "id": "C2",
+              "texto": "Any"
+            },
+            {
+              "id": "C3",
+              "texto": "nonlocal"
+            },
+            {
+              "id": "C4",
+              "texto": "descriptor"
+            },
+            {
+              "id": "C5",
+              "texto": "__enter__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Objeto cuyo protocolo controla el acceso a atributos."
+            },
+            {
+              "id": "E2",
+              "texto": "Tipo especial que indica que el valor no está restringido."
+            },
+            {
+              "id": "E3",
+              "texto": "Permite reasignar nombres de un ámbito envolvente no global."
+            },
+            {
+              "id": "E4",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E5",
+              "texto": "Decorador que genera métodos habituales para clases de datos."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-03",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "Union"
+            },
+            {
+              "id": "C2",
+              "texto": "Any"
+            },
+            {
+              "id": "C3",
+              "texto": "descriptor"
+            },
+            {
+              "id": "C4",
+              "texto": "MRO"
+            },
+            {
+              "id": "C5",
+              "texto": "await"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Indica que un valor puede ser de uno u otro tipo."
+            },
+            {
+              "id": "E2",
+              "texto": "Objeto cuyo protocolo controla el acceso a atributos."
+            },
+            {
+              "id": "E3",
+              "texto": "Orden de búsqueda de métodos en una jerarquía de clases."
+            },
+            {
+              "id": "E4",
+              "texto": "Suspende una corrutina hasta resolver un objeto esperable."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo especial que indica que el valor no está restringido."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-04",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E1"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "__exit__"
+            },
+            {
+              "id": "C2",
+              "texto": "Union"
+            },
+            {
+              "id": "C3",
+              "texto": "__slots__"
+            },
+            {
+              "id": "C4",
+              "texto": "Any"
+            },
+            {
+              "id": "C5",
+              "texto": "context manager"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Método invocado al salir de un bloque with."
+            },
+            {
+              "id": "E2",
+              "texto": "Declara un conjunto explícito de atributos de instancia admitidos."
+            },
+            {
+              "id": "E3",
+              "texto": "Indica que un valor puede ser de uno u otro tipo."
+            },
+            {
+              "id": "E4",
+              "texto": "Objeto que define operaciones de entrada y salida de un contexto."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo especial que indica que el valor no está restringido."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-05",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E2"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "metaclass"
+            },
+            {
+              "id": "C2",
+              "texto": "__next__"
+            },
+            {
+              "id": "C3",
+              "texto": "dataclass"
+            },
+            {
+              "id": "C4",
+              "texto": "type hint"
+            },
+            {
+              "id": "C5",
+              "texto": "__enter__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E2",
+              "texto": "Decorador que genera métodos habituales para clases de datos."
+            },
+            {
+              "id": "E3",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E4",
+              "texto": "Clase cuyo objeto instancia es una clase."
+            },
+            {
+              "id": "E5",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-06",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "__slots__"
+            },
+            {
+              "id": "C2",
+              "texto": "descriptor"
+            },
+            {
+              "id": "C3",
+              "texto": "type hint"
+            },
+            {
+              "id": "C4",
+              "texto": "__next__"
+            },
+            {
+              "id": "C5",
+              "texto": "__enter__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            },
+            {
+              "id": "E2",
+              "texto": "Objeto cuyo protocolo controla el acceso a atributos."
+            },
+            {
+              "id": "E3",
+              "texto": "Declara un conjunto explícito de atributos de instancia admitidos."
+            },
+            {
+              "id": "E4",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E5",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-07",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "nonlocal"
+            },
+            {
+              "id": "C2",
+              "texto": "async def"
+            },
+            {
+              "id": "C3",
+              "texto": "__slots__"
+            },
+            {
+              "id": "C4",
+              "texto": "asyncio.gather()"
+            },
+            {
+              "id": "C5",
+              "texto": "type hint"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            },
+            {
+              "id": "E2",
+              "texto": "Permite reasignar nombres de un ámbito envolvente no global."
+            },
+            {
+              "id": "E3",
+              "texto": "Define una función de corrutina."
+            },
+            {
+              "id": "E4",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            },
+            {
+              "id": "E5",
+              "texto": "Declara un conjunto explícito de atributos de instancia admitidos."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-08",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "asyncio.gather()"
+            },
+            {
+              "id": "C2",
+              "texto": "GIL"
+            },
+            {
+              "id": "C3",
+              "texto": "async def"
+            },
+            {
+              "id": "C4",
+              "texto": "__next__"
+            },
+            {
+              "id": "C5",
+              "texto": "type hint"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Mecanismo que en CPython tradicional limita ejecución simultánea de bytecode."
+            },
+            {
+              "id": "E2",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            },
+            {
+              "id": "E3",
+              "texto": "Define una función de corrutina."
+            },
+            {
+              "id": "E4",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E5",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-09",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E4"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E5"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "Protocol"
+            },
+            {
+              "id": "C2",
+              "texto": "__next__"
+            },
+            {
+              "id": "C3",
+              "texto": "async def"
+            },
+            {
+              "id": "C4",
+              "texto": "asyncio.gather()"
+            },
+            {
+              "id": "C5",
+              "texto": "descriptor"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            },
+            {
+              "id": "E2",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E3",
+              "texto": "Define una función de corrutina."
+            },
+            {
+              "id": "E4",
+              "texto": "Tipo de tipado estructural que describe las operaciones requeridas."
+            },
+            {
+              "id": "E5",
+              "texto": "Objeto cuyo protocolo controla el acceso a atributos."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-10",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "type hint"
+            },
+            {
+              "id": "C2",
+              "texto": "closure"
+            },
+            {
+              "id": "C3",
+              "texto": "asyncio.gather()"
+            },
+            {
+              "id": "C4",
+              "texto": "async def"
+            },
+            {
+              "id": "C5",
+              "texto": "__slots__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            },
+            {
+              "id": "E2",
+              "texto": "Función que conserva referencias a variables de un ámbito envolvente."
+            },
+            {
+              "id": "E3",
+              "texto": "Define una función de corrutina."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara un conjunto explícito de atributos de instancia admitidos."
+            },
+            {
+              "id": "E5",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-11",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "MRO"
+            },
+            {
+              "id": "C2",
+              "texto": "__exit__"
+            },
+            {
+              "id": "C3",
+              "texto": "asyncio.gather()"
+            },
+            {
+              "id": "C4",
+              "texto": "StopIteration"
+            },
+            {
+              "id": "C5",
+              "texto": "metaclass"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            },
+            {
+              "id": "E2",
+              "texto": "Clase cuyo objeto instancia es una clase."
+            },
+            {
+              "id": "E3",
+              "texto": "Método invocado al salir de un bloque with."
+            },
+            {
+              "id": "E4",
+              "texto": "Excepción que indica que un iterador se ha agotado."
+            },
+            {
+              "id": "E5",
+              "texto": "Orden de búsqueda de métodos en una jerarquía de clases."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-12",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "GIL"
+            },
+            {
+              "id": "C2",
+              "texto": "Callable"
+            },
+            {
+              "id": "C3",
+              "texto": "asyncio.gather()"
+            },
+            {
+              "id": "C4",
+              "texto": "MRO"
+            },
+            {
+              "id": "C5",
+              "texto": "__next__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Orden de búsqueda de métodos en una jerarquía de clases."
+            },
+            {
+              "id": "E2",
+              "texto": "Mecanismo que en CPython tradicional limita ejecución simultánea de bytecode."
+            },
+            {
+              "id": "E3",
+              "texto": "Tipo para variables que pueden ser invocadas como funciones."
+            },
+            {
+              "id": "E4",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E5",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-13",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E5"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "StopIteration"
+            },
+            {
+              "id": "C2",
+              "texto": "GIL"
+            },
+            {
+              "id": "C3",
+              "texto": "Any"
+            },
+            {
+              "id": "C4",
+              "texto": "Callable"
+            },
+            {
+              "id": "C5",
+              "texto": "type hint"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Tipo especial que indica que el valor no está restringido."
+            },
+            {
+              "id": "E2",
+              "texto": "Excepción que indica que un iterador se ha agotado."
+            },
+            {
+              "id": "E3",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            },
+            {
+              "id": "E4",
+              "texto": "Tipo para variables que pueden ser invocadas como funciones."
+            },
+            {
+              "id": "E5",
+              "texto": "Mecanismo que en CPython tradicional limita ejecución simultánea de bytecode."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-14",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E2"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "__next__"
+            },
+            {
+              "id": "C2",
+              "texto": "__slots__"
+            },
+            {
+              "id": "C3",
+              "texto": "Protocol"
+            },
+            {
+              "id": "C4",
+              "texto": "nonlocal"
+            },
+            {
+              "id": "C5",
+              "texto": "Any"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Permite reasignar nombres de un ámbito envolvente no global."
+            },
+            {
+              "id": "E2",
+              "texto": "Tipo especial que indica que el valor no está restringido."
+            },
+            {
+              "id": "E3",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E4",
+              "texto": "Declara un conjunto explícito de atributos de instancia admitidos."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de tipado estructural que describe las operaciones requeridas."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-15",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E4"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "context manager"
+            },
+            {
+              "id": "C2",
+              "texto": "__next__"
+            },
+            {
+              "id": "C3",
+              "texto": "GIL"
+            },
+            {
+              "id": "C4",
+              "texto": "MRO"
+            },
+            {
+              "id": "C5",
+              "texto": "__enter__"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Orden de búsqueda de métodos en una jerarquía de clases."
+            },
+            {
+              "id": "E2",
+              "texto": "Objeto que define operaciones de entrada y salida de un contexto."
+            },
+            {
+              "id": "E3",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E4",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E5",
+              "texto": "Mecanismo que en CPython tradicional limita ejecución simultánea de bytecode."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-16",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E3"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "descriptor"
+            },
+            {
+              "id": "C2",
+              "texto": "closure"
+            },
+            {
+              "id": "C3",
+              "texto": "StopIteration"
+            },
+            {
+              "id": "C4",
+              "texto": "Protocol"
+            },
+            {
+              "id": "C5",
+              "texto": "dataclass"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Excepción que indica que un iterador se ha agotado."
+            },
+            {
+              "id": "E2",
+              "texto": "Función que conserva referencias a variables de un ámbito envolvente."
+            },
+            {
+              "id": "E3",
+              "texto": "Objeto cuyo protocolo controla el acceso a atributos."
+            },
+            {
+              "id": "E4",
+              "texto": "Decorador que genera métodos habituales para clases de datos."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de tipado estructural que describe las operaciones requeridas."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-17",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E1"
+            ],
+            [
+              "C3",
+              "E5"
+            ],
+            [
+              "C4",
+              "E4"
+            ],
+            [
+              "C5",
+              "E3"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "GIL"
+            },
+            {
+              "id": "C2",
+              "texto": "closure"
+            },
+            {
+              "id": "C3",
+              "texto": "MRO"
+            },
+            {
+              "id": "C4",
+              "texto": "Any"
+            },
+            {
+              "id": "C5",
+              "texto": "asyncio.gather()"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Función que conserva referencias a variables de un ámbito envolvente."
+            },
+            {
+              "id": "E2",
+              "texto": "Mecanismo que en CPython tradicional limita ejecución simultánea de bytecode."
+            },
+            {
+              "id": "E3",
+              "texto": "Ejecuta awaitables concurrentemente y reúne sus resultados."
+            },
+            {
+              "id": "E4",
+              "texto": "Tipo especial que indica que el valor no está restringido."
+            },
+            {
+              "id": "E5",
+              "texto": "Orden de búsqueda de métodos en una jerarquía de clases."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-18",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E1"
+            ],
+            [
+              "C4",
+              "E3"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "type hint"
+            },
+            {
+              "id": "C2",
+              "texto": "__enter__"
+            },
+            {
+              "id": "C3",
+              "texto": "__next__"
+            },
+            {
+              "id": "C4",
+              "texto": "closure"
+            },
+            {
+              "id": "C5",
+              "texto": "await"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Método que produce el siguiente elemento o lanza StopIteration."
+            },
+            {
+              "id": "E2",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E3",
+              "texto": "Función que conserva referencias a variables de un ámbito envolvente."
+            },
+            {
+              "id": "E4",
+              "texto": "Suspende una corrutina hasta resolver un objeto esperable."
+            },
+            {
+              "id": "E5",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-19",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E2"
+            ],
+            [
+              "C2",
+              "E3"
+            ],
+            [
+              "C3",
+              "E4"
+            ],
+            [
+              "C4",
+              "E5"
+            ],
+            [
+              "C5",
+              "E1"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "StopIteration"
+            },
+            {
+              "id": "C2",
+              "texto": "MRO"
+            },
+            {
+              "id": "C3",
+              "texto": "__enter__"
+            },
+            {
+              "id": "C4",
+              "texto": "Protocol"
+            },
+            {
+              "id": "C5",
+              "texto": "decorador"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Transforma o envuelve un objeto callable o una clase."
+            },
+            {
+              "id": "E2",
+              "texto": "Excepción que indica que un iterador se ha agotado."
+            },
+            {
+              "id": "E3",
+              "texto": "Orden de búsqueda de métodos en una jerarquía de clases."
+            },
+            {
+              "id": "E4",
+              "texto": "Método invocado al entrar en un bloque with."
+            },
+            {
+              "id": "E5",
+              "texto": "Tipo de tipado estructural que describe las operaciones requeridas."
+            }
+          ]
+        },
+        {
+          "id": "ASO-5-20",
+          "nivel": 5,
+          "expected_connections": [
+            [
+              "C1",
+              "E5"
+            ],
+            [
+              "C2",
+              "E2"
+            ],
+            [
+              "C3",
+              "E3"
+            ],
+            [
+              "C4",
+              "E1"
+            ],
+            [
+              "C5",
+              "E4"
+            ]
+          ],
+          "conceptos": [
+            {
+              "id": "C1",
+              "texto": "StopIteration"
+            },
+            {
+              "id": "C2",
+              "texto": "__exit__"
+            },
+            {
+              "id": "C3",
+              "texto": "decorador"
+            },
+            {
+              "id": "C4",
+              "texto": "await"
+            },
+            {
+              "id": "C5",
+              "texto": "type hint"
+            }
+          ],
+          "explicaciones": [
+            {
+              "id": "E1",
+              "texto": "Suspende una corrutina hasta resolver un objeto esperable."
+            },
+            {
+              "id": "E2",
+              "texto": "Método invocado al salir de un bloque with."
+            },
+            {
+              "id": "E3",
+              "texto": "Transforma o envuelve un objeto callable o una clase."
+            },
+            {
+              "id": "E4",
+              "texto": "Anotación que expresa tipos esperados para herramientas y lectores."
+            },
+            {
+              "id": "E5",
+              "texto": "Excepción que indica que un iterador se ha agotado."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

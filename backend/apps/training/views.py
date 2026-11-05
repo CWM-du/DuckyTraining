@@ -1,3 +1,6 @@
+import json
+import os
+from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
 from rest_framework import status
@@ -10,6 +13,24 @@ from .models import (
     TrainingAttempt, UserTrainingProfile, MonthlyVariantAssignment
 )
 from . import validators
+from .serializers import AnswerSubmissionSerializer
+
+
+# --- CARGA DEL JSON EN MEMORIA ---
+# Se ejecuta una sola vez al levantar el servidor (Opción A)
+JSON_PATH = os.path.join(settings.BASE_DIR, 'apps', 'training', 'data', 'detectar_error_backend_ready.json')
+try:
+    with open(JSON_PATH, 'r', encoding='utf-8') as f:
+        FIND_ERROR_VARIANTS = json.load(f)
+        
+    # Creamos un diccionario indexado por ID para búsquedas O(1)
+    FIND_ERROR_REGISTRY = {}
+    for nivel_data in FIND_ERROR_VARIANTS.get("niveles", []):
+        for prueba in nivel_data.get("pruebas", []):
+            FIND_ERROR_REGISTRY[prueba["id"]] = prueba
+except FileNotFoundError:
+    FIND_ERROR_REGISTRY = {}
+    print(f"ATENCIÓN: No se encontró el archivo JSON de variantes en {JSON_PATH}")
 
 
 def get_or_create_daily_cycle(user, cycle_date):
@@ -69,12 +90,24 @@ class ExerciseSubmitView(APIView):
 
     @transaction.atomic
     def post(self, request, exercise_number):
-        answer_data = request.data.get('answer')
-        if not answer_data:
+        # 1. Validación de entrada (Inbound) a través del serializador
+        answer_data_raw = request.data.get('answer')
+        if not answer_data_raw:
             return Response({
                 "error": "invalid_request",
                 "message": "Falta el campo 'answer'."
             }, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = AnswerSubmissionSerializer(data=answer_data_raw)
+        if not serializer.is_valid():
+            return Response({
+                "error": "invalid_request",
+                "message": "Formato de respuesta incorrecto.",
+                "details": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+            
+        # Obtenemos los datos limpios y seguros
+        answer_data = serializer.validated_data 
 
         exercise = Exercise.objects.filter(number=exercise_number, active=True).first()
         if not exercise:
@@ -116,9 +149,19 @@ class ExerciseSubmitView(APIView):
                 "message": "No existe una variante disponible para este ejercicio."
             }, status=status.HTTP_404_NOT_FOUND)
 
-        # Simulación de datos del JSON que vendrá en la variante
-        variant_data = {} 
+        # 2. Extracción de la variante desde la memoria
         variant_key = assignment.variant_key
+        variant_data = {}
+        
+        if exercise.exercise_type == 'FIND_ERROR':
+            variant_data = FIND_ERROR_REGISTRY.get(variant_key)
+            if not variant_data:
+                return Response({
+                    "error": "variant_not_found",
+                    "message": f"La variante {variant_key} no se encontró en el registro interno."
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # Nota para el futuro: Aquí puedes añadir los 'elif' para ORDER_ALGORITHM y CONNECT_NETWORK 
+        # buscando en sus respectivos diccionarios en memoria.
         
         # Delegar en validators modulares (Punto 8)
         is_correct, explanation = False, ""

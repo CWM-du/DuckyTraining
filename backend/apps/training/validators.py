@@ -14,15 +14,19 @@ def validate_sorting(variant_data, user_answer):
     explanation = variant_data.get('explanation', "El orden de los pasos no es correcto.")
     return False, explanation
 
+import re
+
 def validate_bug_finding(variant_data, user_answer):
-    """
-    Valida el formato 'Encuentra el fallo'.
-    Compara el ID seleccionado por el usuario con el esperado.
-    """
     expected_bug_id = variant_data.get('expected_bug_id')
     user_bug_id = user_answer.get('selected_bug_id')
     
-    if expected_bug_id and expected_bug_id == user_bug_id:
+    # Si React envía "line_1" o un string "1", extraemos solo el número
+    if isinstance(user_bug_id, str):
+        match = re.search(r'\d+', user_bug_id)
+        if match:
+            user_bug_id = int(match.group())
+            
+    if expected_bug_id is not None and expected_bug_id == user_bug_id:
         return True, ""
         
     explanation = variant_data.get('explanation', "Ese no es el error principal.")

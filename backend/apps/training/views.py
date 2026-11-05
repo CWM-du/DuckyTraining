@@ -15,22 +15,28 @@ from .models import (
 from . import validators
 from .serializers import AnswerSubmissionSerializer
 
+# --- CARGA DE LOS 3 JSONS EN MEMORIA ---
+FIND_ERROR_REGISTRY = {}
+ORDER_ALGORITHM_REGISTRY = {}
+CONNECT_NETWORK_REGISTRY = {}
 
-# --- CARGA DEL JSON EN MEMORIA ---
-# Se ejecuta una sola vez al levantar el servidor (Opción A)
-JSON_PATH = os.path.join(settings.BASE_DIR, 'apps', 'training', 'data', 'detectar_error_backend_ready.json')
-try:
-    with open(JSON_PATH, 'r', encoding='utf-8') as f:
-        FIND_ERROR_VARIANTS = json.load(f)
-        
-    # Creamos un diccionario indexado por ID para búsquedas O(1)
-    FIND_ERROR_REGISTRY = {}
-    for nivel_data in FIND_ERROR_VARIANTS.get("niveles", []):
-        for prueba in nivel_data.get("pruebas", []):
-            FIND_ERROR_REGISTRY[prueba["id"]] = prueba
-except FileNotFoundError:
-    FIND_ERROR_REGISTRY = {}
-    print(f"ATENCIÓN: No se encontró el archivo JSON de variantes en {JSON_PATH}")
+DATA_DIR = os.path.join(settings.BASE_DIR, 'apps', 'training', 'data')
+
+def load_json_to_registry(filename, registry):
+    filepath = os.path.join(DATA_DIR, filename)
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        for nivel_data in data.get("niveles", []):
+            for prueba in nivel_data.get("pruebas", []):
+                registry[prueba["id"]] = prueba
+    except FileNotFoundError:
+        print(f"ATENCIÓN: No se encontró el archivo JSON en {filepath}")
+
+# Nombres exactos de los archivos que generamos
+load_json_to_registry('detectar_error_backend_ready_100.json', FIND_ERROR_REGISTRY)
+load_json_to_registry('ordenar_codigo_backend_ready.json', ORDER_ALGORITHM_REGISTRY)
+load_json_to_registry('asociar_conceptos_backend_ready.json', CONNECT_NETWORK_REGISTRY)
 
 
 def get_or_create_daily_cycle(user, cycle_date):
@@ -90,7 +96,48 @@ class ExerciseSubmitView(APIView):
 
     @transaction.atomic
     def post(self, request, exercise_number):
-        # 1. Validación de entrada (Inbound) a través del serializador
+        # 1. BUSCAR EJERCICIO (404)
+        exercise = Exercise.objects.filter(number=exercise_number, active=True).first()
+        if not exercise:
+            return Response({'error': 'invalid_request', 'message': 'Ejercicio no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+
+        today = timezone.localdate()
+        cycle = get_or_create_daily_cycle(request.user, today)
+        
+        # 2. VALIDAR SECUENCIA (403 / 409)
+        state = exercise_state(cycle, exercise)
+        if state == 'NOT_ACCESSIBLE_BY_LEVEL':
+            return Response({'error': 'invalid_request', 'message': 'No accesible por nivel.'}, status=status.HTTP_403_FORBIDDEN)
+        if state == 'BLOCKED_BY_SEQUENCE':
+            return Response({'error': 'invalid_request', 'message': 'Debes completar el anterior.'}, status=status.HTTP_409_CONFLICT)
+
+        # BLOQUEO ANTI-CONCURRENCIA (Punto 16 de F5)
+        # Aseguramos el progreso para evitar clics dobles simultáneos
+        progress, _ = DailyExerciseProgress.objects.select_for_update().get_or_create(
+            cycle=cycle, exercise=exercise
+        )
+
+        # 3. CONTROL DE INTENTOS (409)
+        current_attempts = TrainingAttempt.objects.filter(user=request.user, exercise=exercise, cycle=cycle).count()
+        if current_attempts >= 5:
+            return Response({
+                "error": "attempt_limit_reached",
+                "message": "Has alcanzado el límite de 5 intentos para este juego hoy."
+            }, status=status.HTTP_409_CONFLICT)
+
+        # 4. RECUPERAR VARIANTE ASIGNADA (404)
+        first_day_of_month = today.replace(day=1)
+        assignment = MonthlyVariantAssignment.objects.filter(
+            user=request.user, exercise=exercise, month=first_day_of_month
+        ).first()
+
+        if not assignment:
+            return Response({
+                "error": "variant_not_found",
+                "message": "No existe una variante disponible para este ejercicio."
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        # 5. VALIDAR PAYLOAD DE REACT (400)
         answer_data_raw = request.data.get('answer')
         if not answer_data_raw:
             return Response({
@@ -106,64 +153,26 @@ class ExerciseSubmitView(APIView):
                 "details": serializer.errors
             }, status=status.HTTP_400_BAD_REQUEST)
             
-        # Obtenemos los datos limpios y seguros
         answer_data = serializer.validated_data 
 
-        exercise = Exercise.objects.filter(number=exercise_number, active=True).first()
-        if not exercise:
-            return Response({'error': 'invalid_request', 'message': 'Ejercicio no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
-
-        today = timezone.localdate()
-        cycle = get_or_create_daily_cycle(request.user, today)
-        
-        # Validación de secuencia de tu código original
-        state = exercise_state(cycle, exercise)
-        if state == 'NOT_ACCESSIBLE_BY_LEVEL':
-            return Response({'error': 'invalid_request', 'message': 'No accesible por nivel.'}, status=status.HTTP_403_FORBIDDEN)
-        if state == 'BLOCKED_BY_SEQUENCE':
-            return Response({'error': 'invalid_request', 'message': 'Debes completar el anterior.'}, status=status.HTTP_409_CONFLICT)
-
-        # BLOQUEO ANTI-CONCURRENCIA (Punto 16 de F5)
-        # Aseguramos el progreso para evitar clics dobles simultáneos
-        progress, _ = DailyExerciseProgress.objects.select_for_update().get_or_create(
-            cycle=cycle, exercise=exercise
-        )
-
-        # Control de 5 intentos máximo
-        current_attempts = TrainingAttempt.objects.filter(user=request.user, exercise=exercise, cycle=cycle).count()
-        if current_attempts >= 5:
-            return Response({
-                "error": "attempt_limit_reached",
-                "message": "Has alcanzado el límite de 5 intentos para este juego hoy."
-            }, status=status.HTTP_409_CONFLICT)
-
-        # Recuperar variante (Punto 5)
-        first_day_of_month = today.replace(day=1)
-        assignment = MonthlyVariantAssignment.objects.filter(
-            user=request.user, exercise=exercise, month=first_day_of_month
-        ).first()
-
-        if not assignment:
-            return Response({
-                "error": "variant_not_found",
-                "message": "No existe una variante disponible para este ejercicio."
-            }, status=status.HTTP_404_NOT_FOUND)
-
-        # 2. Extracción de la variante desde la memoria
+        # 6. EXTRACCIÓN DE LA VARIANTE DESDE LA MEMORIA
         variant_key = assignment.variant_key
         variant_data = {}
         
         if exercise.exercise_type == 'FIND_ERROR':
             variant_data = FIND_ERROR_REGISTRY.get(variant_key)
-            if not variant_data:
-                return Response({
-                    "error": "variant_not_found",
-                    "message": f"La variante {variant_key} no se encontró en el registro interno."
-                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        # Nota para el futuro: Aquí puedes añadir los 'elif' para ORDER_ALGORITHM y CONNECT_NETWORK 
-        # buscando en sus respectivos diccionarios en memoria.
+        elif exercise.exercise_type == 'ORDER_ALGORITHM':
+            variant_data = ORDER_ALGORITHM_REGISTRY.get(variant_key)
+        elif exercise.exercise_type == 'CONNECT_NETWORK':
+            variant_data = CONNECT_NETWORK_REGISTRY.get(variant_key)
+
+        if not variant_data:
+            return Response({
+                "error": "variant_not_found",
+                "message": f"La variante {variant_key} no se encontró en el registro interno."
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
-        # Delegar en validators modulares (Punto 8)
+        # 7. DELEGAR EN VALIDATORS MODULARES
         is_correct, explanation = False, ""
         if exercise.exercise_type == 'ORDER_ALGORITHM':
             is_correct, explanation = validators.validate_sorting(variant_data, answer_data)

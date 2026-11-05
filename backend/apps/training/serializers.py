@@ -21,12 +21,12 @@ class AnswerSubmissionSerializer(serializers.Serializer):
     antes de registrar el intento y calcular recompensas.
     """
     # Para el juego 'Encuentra el fallo'
-    selected_bug_id = serializers.IntegerField(required=False)
+    selected_bug_id = serializers.CharField(required=False)
     
     # Para los otros juegos (puedes unificar el endpoint recibiendo campos opcionales)
     ordered_ids = serializers.ListField(
-        child=serializers.IntegerField(), required=False
+        child=serializers.CharField(), required=False
     )
     connections = serializers.ListField(
-        child=serializers.ListField(child=serializers.IntegerField()), required=False
+        child=serializers.ListField(child=serializers.CharField()), required=False
     )

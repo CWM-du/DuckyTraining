@@ -1,34 +1,41 @@
 import { useEffect, useState } from 'react'
-// 1. Comentamos la API real
-// import { getTrainingOverview } from './services/trainingApi'
 import DailyCycleView from './components/training/DailyCycleView'
-// 2. Importamos nuestros datos de prueba (asegúrate de que la ruta sea correcta)
-import mockTrainingData from './data/mockTrainingData' 
-import { mockTrainingDataReal } from './data/mockTrainingDataReal'
-
 import Login from './components/auth/Login'
+import axios from 'axios'
 
 export default function App() {
-  // --- NUEVO ESTADO PARA EL LOGIN ---
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-
-  // 3. Pasamos el mock directamente como estado inicial
-  const [data, setData] = useState(mockTrainingDataReal) 
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [data, setData] = useState(null)
   const [error, setError] = useState(null)
 
-  // 4. Comentamos el useEffect para que no intente hacer la llamada
-  /*
+  // Cuando el usuario se loguea con éxito, el backend ya nos dio el token
+  // y ahora sí activamos la llamada real a Django
   useEffect(() => {
-    // Cuando conectemos el backend, esta llamada SOLO debería hacerse 
-    // si el usuario está autenticado.
     if (isAuthenticated) {
-      getTrainingOverview().then(setData).catch((e) => setError(e.message))
-    }
-  }, [isAuthenticated])
-  */
+      const fetchRealTrainingData = async () => {
+        try {
+          const token = localStorage.getItem('access'); // O de donde lo guarde tu componente Login
+          console.log("Token que vamos a enviar:", token);
+          
+          const response = await axios.get('http://localhost:8000/api/training/', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
 
-  // --- 1º BARRERA: SEGURIDAD ---
-  // Si no está logueado, cortamos aquí y mostramos el Login.
+          console.log("Datos reales desde Django:", response.data);
+          setData(response.data);
+        } catch (err) {
+          console.error("Error conectando con el backend:", err);
+          setError(err.response?.data?.detail || err.message);
+        }
+      };
+
+      fetchRealTrainingData();
+    }
+  }, [isAuthenticated]);
+
+  // --- 1º BARRERA: SEGURIDAD (LOGIN) ---
   if (!isAuthenticated) {
     return <Login onLoginSuccess={() => setIsAuthenticated(true)} />
   }
@@ -45,19 +52,19 @@ export default function App() {
     )
   }
 
-  // --- 3º BARRERA: ESPERANDO DATOS ---
+  // --- 3º BARRERA: ESPERANDO DATOS DEL BACKEND ---
   if (!data) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-blue-600 mb-4">DuckyTraining</h1>
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="text-gray-500 mt-4">Cargando ciclo diario…</p>
+          <p className="text-gray-500 mt-4">Conectando con el servidor...</p>
         </div>
       </main>
     )
   }
 
-  // --- ÉXITO: MOSTRAR JUEGO ---
+  // --- ÉXITO: MOSTRAR LOS DATOS REALES DE DJANGO ---
   return <DailyCycleView data={data} />
 }

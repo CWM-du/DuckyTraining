@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import ExerciseShell from './ExerciseShell';
 
 const DailyCycleView = ({ data }) => {
-  // 1. Extraemos los datos basándonos en el NUEVO contrato de la API
-  const userProfile = data?.user_profile || {};
-  const dailyCycle = data?.daily_cycle || {};
-  
-  // Extraemos las variables específicas (con valores por defecto por seguridad)
-  const exercises = dailyCycle.exercises || [];
-  const streak = userProfile.streak_days || 0;
-  const ducky_coins = userProfile.ducky_coins || 0;
-  const access_level = userProfile.level || 'FREE';
-  const cycle_date = dailyCycle.date || 'Sin fecha';
-  // En el nuevo contrato no hay daily_limit, puedes calcularlo o dejarlo fijo de momento
-  const daily_limit = access_level === 'FREE' ? 1 : 3; 
+  // 1. CHIVATO: Esto nos dirá qué está llegando realmente del backend
+  console.log("Datos recibidos de Django:", data);
+
+  // 2. NAVAJA SUIZA: Buscamos los datos donde sea que estén
+  const exercises = data?.exercises || data?.daily_cycle?.exercises || [];
+  const access_level = data?.access_level || data?.user_profile?.level || 'FREE';
+  const cycle_date = data?.cycle_date || data?.daily_cycle?.date || 'Sin fecha';
+  const daily_limit = data?.daily_limit || 1;
+  const streak = data?.user_profile?.streak_days || 0; 
+  const ducky_coins = data?.user_profile?.ducky_coins || 0;
 
   const [activeExercise, setActiveExercise] = useState(null);
 
@@ -82,14 +80,13 @@ const DailyCycleView = ({ data }) => {
 
       {/* LISTA DE EJERCICIOS */}
       <div className="space-y-4">
-        {/* El ? nos protege de errores si exercises es undefined */}
         {exercises?.map((exercise) => {
           const isAccessible = exercise.state !== 'NOT_ACCESSIBLE_BY_LEVEL';
           const isCompleted = exercise.state === 'COMPLETED_TODAY';
           
           return (
             <div 
-              key={exercise.id} // Cambiado a exercise.id
+              key={exercise.id || exercise.number} // Soporta ambas versiones
               className={`flex items-center justify-between p-6 rounded-2xl border-2 transition-all ${
                 isCompleted ? 'bg-green-50 border-green-200' :
                 isAccessible ? 'bg-white border-transparent shadow-sm hover:shadow-md' : 
@@ -100,20 +97,21 @@ const DailyCycleView = ({ data }) => {
                 <div className={`w-12 h-12 flex items-center justify-center rounded-full font-black text-lg ${
                   isCompleted ? 'bg-green-200 text-green-700' : 'bg-blue-100 text-blue-600'
                 }`}>
-                  {exercise.order} {/* Cambiado a exercise.order */}
+                  {exercise.order || exercise.number}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-800">{exercise.title}</h3> {/* Cambiado a exercise.title */}
+                  <h3 className="text-xl font-bold text-gray-800">{exercise.title || exercise.name}</h3>
                   <div className="flex gap-2 mt-1 text-sm font-medium">
                     <span className="text-blue-500">{exercise.type ? exercise.type.replace('_', ' ') : 'Formato por confirmar'}</span>
                     <span className="text-gray-300">•</span>
-                    {/* Mostramos las monedas de recompensa */}
+                    {/* Evita errores si no existe reward_coins */}
                     <span className="text-yellow-500 font-bold">
-                      +{exercise.reward_coins} Coins
+                      +{exercise.reward_coins || 10} Coins
                     </span>
                   </div>
-                  {/* Mostramos las instrucciones */}
-                  <p className="text-xs text-gray-400 mt-1 line-clamp-1">{exercise.instructions}</p>
+                  <p className="text-xs text-gray-400 mt-1 line-clamp-1">
+                    {exercise.instructions || "Completa el reto."}
+                  </p>
                 </div>
               </div>
 

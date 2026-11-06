@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import OrderAlgorithmGame from './OrderAlgorithmGame'; // Asegúrate de que este archivo está en la misma carpeta
+import OrderAlgorithmGame from './OrderAlgorithmGame'; 
 import FindErrorGame from './FindErrorGame';
 import MatchConceptsGame from './MatchConceptsGame';
-
+import axios from 'axios';
 
 const ExerciseShell = ({ exercise, onClose }) => {
   // Fases: 'INSTRUCTIONS' -> 'PLAYING' -> 'VALIDATING' -> 'FEEDBACK'
@@ -11,19 +11,56 @@ const ExerciseShell = ({ exercise, onClose }) => {
   // Resultado simulado para la fase de feedback: 'SUCCESS' o 'ERROR'
   const [feedbackResult, setFeedbackResult] = useState(null);
 
-  // Funciones para simular el flujo (tu compañero las conectará a la API real)
+  // --- NUEVO: ESTADO PARA LA RESPUESTA REAL DEL USUARIO ---
+  const [userAnswer, setUserAnswer] = useState(null);
+
   const handleStart = () => setPhase('PLAYING');
   
-  const handleSubmit = (simulatedResult) => {
+  const handleSubmit = async () => {
+    // Si el usuario no ha seleccionado nada aún, podemos avisarle (opcional)
+    if (!userAnswer) {
+      alert("Por favor, selecciona una respuesta antes de comprobar.");
+      return;
+    }
+
     setPhase('VALIDATING');
-    // Simulamos un tiempo de carga del servidor de 1.5 segundos
-    setTimeout(() => {
-      setFeedbackResult(simulatedResult);
+    
+    try {
+      const token = localStorage.getItem('access');
+      const exerciseNumber = exercise.number || exercise.id;
+      
+      // Enviamos exactamente lo que el usuario ha seleccionado en el minijuego
+      const payload = {
+        answer: userAnswer 
+      };
+
+      console.log("Enviando a Django:", payload);
+
+      const response = await axios.post(
+        `http://localhost:8000/api/training/exercises/${exerciseNumber}/submit/`, 
+        payload, 
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      console.log("Django responde:", response.data);
+
+      const isSuccess = response.data.correct === true;
+      
+      setFeedbackResult(isSuccess ? 'SUCCESS' : 'ERROR');
+      window.lastServerFeedback = response.data.explanation || "Respuesta incorrecta.";
       setPhase('FEEDBACK');
-    }, 1500);
+
+    } catch (err) {
+      console.error("Error en el Submit:", err.response?.data || err.message);
+      setFeedbackResult('ERROR');
+      setPhase('FEEDBACK');
+    }
   };
 
-  const handleRetry = () => setPhase('PLAYING');
+  const handleRetry = () => {
+    setPhase('PLAYING');
+    setUserAnswer(null); // Limpiamos la respuesta al reintentar
+  };
 
   return (
     <div className="fixed inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -44,6 +81,7 @@ const ExerciseShell = ({ exercise, onClose }) => {
 
         {/* CONTENIDO PRINCIPAL (Cambia según la fase) */}
         <div className="p-8 overflow-y-auto flex-grow flex flex-col justify-center min-h-[400px]">
+          
           {/* FASE 1: INSTRUCCIONES DINÁMICAS */}
           {phase === 'INSTRUCTIONS' && (
             <div className="text-center max-w-lg mx-auto" >
@@ -59,9 +97,9 @@ const ExerciseShell = ({ exercise, onClose }) => {
                   Analiza el código y encuentra la línea exacta donde se está produciendo el error de seguridad o lógico.
                 </p>
               )}
-              {exercise.type === 'MATCH_CONCEPTS' && (
+              {exercise.type === 'CONNECT_NETWORK' && (
                 <p className="text-gray-600 mb-8 text-lg">
-                  Selecciona un concepto de la izquierda y conéctalo con su definición correcta a la derecha.
+                  Conecta los nodos de red según la topología correcta.
                 </p>
               )}
 
@@ -78,13 +116,27 @@ const ExerciseShell = ({ exercise, onClose }) => {
           {phase === 'PLAYING' && (
             <div className="flex flex-col items-center w-full">
               <div className="w-full mb-8">
-                {exercise.type === 'ORDER_ALGORITHM' && <OrderAlgorithmGame />}
-                {exercise.type === 'FIND_ERROR' && <FindErrorGame />}
-                {exercise.type === 'MATCH_CONCEPTS' && <MatchConceptsGame />}
+                
+                {/* 
+                  NUEVO: Pasamos la función 'onChange={setUserAnswer}' a los juegos.
+                  También deberías pasarles 'data={exercise.content}' para que 
+                  sepan qué código/datos pintar.
+                */}
+                {exercise.type === 'ORDER_ALGORITHM' && (
+                  <OrderAlgorithmGame data={exercise.content} onChange={setUserAnswer} />
+                )}
+                
+                {exercise.type === 'FIND_ERROR' && (
+                  <FindErrorGame data={exercise.content} onChange={setUserAnswer} />
+                )}
+                
+                {exercise.type === 'CONNECT_NETWORK' && (
+                  <MatchConceptsGame data={exercise.content} onChange={setUserAnswer} />
+                )}
 
                 {exercise.type !== 'ORDER_ALGORITHM' &&
                   exercise.type !== 'FIND_ERROR' &&
-                  exercise.type !== 'MATCH_CONCEPTS' && (
+                  exercise.type !== 'CONNECT_NETWORK' && (
                     <div className="w-full bg-gray-800 rounded-xl p-8 text-gray-300 flex items-center justify-center h-64 border-2 border-dashed border-gray-600">
                       <p>Componente {exercise.type} en construcción...</p>
                     </div>
@@ -94,10 +146,7 @@ const ExerciseShell = ({ exercise, onClose }) => {
               {/* Botón de envío unificado (UX) */}
               <div className="mt-4 w-full max-w-2xl mx-auto flex justify-end border-t border-gray-100 pt-6">
                 <button
-                  onClick={() => {
-                    const randomResult = Math.random() > 0.5 ? 'SUCCESS' : 'ERROR';
-                    handleSubmit(randomResult);
-                  }}
+                  onClick={handleSubmit}
                   className="bg-gray-800 hover:bg-black text-white font-bold py-3 px-10 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-2"
                 >
                   Comprobar respuesta
@@ -134,9 +183,7 @@ const ExerciseShell = ({ exercise, onClose }) => {
                   <h3 className="text-3xl font-black text-red-600 mb-4">Hay un error</h3>
                   <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg mb-8 text-left">
                     <strong>Feedback del servidor:</strong>
-                    {exercise.type === 'ORDER_ALGORITHM'
-                      ? ' El orden lógico no es correcto. Recuerda que no puedes usar una variable antes de declararla.'
-                      : ' La línea seleccionada ejecuta la función, pero el error está en la condición del bucle while (línea 4).'}
+                    <p className="mt-2">{window.lastServerFeedback}</p>
                   </div>
                   <button
                     onClick={handleRetry}

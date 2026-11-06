@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
-const OrderAlgorithmGame = () => {
+// CAMBIO 1: Recibimos las props 'data' (para cargar el nivel real) y 'onChange' (para avisar al padre)
+const OrderAlgorithmGame = ({ data, onChange }) => {
   const [blocks, setBlocks] = useState([
     { id: 'b1', text: 'return user;', order: 1 },
     { id: 'b2', text: 'if (password === user.password) {', order: 2 },
@@ -8,15 +9,31 @@ const OrderAlgorithmGame = () => {
     { id: 'b4', text: '}', order: 4 },
   ]);
 
-  // Referencias para saber qué elemento estamos arrastrando y sobre cuál pasamos
+  // (Opcional) Si tu backend ya te manda los bloques en 'data', lo cargaríamos aquí:
+  useEffect(() => {
+    if (data && data.blocks) {
+      // setBlocks(data.blocks);
+    }
+  }, [data]);
+
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
+  // CAMBIO 2: Función auxiliar para avisar a Django del nuevo orden
+  const notifyChange = (newBlocks) => {
+    if (onChange) {
+      // Extraemos solo los IDs en el nuevo orden para enviarlos al backend
+      const ordenIds = newBlocks.map(block => block.id);
+      
+      // ATENCIÓN: Si tu backend de Django espera otra clave (ej: 'order', 'sequence', 'user_order')
+      // cambialo aquí abajo. De momento lo llamamos 'ordered_ids'.
+      onChange({ ordered_ids: ordenIds });
+    }
+  };
+
   // --- LÓGICA DE DRAG AND DROP NATIVO ---
-  
   const handleDragStart = (e, position) => {
     dragItem.current = position;
-    // Efecto visual para que se vea un poco transparente al arrastrar
     setTimeout(() => {
       e.target.classList.add('opacity-40', 'border-blue-500');
     }, 0);
@@ -27,28 +44,24 @@ const OrderAlgorithmGame = () => {
   };
 
   const handleDragEnd = (e) => {
-    // Quitamos las clases visuales al soltar
     e.target.classList.remove('opacity-40', 'border-blue-500');
 
-    // Si hemos soltado en un sitio válido y distinto al original
     if (dragItem.current !== null && dragOverItem.current !== null && dragItem.current !== dragOverItem.current) {
       const newBlocks = [...blocks];
       const draggedItemContent = newBlocks[dragItem.current];
       
-      // Sacamos el elemento de su posición original...
       newBlocks.splice(dragItem.current, 1);
-      // ...y lo metemos en la nueva posición
       newBlocks.splice(dragOverItem.current, 0, draggedItemContent);
       
       setBlocks(newBlocks);
+      notifyChange(newBlocks); // <-- Avisamos del cambio tras arrastrar
     }
     
-    // Reseteamos las referencias
     dragItem.current = null;
     dragOverItem.current = null;
   };
 
-  // --- LÓGICA ANTIGUA DE LAS FLECHAS (Accesibilidad) ---
+  // --- LÓGICA DE LAS FLECHAS (Accesibilidad) ---
   const moveBlock = (index, direction) => {
     if ((direction === -1 && index === 0) || (direction === 1 && index === blocks.length - 1)) return;
     
@@ -56,14 +69,16 @@ const OrderAlgorithmGame = () => {
     const temp = newBlocks[index];
     newBlocks[index] = newBlocks[index + direction];
     newBlocks[index + direction] = temp;
+    
     setBlocks(newBlocks);
+    notifyChange(newBlocks); // <-- Avisamos del cambio tras pulsar flechas
   };
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-gray-900 p-6 rounded-2xl shadow-inner border border-gray-700">
       <div className="mb-6 flex justify-between items-center">
         <h4 className="text-white font-bold text-lg">
-          Ordena la secuencia de Login
+          Ordena la secuencia lógica
         </h4>
         <span className="bg-gray-800 text-gray-400 text-xs px-3 py-1 rounded-full border border-gray-600">
           ORDER_ALGORITHM
@@ -74,24 +89,21 @@ const OrderAlgorithmGame = () => {
         {blocks.map((block, index) => (
           <div 
             key={block.id}
-            draggable // Magia: Esto hace que el div sea arrastrable
+            draggable 
             onDragStart={(e) => handleDragStart(e, index)}
             onDragEnter={(e) => handleDragEnter(e, index)}
             onDragEnd={handleDragEnd}
-            onDragOver={(e) => e.preventDefault()} // Necesario para permitir soltar
+            onDragOver={(e) => e.preventDefault()} 
             className="flex items-center gap-4 bg-gray-800 border border-gray-600 p-3 rounded-xl hover:border-blue-500 transition-colors group cursor-grab active:cursor-grabbing"
           >
-            {/* Ícono de arrastre */}
             <div className="text-gray-500 group-hover:text-blue-400 px-2">
               ⋮⋮
             </div>
 
-            {/* Código */}
             <div className="flex-1 font-mono text-blue-300 text-sm md:text-base overflow-x-auto select-none">
               {block.text}
             </div>
 
-            {/* Controles para mover con clic (Para móviles y accesibilidad) */}
             <div className="flex flex-col gap-1">
               <button 
                 onClick={() => moveBlock(index, -1)}

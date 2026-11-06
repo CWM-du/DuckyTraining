@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const MatchConceptsGame = () => {
-  // Datos falsos: Conceptos a la izquierda y definiciones a la derecha
-  const leftItems = [
+// CAMBIO 1: Recibimos las props 'data' y 'onChange'
+const MatchConceptsGame = ({ data, onChange }) => {
+  // Datos falsos por defecto
+  const [leftItems, setLeftItems] = useState([
     { id: 'L1', text: 'Inyección SQL' },
     { id: 'L2', text: 'XSS' },
     { id: 'L3', text: 'Fuerza Bruta' }
-  ];
+  ]);
   
-  const rightItems = [
+  const [rightItems, setRightItems] = useState([
     { id: 'R1', text: 'Inyección de scripts maliciosos en el navegador' },
     { id: 'R2', text: 'Múltiples intentos automatizados de login' },
     { id: 'R3', text: 'Manipulación de consultas a la base de datos' }
-  ];
+  ]);
+
+  // (Opcional) Cargar datos reales si vienen del backend
+  useEffect(() => {
+    if (data && data.left_items && data.right_items) {
+      // setLeftItems(data.left_items);
+      // setRightItems(data.right_items);
+    }
+  }, [data]);
 
   // Estados para manejar la selección y las parejas formadas
   const [selectedLeft, setSelectedLeft] = useState(null);
   const [selectedRight, setSelectedRight] = useState(null);
   const [matches, setMatches] = useState([]); // Array de objetos { left: id, right: id }
 
+  // CAMBIO 2: Efecto que avisa a Django SIEMPRE que cambian las parejas
+  useEffect(() => {
+    if (onChange) {
+      const formattedMatches = matches.map(m => [m.left, m.right]);
+      // Ajusta 'connections' al nombre exacto que espere tu Serializer en Django
+      onChange({ connections: formattedMatches });
+    }
+  }, [matches]); // Se ejecuta cada vez que el estado 'matches' cambia
+
   // Función para manejar los clics y emparejar
   const handleSelect = (side, id) => {
-    // Si ya está emparejado, no hacemos nada
     if (matches.find(m => m.left === id || m.right === id)) return;
 
     if (side === 'left') {
@@ -32,7 +49,7 @@ const MatchConceptsGame = () => {
   };
 
   // Efecto visual instantáneo cuando se seleccionan ambos lados
-  React.useEffect(() => {
+  useEffect(() => {
     if (selectedLeft && selectedRight) {
       setMatches([...matches, { left: selectedLeft, right: selectedRight }]);
       setSelectedLeft(null);
@@ -40,7 +57,6 @@ const MatchConceptsGame = () => {
     }
   }, [selectedLeft, selectedRight, matches]);
 
-  // Función auxiliar para saber el estado de un ítem
   const getItemStatus = (side, id) => {
     const isMatched = matches.find(m => m[side] === id);
     if (isMatched) return 'matched';
@@ -59,7 +75,9 @@ const MatchConceptsGame = () => {
         </h4>
         <div className="flex gap-4">
           <button 
-            onClick={() => setMatches([])}
+            onClick={() => {
+              setMatches([]); // Al limpiar aquí, el useEffect de arriba avisará al padre automáticamente
+            }}
             className="text-gray-400 hover:text-white text-sm underline transition-colors"
           >
             Reiniciar parejas

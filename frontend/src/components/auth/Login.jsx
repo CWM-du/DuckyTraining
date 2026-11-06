@@ -18,28 +18,24 @@ const Login = ({ onLoginSuccess }) => {
     setIsLoading(true);
 
     try {
-      // ATENCIÓN: Hugo te tiene que confirmar esta URL exacta
       const response = await fetch('http://localhost:8000/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        // IMPORTANTÍSIMO: Si Hugo usa autenticación por sesión (cookies), 
-        // esta línea es obligatoria para que el navegador guarde la sesión
-        credentials: 'include', 
         body: JSON.stringify(credentials)
       });
 
       if (response.ok) {
         const data = await response.json();
         
-        // Si Hugo usa Tokens (JWT) en lugar de cookies, tendríamos que guardarlo así:
-        // localStorage.setItem('token', data.access); // (o el nombre que tenga el token)
+        // --- GUARDAMOS LOS TOKENS DE SIMPLEJWT ---
+        localStorage.setItem('access', data.access);
+        localStorage.setItem('refresh', data.refresh);
         
         // Le avisamos a App.jsx que el login fue exitoso
         onLoginSuccess(); 
       } else {
-        // Error 401 o 403
         setError('Usuario o contraseña incorrectos.');
       }
     } catch (err) {
@@ -48,7 +44,6 @@ const Login = ({ onLoginSuccess }) => {
       setIsLoading(false);
     }
   };
-
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
       <div className="bg-gray-900 border border-gray-800 w-full max-w-md rounded-2xl shadow-2xl p-8">

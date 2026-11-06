@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const FindErrorGame = () => {
-  // Datos falsos: un fragmento de código dividido por líneas
-  const [codeLines] = useState([
+// CAMBIO 1: Recibimos 'data' (del backend) y 'onChange' (del ExerciseShell)
+const FindErrorGame = ({ data, onChange }) => {
+  
+  // Dejamos tus datos falsos como respaldo por si el backend aún no envía las líneas
+  const [codeLines, setCodeLines] = useState([
     { id: 1, text: "function authenticateUser(username, password) {" },
     { id: 2, text: "  // Vulnerabilidad de Inyección SQL clásica" },
     { id: 3, text: "  const query = `SELECT * FROM users WHERE username = '${username}'`;" },
@@ -15,8 +17,25 @@ const FindErrorGame = () => {
     { id: 10, text: "}" }
   ]);
 
-  // Estado para guardar la línea que el usuario ha seleccionado
+  // (Opcional) Si tu backend ya te manda el código real dentro de 'data', 
+  // aquí lo cargaríamos. Lo dejo preparado para el futuro.
+  useEffect(() => {
+    if (data && data.code_lines) {
+      // setCodeLines(data.code_lines);
+    }
+  }, [data]);
+
   const [selectedLine, setSelectedLine] = useState(null);
+
+  // CAMBIO 2: Función que guarda la línea y le avisa al componente padre
+  const handleLineClick = (lineId) => {
+    setSelectedLine(lineId); // Lo guarda para pintarlo de azul
+    
+    if (onChange) {
+      // ¡ESTO VIAJA A DJANGO! Ajusta "selected_line" si tu serializer espera otro nombre
+      onChange({ selected_bug_id: lineId }); 
+    }
+  };
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-gray-900 p-6 rounded-2xl shadow-inner border border-gray-700">
@@ -39,7 +58,8 @@ const FindErrorGame = () => {
           return (
             <div 
               key={line.id}
-              onClick={() => setSelectedLine(line.id)}
+              // CAMBIO 3: Llamamos a nuestra nueva función al hacer clic
+              onClick={() => handleLineClick(line.id)}
               className={`flex cursor-pointer transition-colors group px-4 py-1
                 ${isSelected 
                   ? 'bg-blue-900/40 border-l-4 border-blue-500 text-blue-100' 

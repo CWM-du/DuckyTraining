@@ -17,11 +17,16 @@ const FindErrorGame = ({ data, onChange }) => {
     { id: 10, text: "}" }
   ]);
 
-  // (Opcional) Si tu backend ya te manda el código real dentro de 'data', 
+  // (Opcional) Si tu backend ya te manda las líneas en 'data', lo cargaríamos aquí:
   // aquí lo cargaríamos. Lo dejo preparado para el futuro.
   useEffect(() => {
-    if (data && data.code_lines) {
-      // setCodeLines(data.code_lines);
+    if (data && data.codigo) {
+      // Transformamos tu JSON al formato que usa nuestro componente visual
+      const lineasFormateadas = data.codigo.map(item => ({
+        id: item.id,       // En tu JSON es 0, 1, etc.
+        text: item.linea   // En tu JSON es 'x == 10', 'print(x)', etc.
+      }));
+      setCodeLines(lineasFormateadas);
     }
   }, [data]);
 

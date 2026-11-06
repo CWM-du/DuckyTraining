@@ -189,34 +189,19 @@ class ExerciseSubmitView(APIView):
         answer_data = serializer.validated_data 
 
         # 6. EXTRACCIÓN DE LA VARIANTE DESDE LA MEMORIA
+
         variant_key = assignment.variant_key
         variant_data = {}
         
         if exercise.exercise_type == 'FIND_ERROR':
             variant_data = FIND_ERROR_REGISTRY.get(variant_key)
-            if not variant_data:
-                # La respuesta correcta para React es la línea 3
-                variant_data = {"expected_bug_id": 3, "explanation": "El query SQL concatena variables directamente, permitiendo inyección."}
                 
         elif exercise.exercise_type == 'ORDER_ALGORITHM':
             variant_data = ORDER_ALGORITHM_REGISTRY.get(variant_key)
-            if not variant_data:
-                # El orden lógico de los bloques b1, b2, b3 y b4 de React
-                variant_data = {
-                    "expected_order": ["b3", "b2", "b1", "b4"], 
-                    "explanation": "Primero debes buscar al usuario en la BD (b3), luego comprobar su contraseña (b2) y finalmente retornarlo (b1) dentro de las llaves (b4)."
-                }
                 
         elif exercise.exercise_type == 'CONNECT_NETWORK':
             variant_data = CONNECT_NETWORK_REGISTRY.get(variant_key)
-            if not variant_data:
-                # Parejas lógicas del minijuego de React (Opcional, previendo el 3er juego)
-                # L1(SQLi)->R3, L2(XSS)->R1, L3(Fuerza Bruta)->R2
-                variant_data = {
-                    "expected_connections": [["L1", "R3"], ["L2", "R1"], ["L3", "R2"]],
-                    "explanation": "Revisa bien las definiciones de Inyección SQL y XSS."
-                }
-
+            
         # (Mantén aquí el bloque de is_test_env y el error 500 que ya tenías abajo)
         import sys
         is_test_env = 'test' in sys.argv
@@ -234,7 +219,6 @@ class ExerciseSubmitView(APIView):
         elif exercise.exercise_type == 'ORDER_ALGORITHM':
             is_correct, explanation = validators.validate_sorting(variant_data, answer_data)
         elif exercise.exercise_type == 'FIND_ERROR':
-            variant_data['expected_bug_id'] = 3
             is_correct, explanation = validators.validate_bug_finding(variant_data, answer_data)
         elif exercise.exercise_type == 'CONNECT_NETWORK':
             is_correct, explanation = validators.validate_networking(variant_data, answer_data)

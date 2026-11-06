@@ -9,10 +9,19 @@ const OrderAlgorithmGame = ({ data, onChange }) => {
     { id: 'b4', text: '}', order: 4 },
   ]);
 
-  // (Opcional) Si tu backend ya te manda los bloques en 'data', lo cargaríamos aquí:
+// Cargar datos REALES desde el backend
   useEffect(() => {
-    if (data && data.blocks) {
-      // setBlocks(data.blocks);
+    // Si Django nos envía el JSON real y trae la llave 'bloques'
+    if (data && data.bloques) {
+      
+      // Transformamos tu JSON al formato que usan nuestras tarjetas arrastrables
+      const bloquesFormateados = data.bloques.map(item => ({
+        id: item.id,       // En tu JSON: 'B91008', 'B83201', etc.
+        text: item.linea   // En tu JSON: 'a = 2', 'b = 5', etc.
+      }));
+      
+      // NOTA: Si tu variable de estado se llama distinto, cambia 'setBlocks' por tu nombre (ej. setItems)
+      setBlocks(bloquesFormateados); 
     }
   }, [data]);
 

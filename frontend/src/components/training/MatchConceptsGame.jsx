@@ -15,11 +15,24 @@ const MatchConceptsGame = ({ data, onChange }) => {
     { id: 'R3', text: 'Manipulación de consultas a la base de datos' }
   ]);
 
-  // (Opcional) Cargar datos reales si vienen del backend
-  useEffect(() => {
-    if (data && data.left_items && data.right_items) {
-      // setLeftItems(data.left_items);
-      // setRightItems(data.right_items);
+useEffect(() => {
+    // Si Django nos envía el JSON real con conceptos y explicaciones
+    if (data && data.conceptos && data.explicaciones) {
+      
+      // Transformamos la columna izquierda (conceptos)
+      const conceptosFormateados = data.conceptos.map(item => ({
+        id: item.id,       
+        text: item.texto   
+      }));
+
+      // Transformamos la columna derecha (explicaciones)
+      const explicacionesFormateadas = data.explicaciones.map(item => ({
+        id: item.id,       
+        text: item.texto   
+      }));
+
+      setLeftItems(conceptosFormateados);
+      setRightItems(explicacionesFormateadas);
     }
   }, [data]);
 

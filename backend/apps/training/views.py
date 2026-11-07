@@ -99,7 +99,7 @@ class TrainingOverviewView(APIView):
                 instructions = v_data.get('instructions', 'Completa el reto.')
                 
                 # 2. SEGURIDAD: Eliminamos las respuestas correctas para que no viajen al Frontend
-                forbidden_keys = ['expected_bug_id', 'explanation', 'correct_order', 'correct_connections']
+                forbidden_keys = ['expected_bug_id','expected_order','expected_connections', 'explanation', 'correct_order', 'correct_connections']
                 content = {k: v for k, v in v_data.items() if k not in forbidden_keys and k != 'instructions'}
 
             # 3. Armamos el objeto EXACTAMENTE como lo espera tu mock de React
@@ -110,8 +110,7 @@ class TrainingOverviewView(APIView):
                 'title': exercise.logical_name,
                 'name': exercise.logical_name,
                 'type': exercise.exercise_type,
-                #'state': exercise_state(cycle, exercise),
-                'state': 'AVAILABLE',
+                'state': exercise_state(cycle, exercise),
                 'instructions': instructions,
                 'content': content,
                 'reward_coins': exercise.number * 10, # Recompensa escalonada
@@ -141,8 +140,8 @@ class ExerciseSubmitView(APIView):
         state = exercise_state(cycle, exercise)
         if state == 'NOT_ACCESSIBLE_BY_LEVEL':
             return Response({'error': 'invalid_request', 'message': 'No accesible por nivel.'}, status=status.HTTP_403_FORBIDDEN)
-        #if state == 'BLOCKED_BY_SEQUENCE':
-        #   return Response({'error': 'invalid_request', 'message': 'Debes completar el anterior.'}, status=status.HTTP_409_CONFLICT)
+        if state == 'BLOCKED_BY_SEQUENCE':
+          return Response({'error': 'invalid_request', 'message': 'Debes completar el anterior.'}, status=status.HTTP_409_CONFLICT)
 
         # BLOQUEO ANTI-CONCURRENCIA (Punto 16 de F5)
         # Aseguramos el progreso para evitar clics dobles simultáneos
@@ -152,10 +151,10 @@ class ExerciseSubmitView(APIView):
 
         # 3. CONTROL DE INTENTOS (409)
         current_attempts = TrainingAttempt.objects.filter(user=request.user, exercise=exercise, cycle=cycle).count()
-        if current_attempts >= 500:
+        if current_attempts >= 5:
             return Response({
                 "error": "attempt_limit_reached",
-                "message": "Has alcanzado el límite de 500 intentos para este juego hoy."
+                "message": "Has alcanzado el límite de 5 intentos para este juego hoy."
             }, status=status.HTTP_409_CONFLICT)
 
         # 4. RECUPERAR VARIANTE ASIGNADA (404)
@@ -201,7 +200,7 @@ class ExerciseSubmitView(APIView):
                 
         elif exercise.exercise_type == 'CONNECT_NETWORK':
             variant_data = CONNECT_NETWORK_REGISTRY.get(variant_key)
-            
+
         # (Mantén aquí el bloque de is_test_env y el error 500 que ya tenías abajo)
         import sys
         is_test_env = 'test' in sys.argv

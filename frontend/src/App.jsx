@@ -15,15 +15,15 @@ export default function App() {
       const fetchRealTrainingData = async () => {
         try {
           const token = localStorage.getItem('access'); // O de donde lo guarde tu componente Login
-          console.log("Token que vamos a enviar:", token);
           
+          // PRO-TIP: En producción, cambia esta URL por una variable de entorno.
+          // Ej: const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
           const response = await axios.get('http://localhost:8000/api/training/', {
             headers: {
               Authorization: `Bearer ${token}`
             }
           });
 
-          console.log("Datos reales desde Django:", response.data);
           setData(response.data);
         } catch (err) {
           console.error("Error conectando con el backend:", err);

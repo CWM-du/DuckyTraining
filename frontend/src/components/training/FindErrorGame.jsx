@@ -1,0 +1,100 @@
+import React, { useState, useEffect } from 'react';
+
+// CAMBIO 1: Recibimos 'data' (del backend) y 'onChange' (del ExerciseShell)
+const FindErrorGame = ({ data, onChange }) => {
+  
+  // Dejamos tus datos falsos como respaldo por si el backend aún no envía las líneas
+  const [codeLines, setCodeLines] = useState([
+    { id: 1, text: "function authenticateUser(username, password) {" },
+    { id: 2, text: "  // Vulnerabilidad de Inyección SQL clásica" },
+    { id: 3, text: "  const query = `SELECT * FROM users WHERE username = '${username}'`;" },
+    { id: 4, text: "  const user = database.execute(query);" },
+    { id: 5, text: "  " },
+    { id: 6, text: "  if (user && user.password === password) {" },
+    { id: 7, text: "    return true;" },
+    { id: 8, text: "  }" },
+    { id: 9, text: "  return false;" },
+    { id: 10, text: "}" }
+  ]);
+
+  // (Opcional) Si tu backend ya te manda las líneas en 'data', lo cargaríamos aquí:
+  // aquí lo cargaríamos. Lo dejo preparado para el futuro.
+  useEffect(() => {
+    if (data && data.codigo) {
+      // Transformamos tu JSON al formato que usa nuestro componente visual
+      const lineasFormateadas = data.codigo.map(item => ({
+        id: item.id,       // En tu JSON es 0, 1, etc.
+        text: item.linea   // En tu JSON es 'x == 10', 'print(x)', etc.
+      }));
+      setCodeLines(lineasFormateadas);
+    }
+  }, [data]);
+
+  const [selectedLine, setSelectedLine] = useState(null);
+
+  // CAMBIO 2: Función que guarda la línea y le avisa al componente padre
+  const handleLineClick = (lineId) => {
+    setSelectedLine(lineId); // Lo guarda para pintarlo de azul
+    
+    if (onChange) {
+      // ¡ESTO VIAJA A DJANGO! Ajusta "selected_line" si tu serializer espera otro nombre
+      onChange({ selected_bug_id: lineId }); 
+    }
+  };
+
+  return (
+    <div className="w-full max-w-2xl mx-auto bg-gray-900 p-6 rounded-2xl shadow-inner border border-gray-700">
+      
+      {/* Cabecera del juego */}
+      <div className="mb-6 flex justify-between items-center">
+        <h4 className="text-white font-bold text-lg flex items-center gap-2">
+           Encuentra la vulnerabilidad
+        </h4>
+        <span className="bg-gray-800 text-gray-400 text-xs px-3 py-1 rounded-full border border-gray-600">
+          FIND_ERROR
+        </span>
+      </div>
+
+      {/* Editor de código simulado */}
+      <div className="bg-[#1e1e1e] rounded-xl border border-gray-700 overflow-hidden font-mono text-sm py-4">
+        {codeLines.map((line) => {
+          const isSelected = selectedLine === line.id;
+          
+          return (
+            <div 
+              key={line.id}
+              // CAMBIO 3: Llamamos a nuestra nueva función al hacer clic
+              onClick={() => handleLineClick(line.id)}
+              className={`flex cursor-pointer transition-colors group px-4 py-1
+                ${isSelected 
+                  ? 'bg-blue-900/40 border-l-4 border-blue-500 text-blue-100' 
+                  : 'hover:bg-gray-800 border-l-4 border-transparent text-gray-300'
+                }`}
+            >
+              {/* Número de línea */}
+              <div className={`w-8 text-right pr-4 select-none ${isSelected ? 'text-blue-400' : 'text-gray-600 group-hover:text-gray-400'}`}>
+                {line.id}
+              </div>
+              
+              {/* Texto del código */}
+              <div className="whitespace-pre flex-1">
+                {line.text || ' '}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Indicador de selección actual */}
+      <div className="mt-6 text-center text-gray-400 text-sm h-6">
+        {selectedLine ? (
+          <span>Línea seleccionada: <strong className="text-blue-400">Línea {selectedLine}</strong></span>
+        ) : (
+          <span>Haz clic en una línea para seleccionarla</span>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default FindErrorGame;

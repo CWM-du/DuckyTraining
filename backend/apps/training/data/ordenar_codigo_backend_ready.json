@@ -1,0 +1,3556 @@
+{
+  "tipo_juego": "ORDER_ALGORITHM",
+  "instrucciones": "Arrastra los bloques para reconstruir el script original de Python. Conserva los espacios iniciales (indentación).",
+  "niveles": [
+    {
+      "nivel": 1,
+      "pruebas": [
+        {
+          "id": "ORD-1-01",
+          "nivel": 1,
+          "expected_order": [
+            "B91008",
+            "B83201",
+            "B86502",
+            "B15954"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B86502",
+              "linea": "resultado = a + b"
+            },
+            {
+              "id": "B15954",
+              "linea": "print(resultado)"
+            },
+            {
+              "id": "B91008",
+              "linea": "a = 2"
+            },
+            {
+              "id": "B83201",
+              "linea": "b = 5"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-02",
+          "nivel": 1,
+          "expected_order": [
+            "B80869",
+            "B28606",
+            "B44452",
+            "B10947"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B28606",
+              "linea": "b = 6"
+            },
+            {
+              "id": "B44452",
+              "linea": "resultado = a + b"
+            },
+            {
+              "id": "B80869",
+              "linea": "a = 3"
+            },
+            {
+              "id": "B10947",
+              "linea": "print(resultado)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-03",
+          "nivel": 1,
+          "expected_order": [
+            "B86661",
+            "B96033",
+            "B14353",
+            "B86686"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B14353",
+              "linea": "resultado = a + b"
+            },
+            {
+              "id": "B96033",
+              "linea": "b = 7"
+            },
+            {
+              "id": "B86686",
+              "linea": "print(resultado)"
+            },
+            {
+              "id": "B86661",
+              "linea": "a = 4"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-04",
+          "nivel": 1,
+          "expected_order": [
+            "B63381",
+            "B56247",
+            "B99657",
+            "B96483"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B99657",
+              "linea": "resultado = a + b"
+            },
+            {
+              "id": "B96483",
+              "linea": "print(resultado)"
+            },
+            {
+              "id": "B63381",
+              "linea": "a = 5"
+            },
+            {
+              "id": "B56247",
+              "linea": "b = 8"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-05",
+          "nivel": 1,
+          "expected_order": [
+            "B21304",
+            "B89880",
+            "B37524",
+            "B14953"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B37524",
+              "linea": "resultado = a + b"
+            },
+            {
+              "id": "B89880",
+              "linea": "b = 9"
+            },
+            {
+              "id": "B14953",
+              "linea": "print(resultado)"
+            },
+            {
+              "id": "B21304",
+              "linea": "a = 6"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-06",
+          "nivel": 1,
+          "expected_order": [
+            "B17423",
+            "B95766",
+            "B80409"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B80409",
+              "linea": "print(saludo)"
+            },
+            {
+              "id": "B17423",
+              "linea": "nombre = \"Jugador1\""
+            },
+            {
+              "id": "B95766",
+              "linea": "saludo = \"Hola, \" + nombre"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-07",
+          "nivel": 1,
+          "expected_order": [
+            "B30405",
+            "B28548",
+            "B61669"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B28548",
+              "linea": "saludo = \"Hola, \" + nombre"
+            },
+            {
+              "id": "B30405",
+              "linea": "nombre = \"Jugador2\""
+            },
+            {
+              "id": "B61669",
+              "linea": "print(saludo)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-08",
+          "nivel": 1,
+          "expected_order": [
+            "B42362",
+            "B74618",
+            "B32517"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B32517",
+              "linea": "print(saludo)"
+            },
+            {
+              "id": "B74618",
+              "linea": "saludo = \"Hola, \" + nombre"
+            },
+            {
+              "id": "B42362",
+              "linea": "nombre = \"Jugador3\""
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-09",
+          "nivel": 1,
+          "expected_order": [
+            "B60556",
+            "B92940",
+            "B64733"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B60556",
+              "linea": "nombre = \"Jugador4\""
+            },
+            {
+              "id": "B64733",
+              "linea": "print(saludo)"
+            },
+            {
+              "id": "B92940",
+              "linea": "saludo = \"Hola, \" + nombre"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-10",
+          "nivel": 1,
+          "expected_order": [
+            "B31312",
+            "B40461",
+            "B53546"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B53546",
+              "linea": "print(saludo)"
+            },
+            {
+              "id": "B40461",
+              "linea": "saludo = \"Hola, \" + nombre"
+            },
+            {
+              "id": "B31312",
+              "linea": "nombre = \"Jugador5\""
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-11",
+          "nivel": 1,
+          "expected_order": [
+            "B73670",
+            "B64390",
+            "B25230",
+            "B19041"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B19041",
+              "linea": "print(total)"
+            },
+            {
+              "id": "B25230",
+              "linea": "total = precio - descuento"
+            },
+            {
+              "id": "B73670",
+              "linea": "precio = 60"
+            },
+            {
+              "id": "B64390",
+              "linea": "descuento = 1"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-12",
+          "nivel": 1,
+          "expected_order": [
+            "B49182",
+            "B34424",
+            "B78758",
+            "B56100"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B78758",
+              "linea": "total = precio - descuento"
+            },
+            {
+              "id": "B49182",
+              "linea": "precio = 65"
+            },
+            {
+              "id": "B56100",
+              "linea": "print(total)"
+            },
+            {
+              "id": "B34424",
+              "linea": "descuento = 2"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-13",
+          "nivel": 1,
+          "expected_order": [
+            "B24383",
+            "B44058",
+            "B62984",
+            "B65037"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B24383",
+              "linea": "precio = 70"
+            },
+            {
+              "id": "B44058",
+              "linea": "descuento = 3"
+            },
+            {
+              "id": "B65037",
+              "linea": "print(total)"
+            },
+            {
+              "id": "B62984",
+              "linea": "total = precio - descuento"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-14",
+          "nivel": 1,
+          "expected_order": [
+            "B81549",
+            "B46254",
+            "B91119",
+            "B38939"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B46254",
+              "linea": "descuento = 4"
+            },
+            {
+              "id": "B81549",
+              "linea": "precio = 75"
+            },
+            {
+              "id": "B38939",
+              "linea": "print(total)"
+            },
+            {
+              "id": "B91119",
+              "linea": "total = precio - descuento"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-15",
+          "nivel": 1,
+          "expected_order": [
+            "B11573",
+            "B56370",
+            "B30259",
+            "B62298"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B30259",
+              "linea": "total = precio - descuento"
+            },
+            {
+              "id": "B56370",
+              "linea": "descuento = 5"
+            },
+            {
+              "id": "B11573",
+              "linea": "precio = 80"
+            },
+            {
+              "id": "B62298",
+              "linea": "print(total)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-16",
+          "nivel": 1,
+          "expected_order": [
+            "B87437",
+            "B14945",
+            "B17748",
+            "B97785"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B14945",
+              "linea": "doble = numero * 2"
+            },
+            {
+              "id": "B97785",
+              "linea": "print(doble + triple)"
+            },
+            {
+              "id": "B17748",
+              "linea": "triple = numero * 3"
+            },
+            {
+              "id": "B87437",
+              "linea": "numero = 17"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-17",
+          "nivel": 1,
+          "expected_order": [
+            "B34720",
+            "B88378",
+            "B98590",
+            "B59959"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B34720",
+              "linea": "numero = 18"
+            },
+            {
+              "id": "B98590",
+              "linea": "triple = numero * 3"
+            },
+            {
+              "id": "B59959",
+              "linea": "print(doble + triple)"
+            },
+            {
+              "id": "B88378",
+              "linea": "doble = numero * 2"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-18",
+          "nivel": 1,
+          "expected_order": [
+            "B62624",
+            "B46667",
+            "B68813",
+            "B86423"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B86423",
+              "linea": "print(doble + triple)"
+            },
+            {
+              "id": "B46667",
+              "linea": "doble = numero * 2"
+            },
+            {
+              "id": "B62624",
+              "linea": "numero = 19"
+            },
+            {
+              "id": "B68813",
+              "linea": "triple = numero * 3"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-19",
+          "nivel": 1,
+          "expected_order": [
+            "B40864",
+            "B38290",
+            "B24138",
+            "B38849"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B38290",
+              "linea": "doble = numero * 2"
+            },
+            {
+              "id": "B38849",
+              "linea": "print(doble + triple)"
+            },
+            {
+              "id": "B40864",
+              "linea": "numero = 20"
+            },
+            {
+              "id": "B24138",
+              "linea": "triple = numero * 3"
+            }
+          ]
+        },
+        {
+          "id": "ORD-1-20",
+          "nivel": 1,
+          "expected_order": [
+            "B94905",
+            "B60886",
+            "B22627",
+            "B49033"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B49033",
+              "linea": "print(doble + triple)"
+            },
+            {
+              "id": "B22627",
+              "linea": "triple = numero * 3"
+            },
+            {
+              "id": "B94905",
+              "linea": "numero = 21"
+            },
+            {
+              "id": "B60886",
+              "linea": "doble = numero * 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 2,
+      "pruebas": [
+        {
+          "id": "ORD-2-01",
+          "nivel": 2,
+          "expected_order": [
+            "B45315",
+            "B69197",
+            "B36624",
+            "B12171",
+            "B79564"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B69197",
+              "linea": "if numero % 2 == 0:"
+            },
+            {
+              "id": "B36624",
+              "linea": "    print(\"par\")"
+            },
+            {
+              "id": "B12171",
+              "linea": "else:"
+            },
+            {
+              "id": "B45315",
+              "linea": "numero = 2"
+            },
+            {
+              "id": "B79564",
+              "linea": "    print(\"impar\")"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-02",
+          "nivel": 2,
+          "expected_order": [
+            "B44336",
+            "B97221",
+            "B26883",
+            "B86473",
+            "B73092"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B97221",
+              "linea": "if numero % 2 == 0:"
+            },
+            {
+              "id": "B44336",
+              "linea": "numero = 3"
+            },
+            {
+              "id": "B73092",
+              "linea": "    print(\"impar\")"
+            },
+            {
+              "id": "B26883",
+              "linea": "    print(\"par\")"
+            },
+            {
+              "id": "B86473",
+              "linea": "else:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-03",
+          "nivel": 2,
+          "expected_order": [
+            "B99198",
+            "B40096",
+            "B20511",
+            "B34068",
+            "B81981"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B81981",
+              "linea": "    print(\"impar\")"
+            },
+            {
+              "id": "B99198",
+              "linea": "numero = 4"
+            },
+            {
+              "id": "B40096",
+              "linea": "if numero % 2 == 0:"
+            },
+            {
+              "id": "B34068",
+              "linea": "else:"
+            },
+            {
+              "id": "B20511",
+              "linea": "    print(\"par\")"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-04",
+          "nivel": 2,
+          "expected_order": [
+            "B10678",
+            "B93858",
+            "B30528",
+            "B11925",
+            "B56705"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B30528",
+              "linea": "    print(\"par\")"
+            },
+            {
+              "id": "B93858",
+              "linea": "if numero % 2 == 0:"
+            },
+            {
+              "id": "B10678",
+              "linea": "numero = 5"
+            },
+            {
+              "id": "B56705",
+              "linea": "    print(\"impar\")"
+            },
+            {
+              "id": "B11925",
+              "linea": "else:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-05",
+          "nivel": 2,
+          "expected_order": [
+            "B33643",
+            "B70488",
+            "B99253",
+            "B51068",
+            "B16288"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B70488",
+              "linea": "if numero % 2 == 0:"
+            },
+            {
+              "id": "B16288",
+              "linea": "    print(\"impar\")"
+            },
+            {
+              "id": "B99253",
+              "linea": "    print(\"par\")"
+            },
+            {
+              "id": "B33643",
+              "linea": "numero = 6"
+            },
+            {
+              "id": "B51068",
+              "linea": "else:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-06",
+          "nivel": 2,
+          "expected_order": [
+            "B76093",
+            "B16171",
+            "B53378"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B76093",
+              "linea": "for i in range(7):"
+            },
+            {
+              "id": "B53378",
+              "linea": "    print(cuadrado)"
+            },
+            {
+              "id": "B16171",
+              "linea": "    cuadrado = i * i"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-07",
+          "nivel": 2,
+          "expected_order": [
+            "B75241",
+            "B12596",
+            "B64380"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B75241",
+              "linea": "for i in range(8):"
+            },
+            {
+              "id": "B64380",
+              "linea": "    print(cuadrado)"
+            },
+            {
+              "id": "B12596",
+              "linea": "    cuadrado = i * i"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-08",
+          "nivel": 2,
+          "expected_order": [
+            "B45651",
+            "B72710",
+            "B18590"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B18590",
+              "linea": "    print(cuadrado)"
+            },
+            {
+              "id": "B45651",
+              "linea": "for i in range(9):"
+            },
+            {
+              "id": "B72710",
+              "linea": "    cuadrado = i * i"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-09",
+          "nivel": 2,
+          "expected_order": [
+            "B49337",
+            "B20876",
+            "B34962"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B20876",
+              "linea": "    cuadrado = i * i"
+            },
+            {
+              "id": "B34962",
+              "linea": "    print(cuadrado)"
+            },
+            {
+              "id": "B49337",
+              "linea": "for i in range(10):"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-10",
+          "nivel": 2,
+          "expected_order": [
+            "B19401",
+            "B61019",
+            "B61385"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B19401",
+              "linea": "for i in range(11):"
+            },
+            {
+              "id": "B61385",
+              "linea": "    print(cuadrado)"
+            },
+            {
+              "id": "B61019",
+              "linea": "    cuadrado = i * i"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-11",
+          "nivel": 2,
+          "expected_order": [
+            "B62209",
+            "B85734",
+            "B22137",
+            "B23877",
+            "B15561"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B15561",
+              "linea": "print(\"fin\")"
+            },
+            {
+              "id": "B23877",
+              "linea": "    contador -= 1"
+            },
+            {
+              "id": "B62209",
+              "linea": "contador = 12"
+            },
+            {
+              "id": "B85734",
+              "linea": "while contador > 0:"
+            },
+            {
+              "id": "B22137",
+              "linea": "    print(contador)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-12",
+          "nivel": 2,
+          "expected_order": [
+            "B52727",
+            "B53499",
+            "B71253",
+            "B91542",
+            "B22518"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B52727",
+              "linea": "contador = 13"
+            },
+            {
+              "id": "B22518",
+              "linea": "print(\"fin\")"
+            },
+            {
+              "id": "B53499",
+              "linea": "while contador > 0:"
+            },
+            {
+              "id": "B91542",
+              "linea": "    contador -= 1"
+            },
+            {
+              "id": "B71253",
+              "linea": "    print(contador)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-13",
+          "nivel": 2,
+          "expected_order": [
+            "B82265",
+            "B90473",
+            "B77315",
+            "B77278",
+            "B93956"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B93956",
+              "linea": "print(\"fin\")"
+            },
+            {
+              "id": "B77315",
+              "linea": "    print(contador)"
+            },
+            {
+              "id": "B77278",
+              "linea": "    contador -= 1"
+            },
+            {
+              "id": "B90473",
+              "linea": "while contador > 0:"
+            },
+            {
+              "id": "B82265",
+              "linea": "contador = 14"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-14",
+          "nivel": 2,
+          "expected_order": [
+            "B67949",
+            "B84501",
+            "B53351",
+            "B54677",
+            "B34690"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B84501",
+              "linea": "while contador > 0:"
+            },
+            {
+              "id": "B34690",
+              "linea": "print(\"fin\")"
+            },
+            {
+              "id": "B67949",
+              "linea": "contador = 15"
+            },
+            {
+              "id": "B53351",
+              "linea": "    print(contador)"
+            },
+            {
+              "id": "B54677",
+              "linea": "    contador -= 1"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-15",
+          "nivel": 2,
+          "expected_order": [
+            "B76963",
+            "B54361",
+            "B15518",
+            "B64498",
+            "B48732"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B54361",
+              "linea": "while contador > 0:"
+            },
+            {
+              "id": "B76963",
+              "linea": "contador = 16"
+            },
+            {
+              "id": "B64498",
+              "linea": "    contador -= 1"
+            },
+            {
+              "id": "B48732",
+              "linea": "print(\"fin\")"
+            },
+            {
+              "id": "B15518",
+              "linea": "    print(contador)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-16",
+          "nivel": 2,
+          "expected_order": [
+            "B29528",
+            "B70020",
+            "B98152",
+            "B82360",
+            "B12027",
+            "B55865"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B29528",
+              "linea": "nota = 21"
+            },
+            {
+              "id": "B98152",
+              "linea": "    aprobado = True"
+            },
+            {
+              "id": "B12027",
+              "linea": "    aprobado = False"
+            },
+            {
+              "id": "B82360",
+              "linea": "else:"
+            },
+            {
+              "id": "B55865",
+              "linea": "print(aprobado)"
+            },
+            {
+              "id": "B70020",
+              "linea": "if nota >= 5:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-17",
+          "nivel": 2,
+          "expected_order": [
+            "B10019",
+            "B95718",
+            "B50668",
+            "B86525",
+            "B52093",
+            "B40957"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B86525",
+              "linea": "else:"
+            },
+            {
+              "id": "B95718",
+              "linea": "if nota >= 5:"
+            },
+            {
+              "id": "B52093",
+              "linea": "    aprobado = False"
+            },
+            {
+              "id": "B50668",
+              "linea": "    aprobado = True"
+            },
+            {
+              "id": "B10019",
+              "linea": "nota = 22"
+            },
+            {
+              "id": "B40957",
+              "linea": "print(aprobado)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-18",
+          "nivel": 2,
+          "expected_order": [
+            "B78200",
+            "B17775",
+            "B72226",
+            "B42236",
+            "B47054",
+            "B87202"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B78200",
+              "linea": "nota = 23"
+            },
+            {
+              "id": "B17775",
+              "linea": "if nota >= 5:"
+            },
+            {
+              "id": "B42236",
+              "linea": "else:"
+            },
+            {
+              "id": "B47054",
+              "linea": "    aprobado = False"
+            },
+            {
+              "id": "B72226",
+              "linea": "    aprobado = True"
+            },
+            {
+              "id": "B87202",
+              "linea": "print(aprobado)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-19",
+          "nivel": 2,
+          "expected_order": [
+            "B24540",
+            "B71141",
+            "B80893",
+            "B36056",
+            "B58836",
+            "B11186"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B36056",
+              "linea": "else:"
+            },
+            {
+              "id": "B71141",
+              "linea": "if nota >= 5:"
+            },
+            {
+              "id": "B58836",
+              "linea": "    aprobado = False"
+            },
+            {
+              "id": "B24540",
+              "linea": "nota = 24"
+            },
+            {
+              "id": "B11186",
+              "linea": "print(aprobado)"
+            },
+            {
+              "id": "B80893",
+              "linea": "    aprobado = True"
+            }
+          ]
+        },
+        {
+          "id": "ORD-2-20",
+          "nivel": 2,
+          "expected_order": [
+            "B84868",
+            "B46180",
+            "B12516",
+            "B49243",
+            "B86403",
+            "B90140"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B86403",
+              "linea": "    aprobado = False"
+            },
+            {
+              "id": "B90140",
+              "linea": "print(aprobado)"
+            },
+            {
+              "id": "B84868",
+              "linea": "nota = 25"
+            },
+            {
+              "id": "B49243",
+              "linea": "else:"
+            },
+            {
+              "id": "B12516",
+              "linea": "    aprobado = True"
+            },
+            {
+              "id": "B46180",
+              "linea": "if nota >= 5:"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 3,
+      "pruebas": [
+        {
+          "id": "ORD-3-01",
+          "nivel": 3,
+          "expected_order": [
+            "B39157",
+            "B31466",
+            "B71111",
+            "B80891",
+            "B26050"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B31466",
+              "linea": "    resultado = numero * 2"
+            },
+            {
+              "id": "B71111",
+              "linea": "    return resultado"
+            },
+            {
+              "id": "B39157",
+              "linea": "def duplicar(numero):"
+            },
+            {
+              "id": "B26050",
+              "linea": "print(duplicar(valor))"
+            },
+            {
+              "id": "B80891",
+              "linea": "valor = 2"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-02",
+          "nivel": 3,
+          "expected_order": [
+            "B14933",
+            "B65416",
+            "B59307",
+            "B49061",
+            "B31100"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B31100",
+              "linea": "print(duplicar(valor))"
+            },
+            {
+              "id": "B14933",
+              "linea": "def duplicar(numero):"
+            },
+            {
+              "id": "B59307",
+              "linea": "    return resultado"
+            },
+            {
+              "id": "B65416",
+              "linea": "    resultado = numero * 2"
+            },
+            {
+              "id": "B49061",
+              "linea": "valor = 3"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-03",
+          "nivel": 3,
+          "expected_order": [
+            "B37931",
+            "B46255",
+            "B54945",
+            "B47965",
+            "B40440"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B40440",
+              "linea": "print(duplicar(valor))"
+            },
+            {
+              "id": "B37931",
+              "linea": "def duplicar(numero):"
+            },
+            {
+              "id": "B54945",
+              "linea": "    return resultado"
+            },
+            {
+              "id": "B46255",
+              "linea": "    resultado = numero * 2"
+            },
+            {
+              "id": "B47965",
+              "linea": "valor = 4"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-04",
+          "nivel": 3,
+          "expected_order": [
+            "B60747",
+            "B56468",
+            "B10521",
+            "B89912",
+            "B29638"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B89912",
+              "linea": "valor = 5"
+            },
+            {
+              "id": "B56468",
+              "linea": "    resultado = numero * 2"
+            },
+            {
+              "id": "B29638",
+              "linea": "print(duplicar(valor))"
+            },
+            {
+              "id": "B10521",
+              "linea": "    return resultado"
+            },
+            {
+              "id": "B60747",
+              "linea": "def duplicar(numero):"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-05",
+          "nivel": 3,
+          "expected_order": [
+            "B69411",
+            "B57582",
+            "B54498",
+            "B64695",
+            "B55011"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B55011",
+              "linea": "print(duplicar(valor))"
+            },
+            {
+              "id": "B54498",
+              "linea": "    return resultado"
+            },
+            {
+              "id": "B69411",
+              "linea": "def duplicar(numero):"
+            },
+            {
+              "id": "B57582",
+              "linea": "    resultado = numero * 2"
+            },
+            {
+              "id": "B64695",
+              "linea": "valor = 6"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-06",
+          "nivel": 3,
+          "expected_order": [
+            "B17966",
+            "B90636",
+            "B96862",
+            "B27417",
+            "B31048"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B17966",
+              "linea": "numeros = [7, 8, 9]"
+            },
+            {
+              "id": "B31048",
+              "linea": "print(suma)"
+            },
+            {
+              "id": "B96862",
+              "linea": "for numero in numeros:"
+            },
+            {
+              "id": "B27417",
+              "linea": "    suma += numero"
+            },
+            {
+              "id": "B90636",
+              "linea": "suma = 0"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-07",
+          "nivel": 3,
+          "expected_order": [
+            "B14790",
+            "B13703",
+            "B29243",
+            "B36577",
+            "B87912"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B87912",
+              "linea": "print(suma)"
+            },
+            {
+              "id": "B29243",
+              "linea": "for numero in numeros:"
+            },
+            {
+              "id": "B14790",
+              "linea": "numeros = [8, 9, 10]"
+            },
+            {
+              "id": "B36577",
+              "linea": "    suma += numero"
+            },
+            {
+              "id": "B13703",
+              "linea": "suma = 0"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-08",
+          "nivel": 3,
+          "expected_order": [
+            "B74113",
+            "B56081",
+            "B79963",
+            "B23245",
+            "B18698"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B74113",
+              "linea": "numeros = [9, 10, 11]"
+            },
+            {
+              "id": "B18698",
+              "linea": "print(suma)"
+            },
+            {
+              "id": "B56081",
+              "linea": "suma = 0"
+            },
+            {
+              "id": "B79963",
+              "linea": "for numero in numeros:"
+            },
+            {
+              "id": "B23245",
+              "linea": "    suma += numero"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-09",
+          "nivel": 3,
+          "expected_order": [
+            "B63754",
+            "B26850",
+            "B59955",
+            "B46424",
+            "B65432"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B65432",
+              "linea": "print(suma)"
+            },
+            {
+              "id": "B26850",
+              "linea": "suma = 0"
+            },
+            {
+              "id": "B59955",
+              "linea": "for numero in numeros:"
+            },
+            {
+              "id": "B46424",
+              "linea": "    suma += numero"
+            },
+            {
+              "id": "B63754",
+              "linea": "numeros = [10, 11, 12]"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-10",
+          "nivel": 3,
+          "expected_order": [
+            "B23650",
+            "B78224",
+            "B65497",
+            "B10346",
+            "B31996"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B65497",
+              "linea": "for numero in numeros:"
+            },
+            {
+              "id": "B78224",
+              "linea": "suma = 0"
+            },
+            {
+              "id": "B23650",
+              "linea": "numeros = [11, 12, 13]"
+            },
+            {
+              "id": "B10346",
+              "linea": "    suma += numero"
+            },
+            {
+              "id": "B31996",
+              "linea": "print(suma)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-11",
+          "nivel": 3,
+          "expected_order": [
+            "B33275",
+            "B49438",
+            "B78315",
+            "B63829"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B33275",
+              "linea": "persona = {\"nombre\": \"Ana\", \"edad\": 30}"
+            },
+            {
+              "id": "B78315",
+              "linea": "edad = persona[\"edad\"]"
+            },
+            {
+              "id": "B63829",
+              "linea": "print(nombre, edad)"
+            },
+            {
+              "id": "B49438",
+              "linea": "nombre = persona[\"nombre\"]"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-12",
+          "nivel": 3,
+          "expected_order": [
+            "B51589",
+            "B30380",
+            "B40599",
+            "B82661"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B40599",
+              "linea": "edad = persona[\"edad\"]"
+            },
+            {
+              "id": "B51589",
+              "linea": "persona = {\"nombre\": \"Ana\", \"edad\": 31}"
+            },
+            {
+              "id": "B30380",
+              "linea": "nombre = persona[\"nombre\"]"
+            },
+            {
+              "id": "B82661",
+              "linea": "print(nombre, edad)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-13",
+          "nivel": 3,
+          "expected_order": [
+            "B11210",
+            "B65933",
+            "B50238",
+            "B60719"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B11210",
+              "linea": "persona = {\"nombre\": \"Ana\", \"edad\": 32}"
+            },
+            {
+              "id": "B60719",
+              "linea": "print(nombre, edad)"
+            },
+            {
+              "id": "B65933",
+              "linea": "nombre = persona[\"nombre\"]"
+            },
+            {
+              "id": "B50238",
+              "linea": "edad = persona[\"edad\"]"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-14",
+          "nivel": 3,
+          "expected_order": [
+            "B16934",
+            "B56683",
+            "B91158",
+            "B86169"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B91158",
+              "linea": "edad = persona[\"edad\"]"
+            },
+            {
+              "id": "B56683",
+              "linea": "nombre = persona[\"nombre\"]"
+            },
+            {
+              "id": "B86169",
+              "linea": "print(nombre, edad)"
+            },
+            {
+              "id": "B16934",
+              "linea": "persona = {\"nombre\": \"Ana\", \"edad\": 33}"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-15",
+          "nivel": 3,
+          "expected_order": [
+            "B10133",
+            "B33121",
+            "B65714",
+            "B46518"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B65714",
+              "linea": "edad = persona[\"edad\"]"
+            },
+            {
+              "id": "B10133",
+              "linea": "persona = {\"nombre\": \"Ana\", \"edad\": 34}"
+            },
+            {
+              "id": "B33121",
+              "linea": "nombre = persona[\"nombre\"]"
+            },
+            {
+              "id": "B46518",
+              "linea": "print(nombre, edad)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-16",
+          "nivel": 3,
+          "expected_order": [
+            "B61548",
+            "B78662",
+            "B88828",
+            "B82974",
+            "B11510",
+            "B52809",
+            "B24970"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B24970",
+              "linea": "print(contar_vocales(\"programacion0\"))"
+            },
+            {
+              "id": "B82974",
+              "linea": "        if letra in \"aeiou\":"
+            },
+            {
+              "id": "B61548",
+              "linea": "def contar_vocales(texto):"
+            },
+            {
+              "id": "B78662",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B11510",
+              "linea": "            total += 1"
+            },
+            {
+              "id": "B52809",
+              "linea": "    return total"
+            },
+            {
+              "id": "B88828",
+              "linea": "    for letra in texto:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-17",
+          "nivel": 3,
+          "expected_order": [
+            "B58238",
+            "B41302",
+            "B89113",
+            "B52509",
+            "B89746",
+            "B37288",
+            "B98152"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B98152",
+              "linea": "print(contar_vocales(\"programacion1\"))"
+            },
+            {
+              "id": "B52509",
+              "linea": "        if letra in \"aeiou\":"
+            },
+            {
+              "id": "B37288",
+              "linea": "    return total"
+            },
+            {
+              "id": "B41302",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B89113",
+              "linea": "    for letra in texto:"
+            },
+            {
+              "id": "B89746",
+              "linea": "            total += 1"
+            },
+            {
+              "id": "B58238",
+              "linea": "def contar_vocales(texto):"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-18",
+          "nivel": 3,
+          "expected_order": [
+            "B52373",
+            "B99776",
+            "B38606",
+            "B55536",
+            "B35644",
+            "B84547",
+            "B65727"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B38606",
+              "linea": "    for letra in texto:"
+            },
+            {
+              "id": "B65727",
+              "linea": "print(contar_vocales(\"programacion2\"))"
+            },
+            {
+              "id": "B84547",
+              "linea": "    return total"
+            },
+            {
+              "id": "B52373",
+              "linea": "def contar_vocales(texto):"
+            },
+            {
+              "id": "B99776",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B55536",
+              "linea": "        if letra in \"aeiou\":"
+            },
+            {
+              "id": "B35644",
+              "linea": "            total += 1"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-19",
+          "nivel": 3,
+          "expected_order": [
+            "B56850",
+            "B38795",
+            "B32288",
+            "B15216",
+            "B50742",
+            "B84854",
+            "B69486"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B84854",
+              "linea": "    return total"
+            },
+            {
+              "id": "B69486",
+              "linea": "print(contar_vocales(\"programacion3\"))"
+            },
+            {
+              "id": "B15216",
+              "linea": "        if letra in \"aeiou\":"
+            },
+            {
+              "id": "B56850",
+              "linea": "def contar_vocales(texto):"
+            },
+            {
+              "id": "B50742",
+              "linea": "            total += 1"
+            },
+            {
+              "id": "B32288",
+              "linea": "    for letra in texto:"
+            },
+            {
+              "id": "B38795",
+              "linea": "    total = 0"
+            }
+          ]
+        },
+        {
+          "id": "ORD-3-20",
+          "nivel": 3,
+          "expected_order": [
+            "B15540",
+            "B91536",
+            "B77030",
+            "B77997",
+            "B80459",
+            "B51427",
+            "B11880"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B51427",
+              "linea": "    return total"
+            },
+            {
+              "id": "B80459",
+              "linea": "            total += 1"
+            },
+            {
+              "id": "B15540",
+              "linea": "def contar_vocales(texto):"
+            },
+            {
+              "id": "B77997",
+              "linea": "        if letra in \"aeiou\":"
+            },
+            {
+              "id": "B91536",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B11880",
+              "linea": "print(contar_vocales(\"programacion4\"))"
+            },
+            {
+              "id": "B77030",
+              "linea": "    for letra in texto:"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 4,
+      "pruebas": [
+        {
+          "id": "ORD-4-01",
+          "nivel": 4,
+          "expected_order": [
+            "B33217",
+            "B15243",
+            "B41718",
+            "B25625"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B41718",
+              "linea": "cuadrados = [x ** 2 for x in pares]"
+            },
+            {
+              "id": "B25625",
+              "linea": "print(cuadrados)"
+            },
+            {
+              "id": "B15243",
+              "linea": "pares = [x for x in numeros if x % 2 == 0]"
+            },
+            {
+              "id": "B33217",
+              "linea": "numeros = list(range(5))"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-02",
+          "nivel": 4,
+          "expected_order": [
+            "B12534",
+            "B93785",
+            "B58497",
+            "B34504"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B58497",
+              "linea": "cuadrados = [x ** 2 for x in pares]"
+            },
+            {
+              "id": "B93785",
+              "linea": "pares = [x for x in numeros if x % 2 == 0]"
+            },
+            {
+              "id": "B34504",
+              "linea": "print(cuadrados)"
+            },
+            {
+              "id": "B12534",
+              "linea": "numeros = list(range(6))"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-03",
+          "nivel": 4,
+          "expected_order": [
+            "B52201",
+            "B34466",
+            "B93800",
+            "B91430"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B34466",
+              "linea": "pares = [x for x in numeros if x % 2 == 0]"
+            },
+            {
+              "id": "B93800",
+              "linea": "cuadrados = [x ** 2 for x in pares]"
+            },
+            {
+              "id": "B52201",
+              "linea": "numeros = list(range(7))"
+            },
+            {
+              "id": "B91430",
+              "linea": "print(cuadrados)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-04",
+          "nivel": 4,
+          "expected_order": [
+            "B95372",
+            "B75592",
+            "B14070",
+            "B57150"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B75592",
+              "linea": "pares = [x for x in numeros if x % 2 == 0]"
+            },
+            {
+              "id": "B95372",
+              "linea": "numeros = list(range(8))"
+            },
+            {
+              "id": "B14070",
+              "linea": "cuadrados = [x ** 2 for x in pares]"
+            },
+            {
+              "id": "B57150",
+              "linea": "print(cuadrados)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-05",
+          "nivel": 4,
+          "expected_order": [
+            "B75890",
+            "B70886",
+            "B24982",
+            "B28491"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B28491",
+              "linea": "print(cuadrados)"
+            },
+            {
+              "id": "B70886",
+              "linea": "pares = [x for x in numeros if x % 2 == 0]"
+            },
+            {
+              "id": "B24982",
+              "linea": "cuadrados = [x ** 2 for x in pares]"
+            },
+            {
+              "id": "B75890",
+              "linea": "numeros = list(range(9))"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-06",
+          "nivel": 4,
+          "expected_order": [
+            "B84220",
+            "B88010",
+            "B24397",
+            "B27978",
+            "B92287",
+            "B72420"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B72420",
+              "linea": "print(dividir(21, 0))"
+            },
+            {
+              "id": "B27978",
+              "linea": "    except ZeroDivisionError:"
+            },
+            {
+              "id": "B88010",
+              "linea": "    try:"
+            },
+            {
+              "id": "B84220",
+              "linea": "def dividir(a, b):"
+            },
+            {
+              "id": "B24397",
+              "linea": "        return a / b"
+            },
+            {
+              "id": "B92287",
+              "linea": "        return None"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-07",
+          "nivel": 4,
+          "expected_order": [
+            "B51204",
+            "B86133",
+            "B88210",
+            "B78762",
+            "B40364",
+            "B96337"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B86133",
+              "linea": "    try:"
+            },
+            {
+              "id": "B78762",
+              "linea": "    except ZeroDivisionError:"
+            },
+            {
+              "id": "B96337",
+              "linea": "print(dividir(24, 1))"
+            },
+            {
+              "id": "B51204",
+              "linea": "def dividir(a, b):"
+            },
+            {
+              "id": "B88210",
+              "linea": "        return a / b"
+            },
+            {
+              "id": "B40364",
+              "linea": "        return None"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-08",
+          "nivel": 4,
+          "expected_order": [
+            "B80450",
+            "B84888",
+            "B18742",
+            "B72909",
+            "B62142",
+            "B88237"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B18742",
+              "linea": "        return a / b"
+            },
+            {
+              "id": "B84888",
+              "linea": "    try:"
+            },
+            {
+              "id": "B88237",
+              "linea": "print(dividir(27, 2))"
+            },
+            {
+              "id": "B80450",
+              "linea": "def dividir(a, b):"
+            },
+            {
+              "id": "B72909",
+              "linea": "    except ZeroDivisionError:"
+            },
+            {
+              "id": "B62142",
+              "linea": "        return None"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-09",
+          "nivel": 4,
+          "expected_order": [
+            "B30560",
+            "B68674",
+            "B53614",
+            "B26182",
+            "B36827",
+            "B62527"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B68674",
+              "linea": "    try:"
+            },
+            {
+              "id": "B30560",
+              "linea": "def dividir(a, b):"
+            },
+            {
+              "id": "B36827",
+              "linea": "        return None"
+            },
+            {
+              "id": "B53614",
+              "linea": "        return a / b"
+            },
+            {
+              "id": "B62527",
+              "linea": "print(dividir(30, 3))"
+            },
+            {
+              "id": "B26182",
+              "linea": "    except ZeroDivisionError:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-10",
+          "nivel": 4,
+          "expected_order": [
+            "B30037",
+            "B77801",
+            "B25392",
+            "B41680",
+            "B22005",
+            "B12984"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B12984",
+              "linea": "print(dividir(33, 4))"
+            },
+            {
+              "id": "B22005",
+              "linea": "        return None"
+            },
+            {
+              "id": "B30037",
+              "linea": "def dividir(a, b):"
+            },
+            {
+              "id": "B77801",
+              "linea": "    try:"
+            },
+            {
+              "id": "B25392",
+              "linea": "        return a / b"
+            },
+            {
+              "id": "B41680",
+              "linea": "    except ZeroDivisionError:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-11",
+          "nivel": 4,
+          "expected_order": [
+            "B54453",
+            "B97779",
+            "B41012",
+            "B27608"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B27608",
+              "linea": "print(ordenadas)"
+            },
+            {
+              "id": "B41012",
+              "linea": "ordenadas = sorted(longitudes.items(), key=lambda par: par[1])"
+            },
+            {
+              "id": "B97779",
+              "linea": "longitudes = {palabra: len(palabra) for palabra in palabras}"
+            },
+            {
+              "id": "B54453",
+              "linea": "palabras = [\"sol\", \"luna\", \"mar\", \"cielo0\"]"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-12",
+          "nivel": 4,
+          "expected_order": [
+            "B66055",
+            "B45882",
+            "B28810",
+            "B86768"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B45882",
+              "linea": "longitudes = {palabra: len(palabra) for palabra in palabras}"
+            },
+            {
+              "id": "B86768",
+              "linea": "print(ordenadas)"
+            },
+            {
+              "id": "B66055",
+              "linea": "palabras = [\"sol\", \"luna\", \"mar\", \"cielo1\"]"
+            },
+            {
+              "id": "B28810",
+              "linea": "ordenadas = sorted(longitudes.items(), key=lambda par: par[1])"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-13",
+          "nivel": 4,
+          "expected_order": [
+            "B55029",
+            "B79076",
+            "B90572",
+            "B62760"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B79076",
+              "linea": "longitudes = {palabra: len(palabra) for palabra in palabras}"
+            },
+            {
+              "id": "B62760",
+              "linea": "print(ordenadas)"
+            },
+            {
+              "id": "B90572",
+              "linea": "ordenadas = sorted(longitudes.items(), key=lambda par: par[1])"
+            },
+            {
+              "id": "B55029",
+              "linea": "palabras = [\"sol\", \"luna\", \"mar\", \"cielo2\"]"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-14",
+          "nivel": 4,
+          "expected_order": [
+            "B61013",
+            "B12246",
+            "B15801",
+            "B67514"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B15801",
+              "linea": "ordenadas = sorted(longitudes.items(), key=lambda par: par[1])"
+            },
+            {
+              "id": "B12246",
+              "linea": "longitudes = {palabra: len(palabra) for palabra in palabras}"
+            },
+            {
+              "id": "B67514",
+              "linea": "print(ordenadas)"
+            },
+            {
+              "id": "B61013",
+              "linea": "palabras = [\"sol\", \"luna\", \"mar\", \"cielo3\"]"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-15",
+          "nivel": 4,
+          "expected_order": [
+            "B93132",
+            "B72773",
+            "B18305",
+            "B68266"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B93132",
+              "linea": "palabras = [\"sol\", \"luna\", \"mar\", \"cielo4\"]"
+            },
+            {
+              "id": "B18305",
+              "linea": "ordenadas = sorted(longitudes.items(), key=lambda par: par[1])"
+            },
+            {
+              "id": "B68266",
+              "linea": "print(ordenadas)"
+            },
+            {
+              "id": "B72773",
+              "linea": "longitudes = {palabra: len(palabra) for palabra in palabras}"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-16",
+          "nivel": 4,
+          "expected_order": [
+            "B66015",
+            "B28940",
+            "B21653",
+            "B95387",
+            "B89007"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B89007",
+              "linea": "print(mayores)"
+            },
+            {
+              "id": "B28940",
+              "linea": "    return list(filter(condicion, numeros))"
+            },
+            {
+              "id": "B66015",
+              "linea": "def filtrar(numeros, condicion):"
+            },
+            {
+              "id": "B95387",
+              "linea": "mayores = filtrar(valores, lambda x: x > 5)"
+            },
+            {
+              "id": "B21653",
+              "linea": "valores = list(range(24))"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-17",
+          "nivel": 4,
+          "expected_order": [
+            "B45293",
+            "B28635",
+            "B20194",
+            "B85646",
+            "B25629"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B28635",
+              "linea": "    return list(filter(condicion, numeros))"
+            },
+            {
+              "id": "B45293",
+              "linea": "def filtrar(numeros, condicion):"
+            },
+            {
+              "id": "B85646",
+              "linea": "mayores = filtrar(valores, lambda x: x > 5)"
+            },
+            {
+              "id": "B20194",
+              "linea": "valores = list(range(25))"
+            },
+            {
+              "id": "B25629",
+              "linea": "print(mayores)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-18",
+          "nivel": 4,
+          "expected_order": [
+            "B60266",
+            "B67521",
+            "B94540",
+            "B67883",
+            "B62858"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B60266",
+              "linea": "def filtrar(numeros, condicion):"
+            },
+            {
+              "id": "B62858",
+              "linea": "print(mayores)"
+            },
+            {
+              "id": "B94540",
+              "linea": "valores = list(range(26))"
+            },
+            {
+              "id": "B67521",
+              "linea": "    return list(filter(condicion, numeros))"
+            },
+            {
+              "id": "B67883",
+              "linea": "mayores = filtrar(valores, lambda x: x > 5)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-19",
+          "nivel": 4,
+          "expected_order": [
+            "B70744",
+            "B18416",
+            "B19680",
+            "B50060",
+            "B94333"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B18416",
+              "linea": "    return list(filter(condicion, numeros))"
+            },
+            {
+              "id": "B94333",
+              "linea": "print(mayores)"
+            },
+            {
+              "id": "B50060",
+              "linea": "mayores = filtrar(valores, lambda x: x > 5)"
+            },
+            {
+              "id": "B70744",
+              "linea": "def filtrar(numeros, condicion):"
+            },
+            {
+              "id": "B19680",
+              "linea": "valores = list(range(27))"
+            }
+          ]
+        },
+        {
+          "id": "ORD-4-20",
+          "nivel": 4,
+          "expected_order": [
+            "B94874",
+            "B63681",
+            "B65309",
+            "B25123",
+            "B68088"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B68088",
+              "linea": "print(mayores)"
+            },
+            {
+              "id": "B63681",
+              "linea": "    return list(filter(condicion, numeros))"
+            },
+            {
+              "id": "B65309",
+              "linea": "valores = list(range(28))"
+            },
+            {
+              "id": "B25123",
+              "linea": "mayores = filtrar(valores, lambda x: x > 5)"
+            },
+            {
+              "id": "B94874",
+              "linea": "def filtrar(numeros, condicion):"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 5,
+      "pruebas": [
+        {
+          "id": "ORD-5-01",
+          "nivel": 5,
+          "expected_order": [
+            "B11180",
+            "B32375",
+            "B93437",
+            "B10145",
+            "B82989",
+            "B21922",
+            "B97512",
+            "B78540"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B21922",
+              "linea": "contador = Contador(2)"
+            },
+            {
+              "id": "B10145",
+              "linea": "    def incrementar(self):"
+            },
+            {
+              "id": "B78540",
+              "linea": "print(contador.valor)"
+            },
+            {
+              "id": "B32375",
+              "linea": "    def __init__(self, inicial=0):"
+            },
+            {
+              "id": "B11180",
+              "linea": "class Contador:"
+            },
+            {
+              "id": "B93437",
+              "linea": "        self.valor = inicial"
+            },
+            {
+              "id": "B97512",
+              "linea": "contador.incrementar()"
+            },
+            {
+              "id": "B82989",
+              "linea": "        self.valor += 1"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-02",
+          "nivel": 5,
+          "expected_order": [
+            "B47056",
+            "B94155",
+            "B59354",
+            "B85269",
+            "B59825",
+            "B71536",
+            "B75523",
+            "B21341"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B59354",
+              "linea": "        self.valor = inicial"
+            },
+            {
+              "id": "B85269",
+              "linea": "    def incrementar(self):"
+            },
+            {
+              "id": "B21341",
+              "linea": "print(contador.valor)"
+            },
+            {
+              "id": "B71536",
+              "linea": "contador = Contador(3)"
+            },
+            {
+              "id": "B75523",
+              "linea": "contador.incrementar()"
+            },
+            {
+              "id": "B47056",
+              "linea": "class Contador:"
+            },
+            {
+              "id": "B94155",
+              "linea": "    def __init__(self, inicial=0):"
+            },
+            {
+              "id": "B59825",
+              "linea": "        self.valor += 1"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-03",
+          "nivel": 5,
+          "expected_order": [
+            "B66049",
+            "B31342",
+            "B12154",
+            "B55217",
+            "B28493",
+            "B12546",
+            "B28520",
+            "B80668"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B28493",
+              "linea": "        self.valor += 1"
+            },
+            {
+              "id": "B55217",
+              "linea": "    def incrementar(self):"
+            },
+            {
+              "id": "B31342",
+              "linea": "    def __init__(self, inicial=0):"
+            },
+            {
+              "id": "B80668",
+              "linea": "print(contador.valor)"
+            },
+            {
+              "id": "B12546",
+              "linea": "contador = Contador(4)"
+            },
+            {
+              "id": "B66049",
+              "linea": "class Contador:"
+            },
+            {
+              "id": "B12154",
+              "linea": "        self.valor = inicial"
+            },
+            {
+              "id": "B28520",
+              "linea": "contador.incrementar()"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-04",
+          "nivel": 5,
+          "expected_order": [
+            "B79327",
+            "B34500",
+            "B54703",
+            "B36681",
+            "B84485",
+            "B42317",
+            "B95033",
+            "B70278"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B34500",
+              "linea": "    def __init__(self, inicial=0):"
+            },
+            {
+              "id": "B79327",
+              "linea": "class Contador:"
+            },
+            {
+              "id": "B95033",
+              "linea": "contador.incrementar()"
+            },
+            {
+              "id": "B36681",
+              "linea": "    def incrementar(self):"
+            },
+            {
+              "id": "B84485",
+              "linea": "        self.valor += 1"
+            },
+            {
+              "id": "B70278",
+              "linea": "print(contador.valor)"
+            },
+            {
+              "id": "B54703",
+              "linea": "        self.valor = inicial"
+            },
+            {
+              "id": "B42317",
+              "linea": "contador = Contador(5)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-05",
+          "nivel": 5,
+          "expected_order": [
+            "B15610",
+            "B66429",
+            "B52580",
+            "B89548",
+            "B80846",
+            "B33215",
+            "B85265",
+            "B26298"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B15610",
+              "linea": "class Contador:"
+            },
+            {
+              "id": "B85265",
+              "linea": "contador.incrementar()"
+            },
+            {
+              "id": "B33215",
+              "linea": "contador = Contador(6)"
+            },
+            {
+              "id": "B66429",
+              "linea": "    def __init__(self, inicial=0):"
+            },
+            {
+              "id": "B89548",
+              "linea": "    def incrementar(self):"
+            },
+            {
+              "id": "B80846",
+              "linea": "        self.valor += 1"
+            },
+            {
+              "id": "B26298",
+              "linea": "print(contador.valor)"
+            },
+            {
+              "id": "B52580",
+              "linea": "        self.valor = inicial"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-06",
+          "nivel": 5,
+          "expected_order": [
+            "B65297",
+            "B94346",
+            "B37890",
+            "B28742",
+            "B10004",
+            "B34887"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B37890",
+              "linea": "        if numero % 2 == 0:"
+            },
+            {
+              "id": "B65297",
+              "linea": "def generador_pares(limite):"
+            },
+            {
+              "id": "B28742",
+              "linea": "            yield numero"
+            },
+            {
+              "id": "B94346",
+              "linea": "    for numero in range(limite):"
+            },
+            {
+              "id": "B10004",
+              "linea": "valores = list(generador_pares(12))"
+            },
+            {
+              "id": "B34887",
+              "linea": "print(valores)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-07",
+          "nivel": 5,
+          "expected_order": [
+            "B17074",
+            "B70136",
+            "B88722",
+            "B54134",
+            "B34205",
+            "B59624"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B17074",
+              "linea": "def generador_pares(limite):"
+            },
+            {
+              "id": "B54134",
+              "linea": "            yield numero"
+            },
+            {
+              "id": "B59624",
+              "linea": "print(valores)"
+            },
+            {
+              "id": "B34205",
+              "linea": "valores = list(generador_pares(13))"
+            },
+            {
+              "id": "B70136",
+              "linea": "    for numero in range(limite):"
+            },
+            {
+              "id": "B88722",
+              "linea": "        if numero % 2 == 0:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-08",
+          "nivel": 5,
+          "expected_order": [
+            "B30582",
+            "B68917",
+            "B88356",
+            "B98195",
+            "B31506",
+            "B46768"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B68917",
+              "linea": "    for numero in range(limite):"
+            },
+            {
+              "id": "B30582",
+              "linea": "def generador_pares(limite):"
+            },
+            {
+              "id": "B46768",
+              "linea": "print(valores)"
+            },
+            {
+              "id": "B31506",
+              "linea": "valores = list(generador_pares(14))"
+            },
+            {
+              "id": "B88356",
+              "linea": "        if numero % 2 == 0:"
+            },
+            {
+              "id": "B98195",
+              "linea": "            yield numero"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-09",
+          "nivel": 5,
+          "expected_order": [
+            "B32300",
+            "B11292",
+            "B87133",
+            "B54928",
+            "B26285",
+            "B40552"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B40552",
+              "linea": "print(valores)"
+            },
+            {
+              "id": "B32300",
+              "linea": "def generador_pares(limite):"
+            },
+            {
+              "id": "B26285",
+              "linea": "valores = list(generador_pares(15))"
+            },
+            {
+              "id": "B11292",
+              "linea": "    for numero in range(limite):"
+            },
+            {
+              "id": "B54928",
+              "linea": "            yield numero"
+            },
+            {
+              "id": "B87133",
+              "linea": "        if numero % 2 == 0:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-10",
+          "nivel": 5,
+          "expected_order": [
+            "B98665",
+            "B17220",
+            "B11144",
+            "B48703",
+            "B48085",
+            "B18972"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B11144",
+              "linea": "        if numero % 2 == 0:"
+            },
+            {
+              "id": "B17220",
+              "linea": "    for numero in range(limite):"
+            },
+            {
+              "id": "B98665",
+              "linea": "def generador_pares(limite):"
+            },
+            {
+              "id": "B48703",
+              "linea": "            yield numero"
+            },
+            {
+              "id": "B48085",
+              "linea": "valores = list(generador_pares(16))"
+            },
+            {
+              "id": "B18972",
+              "linea": "print(valores)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-11",
+          "nivel": 5,
+          "expected_order": [
+            "B46368",
+            "B93167",
+            "B63702",
+            "B98858",
+            "B70781",
+            "B80984",
+            "B91818"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B70781",
+              "linea": "        return f\"Caja({self.valor})\""
+            },
+            {
+              "id": "B93167",
+              "linea": "    def __init__(self, valor):"
+            },
+            {
+              "id": "B98858",
+              "linea": "    def __repr__(self):"
+            },
+            {
+              "id": "B63702",
+              "linea": "        self.valor = valor"
+            },
+            {
+              "id": "B80984",
+              "linea": "caja = Caja(12)"
+            },
+            {
+              "id": "B46368",
+              "linea": "class Caja:"
+            },
+            {
+              "id": "B91818",
+              "linea": "print(caja)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-12",
+          "nivel": 5,
+          "expected_order": [
+            "B99792",
+            "B56797",
+            "B58429",
+            "B60133",
+            "B90050",
+            "B67465",
+            "B13961"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B60133",
+              "linea": "    def __repr__(self):"
+            },
+            {
+              "id": "B58429",
+              "linea": "        self.valor = valor"
+            },
+            {
+              "id": "B67465",
+              "linea": "caja = Caja(13)"
+            },
+            {
+              "id": "B56797",
+              "linea": "    def __init__(self, valor):"
+            },
+            {
+              "id": "B90050",
+              "linea": "        return f\"Caja({self.valor})\""
+            },
+            {
+              "id": "B13961",
+              "linea": "print(caja)"
+            },
+            {
+              "id": "B99792",
+              "linea": "class Caja:"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-13",
+          "nivel": 5,
+          "expected_order": [
+            "B94815",
+            "B63506",
+            "B98282",
+            "B32103",
+            "B26653",
+            "B99154",
+            "B60826"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B63506",
+              "linea": "    def __init__(self, valor):"
+            },
+            {
+              "id": "B99154",
+              "linea": "caja = Caja(14)"
+            },
+            {
+              "id": "B94815",
+              "linea": "class Caja:"
+            },
+            {
+              "id": "B60826",
+              "linea": "print(caja)"
+            },
+            {
+              "id": "B32103",
+              "linea": "    def __repr__(self):"
+            },
+            {
+              "id": "B26653",
+              "linea": "        return f\"Caja({self.valor})\""
+            },
+            {
+              "id": "B98282",
+              "linea": "        self.valor = valor"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-14",
+          "nivel": 5,
+          "expected_order": [
+            "B76112",
+            "B68794",
+            "B16484",
+            "B33581",
+            "B56029",
+            "B71871",
+            "B94995"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B56029",
+              "linea": "        return f\"Caja({self.valor})\""
+            },
+            {
+              "id": "B71871",
+              "linea": "caja = Caja(15)"
+            },
+            {
+              "id": "B76112",
+              "linea": "class Caja:"
+            },
+            {
+              "id": "B33581",
+              "linea": "    def __repr__(self):"
+            },
+            {
+              "id": "B68794",
+              "linea": "    def __init__(self, valor):"
+            },
+            {
+              "id": "B16484",
+              "linea": "        self.valor = valor"
+            },
+            {
+              "id": "B94995",
+              "linea": "print(caja)"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-15",
+          "nivel": 5,
+          "expected_order": [
+            "B91497",
+            "B18835",
+            "B44690",
+            "B30622",
+            "B44284",
+            "B77101",
+            "B71060"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B77101",
+              "linea": "caja = Caja(16)"
+            },
+            {
+              "id": "B71060",
+              "linea": "print(caja)"
+            },
+            {
+              "id": "B44690",
+              "linea": "        self.valor = valor"
+            },
+            {
+              "id": "B91497",
+              "linea": "class Caja:"
+            },
+            {
+              "id": "B18835",
+              "linea": "    def __init__(self, valor):"
+            },
+            {
+              "id": "B30622",
+              "linea": "    def __repr__(self):"
+            },
+            {
+              "id": "B44284",
+              "linea": "        return f\"Caja({self.valor})\""
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-16",
+          "nivel": 5,
+          "expected_order": [
+            "B81689",
+            "B63512",
+            "B38367",
+            "B62678",
+            "B98674",
+            "B46198",
+            "B42671",
+            "B76795",
+            "B35947",
+            "B60743"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B76795",
+              "linea": "sumar = acumulador()"
+            },
+            {
+              "id": "B98674",
+              "linea": "        total += valor"
+            },
+            {
+              "id": "B81689",
+              "linea": "def acumulador():"
+            },
+            {
+              "id": "B35947",
+              "linea": "print(sumar(17))"
+            },
+            {
+              "id": "B62678",
+              "linea": "        nonlocal total"
+            },
+            {
+              "id": "B38367",
+              "linea": "    def agregar(valor):"
+            },
+            {
+              "id": "B60743",
+              "linea": "print(sumar(18))"
+            },
+            {
+              "id": "B63512",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B46198",
+              "linea": "        return total"
+            },
+            {
+              "id": "B42671",
+              "linea": "    return agregar"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-17",
+          "nivel": 5,
+          "expected_order": [
+            "B95246",
+            "B15088",
+            "B48235",
+            "B18002",
+            "B59998",
+            "B50063",
+            "B65189",
+            "B49487",
+            "B90910",
+            "B42145"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B15088",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B42145",
+              "linea": "print(sumar(19))"
+            },
+            {
+              "id": "B49487",
+              "linea": "sumar = acumulador()"
+            },
+            {
+              "id": "B59998",
+              "linea": "        total += valor"
+            },
+            {
+              "id": "B48235",
+              "linea": "    def agregar(valor):"
+            },
+            {
+              "id": "B18002",
+              "linea": "        nonlocal total"
+            },
+            {
+              "id": "B90910",
+              "linea": "print(sumar(18))"
+            },
+            {
+              "id": "B65189",
+              "linea": "    return agregar"
+            },
+            {
+              "id": "B50063",
+              "linea": "        return total"
+            },
+            {
+              "id": "B95246",
+              "linea": "def acumulador():"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-18",
+          "nivel": 5,
+          "expected_order": [
+            "B99721",
+            "B97078",
+            "B17976",
+            "B36542",
+            "B47607",
+            "B82294",
+            "B69519",
+            "B61684",
+            "B21318",
+            "B69308"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B97078",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B36542",
+              "linea": "        nonlocal total"
+            },
+            {
+              "id": "B47607",
+              "linea": "        total += valor"
+            },
+            {
+              "id": "B17976",
+              "linea": "    def agregar(valor):"
+            },
+            {
+              "id": "B82294",
+              "linea": "        return total"
+            },
+            {
+              "id": "B61684",
+              "linea": "sumar = acumulador()"
+            },
+            {
+              "id": "B69308",
+              "linea": "print(sumar(20))"
+            },
+            {
+              "id": "B21318",
+              "linea": "print(sumar(19))"
+            },
+            {
+              "id": "B69519",
+              "linea": "    return agregar"
+            },
+            {
+              "id": "B99721",
+              "linea": "def acumulador():"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-19",
+          "nivel": 5,
+          "expected_order": [
+            "B42079",
+            "B86999",
+            "B68393",
+            "B11360",
+            "B27560",
+            "B49795",
+            "B90149",
+            "B82758",
+            "B31918",
+            "B74467"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B11360",
+              "linea": "        nonlocal total"
+            },
+            {
+              "id": "B49795",
+              "linea": "        return total"
+            },
+            {
+              "id": "B27560",
+              "linea": "        total += valor"
+            },
+            {
+              "id": "B42079",
+              "linea": "def acumulador():"
+            },
+            {
+              "id": "B90149",
+              "linea": "    return agregar"
+            },
+            {
+              "id": "B74467",
+              "linea": "print(sumar(21))"
+            },
+            {
+              "id": "B86999",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B31918",
+              "linea": "print(sumar(20))"
+            },
+            {
+              "id": "B68393",
+              "linea": "    def agregar(valor):"
+            },
+            {
+              "id": "B82758",
+              "linea": "sumar = acumulador()"
+            }
+          ]
+        },
+        {
+          "id": "ORD-5-20",
+          "nivel": 5,
+          "expected_order": [
+            "B90098",
+            "B15208",
+            "B61124",
+            "B66793",
+            "B89389",
+            "B94249",
+            "B10601",
+            "B63487",
+            "B41345",
+            "B43310"
+          ],
+          "explanation": "El orden de los pasos no es correcto.",
+          "bloques": [
+            {
+              "id": "B43310",
+              "linea": "print(sumar(22))"
+            },
+            {
+              "id": "B94249",
+              "linea": "        return total"
+            },
+            {
+              "id": "B15208",
+              "linea": "    total = 0"
+            },
+            {
+              "id": "B10601",
+              "linea": "    return agregar"
+            },
+            {
+              "id": "B61124",
+              "linea": "    def agregar(valor):"
+            },
+            {
+              "id": "B63487",
+              "linea": "sumar = acumulador()"
+            },
+            {
+              "id": "B66793",
+              "linea": "        nonlocal total"
+            },
+            {
+              "id": "B90098",
+              "linea": "def acumulador():"
+            },
+            {
+              "id": "B41345",
+              "linea": "print(sumar(21))"
+            },
+            {
+              "id": "B89389",
+              "linea": "        total += valor"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

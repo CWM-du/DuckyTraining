@@ -1,0 +1,1991 @@
+{
+  "tipo_juego": "detectar_error",
+  "instrucciones": "Identifica la línea de código que contiene el error y selecciónala.",
+  "niveles": [
+    {
+      "nivel": 1,
+      "pruebas": [
+        {
+          "id": "ERR-1-01",
+          "nivel": 1,
+          "expected_bug_id": 0,
+          "explanation": "Se usa == en lugar de = para asignar.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "x == 10"
+            },
+            {
+              "id": 1,
+              "linea": "print(x)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-02",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Python diferencia mayúsculas y minúsculas; debe ser 'print'.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "y = 5"
+            },
+            {
+              "id": 1,
+              "linea": "Print(y)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-03",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Falta un operando después del operador +.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "z = 8"
+            },
+            {
+              "id": 1,
+              "linea": "print(z + )"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-04",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Falta el paréntesis de cierre en print().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "a = 3"
+            },
+            {
+              "id": 1,
+              "linea": "print(a"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-05",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "El operador de incremento += no admite espacios.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "b = 4"
+            },
+            {
+              "id": 1,
+              "linea": "b + = 1"
+            },
+            {
+              "id": 2,
+              "linea": "print(b)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-06",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "El operador *** no es válido en Python (se usa **).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "c = 2"
+            },
+            {
+              "id": 1,
+              "linea": "print(c *** 2)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-07",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Hay un paréntesis de cierre adicional.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "d = 7"
+            },
+            {
+              "id": 1,
+              "linea": "print(d))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-08",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "La expresión de suma está incompleta.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "e = 9"
+            },
+            {
+              "id": 1,
+              "linea": "e = e +"
+            },
+            {
+              "id": 2,
+              "linea": "print(e)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-09",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Paréntesis de apertura adicional sin cerrar.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "f = 1"
+            },
+            {
+              "id": 1,
+              "linea": "print((f)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-10",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "En Python 3, la instrucción print requiere paréntesis.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "g = 10"
+            },
+            {
+              "id": 1,
+              "linea": "print g"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-11",
+          "nivel": 1,
+          "expected_bug_id": 0,
+          "explanation": "Falta la comilla de cierre en el string.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "h = 'texto"
+            },
+            {
+              "id": 1,
+              "linea": "print(h)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-12",
+          "nivel": 1,
+          "expected_bug_id": 2,
+          "explanation": "El operador de división entera es // (sin espacios).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "i = 5"
+            },
+            {
+              "id": 1,
+              "linea": "j = 2"
+            },
+            {
+              "id": 2,
+              "linea": "print(i / / j)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-13",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Python no soporta el operador de incremento ++.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "k = 1"
+            },
+            {
+              "id": 1,
+              "linea": "k ++"
+            },
+            {
+              "id": 2,
+              "linea": "print(k)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-14",
+          "nivel": 1,
+          "expected_bug_id": 2,
+          "explanation": "La barra invertida (\\) no es el operador de división (/).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "l = 10"
+            },
+            {
+              "id": 1,
+              "linea": "m = 2"
+            },
+            {
+              "id": 2,
+              "linea": "print(l \\ m)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-15",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "El operador de asignación correcto es *=, no =*.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "n = 5"
+            },
+            {
+              "id": 1,
+              "linea": "n =* 2"
+            },
+            {
+              "id": 2,
+              "linea": "print(n)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-16",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "No se puede asignar un valor a una palabra reservada como True.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "o = 4"
+            },
+            {
+              "id": 1,
+              "linea": "True = o"
+            },
+            {
+              "id": 2,
+              "linea": "print(o)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-17",
+          "nivel": 1,
+          "expected_bug_id": 2,
+          "explanation": "Uso innecesario e inválido de dos puntos al final de la línea.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "p = 100"
+            },
+            {
+              "id": 1,
+              "linea": "print(p)"
+            },
+            {
+              "id": 2,
+              "linea": "q = p + 1:"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-18",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Falta una coma o un operador de concatenación entre argumentos.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "r = 10"
+            },
+            {
+              "id": 1,
+              "linea": "print(\"Valor\" r)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-19",
+          "nivel": 1,
+          "expected_bug_id": 1,
+          "explanation": "Paréntesis de cierre redundante en la llamada a print.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "s = 5"
+            },
+            {
+              "id": 1,
+              "linea": "print(s, ) )"
+            }
+          ]
+        },
+        {
+          "id": "ERR-1-20",
+          "nivel": 1,
+          "expected_bug_id": 2,
+          "explanation": "Falta paréntesis de cierre en la última línea.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "t = 2"
+            },
+            {
+              "id": 1,
+              "linea": "del t"
+            },
+            {
+              "id": 2,
+              "linea": "print(t"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 2,
+      "pruebas": [
+        {
+          "id": "ERR-2-01",
+          "nivel": 2,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) al final de la instrucción for.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "for i in range(5)"
+            },
+            {
+              "id": 1,
+              "linea": "    print(i)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-02",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "Falta indentación en el cuerpo del bucle for.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "for i in range(5):"
+            },
+            {
+              "id": 1,
+              "linea": "print(i)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-03",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "Faltan los dos puntos (:) al final de la instrucción if.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "x = 5"
+            },
+            {
+              "id": 1,
+              "linea": "if x > 3"
+            },
+            {
+              "id": 2,
+              "linea": "    print(x)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-04",
+          "nivel": 2,
+          "expected_bug_id": 3,
+          "explanation": "La indentación es inconsistente con el resto del bloque.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "y = -1"
+            },
+            {
+              "id": 1,
+              "linea": "if y < 0:"
+            },
+            {
+              "id": 2,
+              "linea": "  print(y)"
+            },
+            {
+              "id": 3,
+              "linea": " print(0)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-05",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "Faltan los dos puntos (:) al final de la instrucción while.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "z = 10"
+            },
+            {
+              "id": 1,
+              "linea": "while z > 0"
+            },
+            {
+              "id": 2,
+              "linea": "    z -= 1"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-06",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "Se debe usar == para evaluar una condición de igualdad, no =.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "a = 4"
+            },
+            {
+              "id": 1,
+              "linea": "if a = 4:"
+            },
+            {
+              "id": 2,
+              "linea": "    print(a)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-07",
+          "nivel": 2,
+          "expected_bug_id": 0,
+          "explanation": "Falta la palabra clave 'in' en la cabecera del bucle for.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "for i range(3):"
+            },
+            {
+              "id": 1,
+              "linea": "    print(i)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-08",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "El operador de comparación 'mayor o igual' es >=, no =>.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "b = 2"
+            },
+            {
+              "id": 1,
+              "linea": "if b => 1:"
+            },
+            {
+              "id": 2,
+              "linea": "    print(b)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-09",
+          "nivel": 2,
+          "expected_bug_id": 2,
+          "explanation": "Hay un paréntesis de cierre adicional.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "c = 5"
+            },
+            {
+              "id": 1,
+              "linea": "if c > 2:"
+            },
+            {
+              "id": 2,
+              "linea": "    print(c))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-10",
+          "nivel": 2,
+          "expected_bug_id": 2,
+          "explanation": "Falta indentación en el cuerpo del bucle while.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "d = 0"
+            },
+            {
+              "id": 1,
+              "linea": "while d < 5:"
+            },
+            {
+              "id": 2,
+              "linea": "d += 1"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-11",
+          "nivel": 2,
+          "expected_bug_id": 2,
+          "explanation": "Faltan los dos puntos (:) en la instrucción else.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "for i in range(2):"
+            },
+            {
+              "id": 1,
+              "linea": "    pass"
+            },
+            {
+              "id": 2,
+              "linea": "else"
+            },
+            {
+              "id": 3,
+              "linea": "    print('Fin')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-12",
+          "nivel": 2,
+          "expected_bug_id": 3,
+          "explanation": "Faltan los dos puntos (:) al final de elif.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "e = 3"
+            },
+            {
+              "id": 1,
+              "linea": "if e == 3:"
+            },
+            {
+              "id": 2,
+              "linea": "    print('Tres')"
+            },
+            {
+              "id": 3,
+              "linea": "elif e == 2"
+            },
+            {
+              "id": 4,
+              "linea": "    print('Dos')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-13",
+          "nivel": 2,
+          "expected_bug_id": 3,
+          "explanation": "En Python se utiliza 'elif', no 'elseif'.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "f = 1"
+            },
+            {
+              "id": 1,
+              "linea": "if f < 5:"
+            },
+            {
+              "id": 2,
+              "linea": "    print(f)"
+            },
+            {
+              "id": 3,
+              "linea": "elseif f == 5:"
+            },
+            {
+              "id": 4,
+              "linea": "    print('Cinco')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-14",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "En Python 3, se usa != en lugar de <> para distinto.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "g = 10"
+            },
+            {
+              "id": 1,
+              "linea": "if g <> 10:"
+            },
+            {
+              "id": 2,
+              "linea": "    print('No es 10')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-15",
+          "nivel": 2,
+          "expected_bug_id": 0,
+          "explanation": "Falta una coma para separar los elementos de la lista.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "for i in [1, 2 3]:"
+            },
+            {
+              "id": 1,
+              "linea": "    print(i)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-16",
+          "nivel": 2,
+          "expected_bug_id": 2,
+          "explanation": "Indentación faltante en la primera línea del bloque if.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "h = 5"
+            },
+            {
+              "id": 1,
+              "linea": "if h == 5:"
+            },
+            {
+              "id": 2,
+              "linea": "print(h)"
+            },
+            {
+              "id": 3,
+              "linea": "    print('ok')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-17",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "Python no tiene una estructura nativa de bucle do-while.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "i = 0"
+            },
+            {
+              "id": 1,
+              "linea": "do:"
+            },
+            {
+              "id": 2,
+              "linea": "    i += 1"
+            },
+            {
+              "id": 3,
+              "linea": "while i < 5"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-18",
+          "nivel": 2,
+          "expected_bug_id": 1,
+          "explanation": "Python no usa switch (se usa match-case en Python 3.10+).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "j = 2"
+            },
+            {
+              "id": 1,
+              "linea": "switch j:"
+            },
+            {
+              "id": 2,
+              "linea": "    case 2: print('Dos')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-19",
+          "nivel": 2,
+          "expected_bug_id": 2,
+          "explanation": "Paréntesis sin cerrar en la llamada a print().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "k = 3"
+            },
+            {
+              "id": 1,
+              "linea": "if k == 3:"
+            },
+            {
+              "id": 2,
+              "linea": "    print('Es 3'"
+            },
+            {
+              "id": 3,
+              "linea": "    print('Fin')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-2-20",
+          "nivel": 2,
+          "expected_bug_id": 0,
+          "explanation": "Hay una coma adicional sin un tercer argumento válido en range().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "for x in range(1, 10, ):"
+            },
+            {
+              "id": 1,
+              "linea": "    print(x)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 3,
+      "pruebas": [
+        {
+          "id": "ERR-3-01",
+          "nivel": 3,
+          "expected_bug_id": 0,
+          "explanation": "Faltan dos puntos (:) en la definición de la función def.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def saludar(nombre)"
+            },
+            {
+              "id": 1,
+              "linea": "    print(nombre)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-02",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "El cuerpo de la función requiere obligatoriamente indentación.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def sumar(a, b):"
+            },
+            {
+              "id": 1,
+              "linea": "return a + b"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-03",
+          "nivel": 3,
+          "expected_bug_id": 0,
+          "explanation": "Falta el corchete de cierre ']' en la definición de la lista.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "lista = [1, 2, 3"
+            },
+            {
+              "id": 1,
+              "linea": "print(lista)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-04",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Uso incorrecto de corchete en lugar de paréntesis de cierre.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "texto = 'hola'"
+            },
+            {
+              "id": 1,
+              "linea": "print(texto.upper(])"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-05",
+          "nivel": 3,
+          "expected_bug_id": 2,
+          "explanation": "Falta el paréntesis de cierre al invocar la función.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def test():"
+            },
+            {
+              "id": 1,
+              "linea": "    pass"
+            },
+            {
+              "id": 2,
+              "linea": "test("
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-06",
+          "nivel": 3,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) entre la clave y el valor del diccionario.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "dic = {'a' 1, 'b': 2}"
+            },
+            {
+              "id": 1,
+              "linea": "print(dic)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-07",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Falta el operando que indica el exponente después de **.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def cuadrado(x):"
+            },
+            {
+              "id": 1,
+              "linea": "    return x **"
+            },
+            {
+              "id": 2,
+              "linea": "print(cuadrado(3))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-08",
+          "nivel": 3,
+          "expected_bug_id": 3,
+          "explanation": "Indentación inconsistente en la misma estructura iterativa.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "nums = [1, 2, 3]"
+            },
+            {
+              "id": 1,
+              "linea": "for n in nums:"
+            },
+            {
+              "id": 2,
+              "linea": "  print(n)"
+            },
+            {
+              "id": 3,
+              "linea": "    print(n+1)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-09",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Uso de una variable que no ha sido definida previamente (NameError).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def mostrar():"
+            },
+            {
+              "id": 1,
+              "linea": "    print(variable_inexistente)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-10",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Un paréntesis de cierre de más al llamar al método append().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "mi_lista = [1, 2, 3]"
+            },
+            {
+              "id": 1,
+              "linea": "mi_lista.append(4))"
+            },
+            {
+              "id": 2,
+              "linea": "print(mi_lista)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-11",
+          "nivel": 3,
+          "expected_bug_id": 2,
+          "explanation": "Argumento faltante después de la coma al llamar a la función.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def restar(a, b):"
+            },
+            {
+              "id": 1,
+              "linea": "    return a - b"
+            },
+            {
+              "id": 2,
+              "linea": "print(restar(5, ))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-12",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Cierre incorrecto con paréntesis en vez del corchete ']'.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "dict = {'x': 10, 'y': 20}"
+            },
+            {
+              "id": 1,
+              "linea": "print(dict['x')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-13",
+          "nivel": 3,
+          "expected_bug_id": 0,
+          "explanation": "Falta una coma para separar los argumentos en la función.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def multiplicar(a b):"
+            },
+            {
+              "id": 1,
+              "linea": "    return a * b"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-14",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "El índice al que se intenta acceder está fuera de rango (IndexError).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "nombres = ['Ana', 'Luis']"
+            },
+            {
+              "id": 1,
+              "linea": "print(nombres[3])"
+            },
+            {
+              "id": 2,
+              "linea": "nombres[0] = 'Pepe'"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-15",
+          "nivel": 3,
+          "expected_bug_id": 0,
+          "explanation": "Falta el cuerpo (pass) y la indentación de la primera función.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def vacia():"
+            },
+            {
+              "id": 1,
+              "linea": "def otra():"
+            },
+            {
+              "id": 2,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-16",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Corchete de cierre inválido y sin abrir en la llamada al método.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "cadena = 'Hola'"
+            },
+            {
+              "id": 1,
+              "linea": "print(cadena.split(' ')] )"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-17",
+          "nivel": 3,
+          "expected_bug_id": 0,
+          "explanation": "Falta la llave de cierre '}' para completar el conjunto (set).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "conjunto = {1, 2, 3"
+            },
+            {
+              "id": 1,
+              "linea": "print(conjunto)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-18",
+          "nivel": 3,
+          "expected_bug_id": 2,
+          "explanation": "La función no acepta argumentos pero se le pasa uno en la llamada.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def f():"
+            },
+            {
+              "id": 1,
+              "linea": "    return 1"
+            },
+            {
+              "id": 2,
+              "linea": "print(f(2))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-19",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "El método insert() requiere exactamente 2 argumentos (índice, elemento).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "lista = [1, 2]"
+            },
+            {
+              "id": 1,
+              "linea": "lista.insert(0)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-3-20",
+          "nivel": 3,
+          "expected_bug_id": 1,
+          "explanation": "Las tuplas son inmutables, no soportan la reasignación de sus elementos.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "tupla = (1, 2)"
+            },
+            {
+              "id": 1,
+              "linea": "tupla[0] = 5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 4,
+      "pruebas": [
+        {
+          "id": "ERR-4-01",
+          "nivel": 4,
+          "expected_bug_id": 2,
+          "explanation": "Faltan los dos puntos (:) al final de la línea except.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "try:"
+            },
+            {
+              "id": 1,
+              "linea": "    x = int('a')"
+            },
+            {
+              "id": 2,
+              "linea": "except ValueError"
+            },
+            {
+              "id": 3,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-02",
+          "nivel": 4,
+          "expected_bug_id": 0,
+          "explanation": "Falta la palabra clave 'in' dentro de la list comprehension.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "cuadrados = [x*x for x range(10)]"
+            },
+            {
+              "id": 1,
+              "linea": "print(cuadrados)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-03",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "En la condición de comprensión se usa '==' y no '='.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def evens(nums):"
+            },
+            {
+              "id": 1,
+              "linea": "    return [x for x in nums if x % 2 = 0]"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-04",
+          "nivel": 4,
+          "expected_bug_id": 3,
+          "explanation": "El bloque del except debe estar indentado.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "try:"
+            },
+            {
+              "id": 1,
+              "linea": "    print(1/0)"
+            },
+            {
+              "id": 2,
+              "linea": "except ZeroDivisionError:"
+            },
+            {
+              "id": 3,
+              "linea": "print('Error')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-05",
+          "nivel": 4,
+          "expected_bug_id": 0,
+          "explanation": "Falta el corchete de cierre ']' en la list comprehension.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "pares = [(x, x+1) for x in range(5)"
+            },
+            {
+              "id": 1,
+              "linea": "print(pares)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-06",
+          "nivel": 4,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) en la declaración inicial de def.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def mult(x, y=2)"
+            },
+            {
+              "id": 1,
+              "linea": "    return x * y"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-07",
+          "nivel": 4,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) separando clave y valor en la dict comprehension.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "d_comp = {x x**2 for x in range(5)}"
+            },
+            {
+              "id": 1,
+              "linea": "print(d_comp)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-08",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Falta el paréntesis de cierre en la función sum().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def func(*args):"
+            },
+            {
+              "id": 1,
+              "linea": "    return sum(args"
+            },
+            {
+              "id": 2,
+              "linea": "func(1, 2, 3)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-09",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Falta la palabra clave 'in' en el desempaquetado del bucle for.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "pares = [(1, 'a'), (2, 'b')]"
+            },
+            {
+              "id": 1,
+              "linea": "for num, letra pares:"
+            },
+            {
+              "id": 2,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-10",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Faltan los dos puntos (:) después del parámetro de la expresión lambda.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "datos = [1, 2, 3]"
+            },
+            {
+              "id": 1,
+              "linea": "res = list(map(lambda x x*2, datos))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-11",
+          "nivel": 4,
+          "expected_bug_id": 2,
+          "explanation": "Faltan los dos puntos (:) después de la palabra finally.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "try:"
+            },
+            {
+              "id": 1,
+              "linea": "    res = 10 / 0"
+            },
+            {
+              "id": 2,
+              "linea": "finally"
+            },
+            {
+              "id": 3,
+              "linea": "    print('Fin')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-12",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Falta el paréntesis de cierre al instanciar la excepción raise.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class ErrorCustom(Exception): pass"
+            },
+            {
+              "id": 1,
+              "linea": "raise ErrorCustom('Ups'"
+            },
+            {
+              "id": 2,
+              "linea": "print('Fin')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-13",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Sintaxis inválida en la condición 'if' (los dos puntos sobran).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "x = [1, 2, 3]"
+            },
+            {
+              "id": 1,
+              "linea": "y = [i for i in x if i > 1:]"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-14",
+          "nivel": 4,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) en el encabezado del bloque with.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "with open('test.txt', 'r') as f"
+            },
+            {
+              "id": 1,
+              "linea": "    data = f.read()"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-15",
+          "nivel": 4,
+          "expected_bug_id": 2,
+          "explanation": "Falta el paréntesis de cierre en la llamada a print().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def f(**kwargs):"
+            },
+            {
+              "id": 1,
+              "linea": "    for k, v in kwargs.items():"
+            },
+            {
+              "id": 2,
+              "linea": "        print(k, v"
+            },
+            {
+              "id": 3,
+              "linea": "f(a=1)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-16",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Falta la palabra 'else' en el operador condicional ternario.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "n = 5"
+            },
+            {
+              "id": 1,
+              "linea": "res = 'P' if n % 2 == 0 'I'"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-17",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "La sintaxis 'from ... import' está incompleta (falta qué importar).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "import os"
+            },
+            {
+              "id": 1,
+              "linea": "from sys import"
+            },
+            {
+              "id": 2,
+              "linea": "print(os.name)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-18",
+          "nivel": 4,
+          "expected_bug_id": 3,
+          "explanation": "Coma sobrante sin proporcionar el argumento extra en la llamada.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def foo(a, b=[]):"
+            },
+            {
+              "id": 1,
+              "linea": "    b.append(a)"
+            },
+            {
+              "id": 2,
+              "linea": "    return b"
+            },
+            {
+              "id": 3,
+              "linea": "print(foo(1, ))"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-19",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Falta la coma necesaria para el empaquetado/desempaquetado (b, a).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "a, b = 1, 2"
+            },
+            {
+              "id": 1,
+              "linea": "a, b = b a"
+            }
+          ]
+        },
+        {
+          "id": "ERR-4-20",
+          "nivel": 4,
+          "expected_bug_id": 1,
+          "explanation": "Paréntesis de cierre sobrante al usar unpacking con asterisco (*).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "lista = [1, 2, 3]"
+            },
+            {
+              "id": 1,
+              "linea": "print(*lista,) )"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nivel": 5,
+      "pruebas": [
+        {
+          "id": "ERR-5-01",
+          "nivel": 5,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) al definir el nombre de la clase.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Perro"
+            },
+            {
+              "id": 1,
+              "linea": "    def ladrar(self):"
+            },
+            {
+              "id": 2,
+              "linea": "        pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-02",
+          "nivel": 5,
+          "expected_bug_id": 1,
+          "explanation": "Faltan los dos puntos (:) en la definición del método inicializador.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Gato:"
+            },
+            {
+              "id": 1,
+              "linea": "    def __init__(self, nombre)"
+            },
+            {
+              "id": 2,
+              "linea": "        self.nombre = nombre"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-03",
+          "nivel": 5,
+          "expected_bug_id": 2,
+          "explanation": "Falta cerrar el paréntesis externo del método list o print().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def generador():"
+            },
+            {
+              "id": 1,
+              "linea": "    yield 1"
+            },
+            {
+              "id": 2,
+              "linea": "print(list(generador())"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-04",
+          "nivel": 5,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) en la declaración de la función asíncrona.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "async def fetch()"
+            },
+            {
+              "id": 1,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-05",
+          "nivel": 5,
+          "expected_bug_id": 3,
+          "explanation": "Error de indentación al asignar atributos dentro de la clase.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Vehiculo:"
+            },
+            {
+              "id": 1,
+              "linea": "    def __init__(self):"
+            },
+            {
+              "id": 2,
+              "linea": "     self.ruedas = 4"
+            },
+            {
+              "id": 3,
+              "linea": "        self.tipo = 'Coche'"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-06",
+          "nivel": 5,
+          "expected_bug_id": 3,
+          "explanation": "Un decorador debe retornar la función envoltorio sin llamarla (sin paréntesis).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def decor(func):"
+            },
+            {
+              "id": 1,
+              "linea": "    def env():"
+            },
+            {
+              "id": 2,
+              "linea": "        return func()"
+            },
+            {
+              "id": 3,
+              "linea": "    return env()"
+            },
+            {
+              "id": 4,
+              "linea": "@decor"
+            },
+            {
+              "id": 5,
+              "linea": "def hola(): pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-07",
+          "nivel": 5,
+          "expected_bug_id": 2,
+          "explanation": "Faltan los dos puntos (:) al finalizar la declaración de herencia de clase B.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class A:"
+            },
+            {
+              "id": 1,
+              "linea": "    pass"
+            },
+            {
+              "id": 2,
+              "linea": "class B(A)"
+            },
+            {
+              "id": 3,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-08",
+          "nivel": 5,
+          "expected_bug_id": 2,
+          "explanation": "Faltan los dos puntos (:) en la definición del classmethod obtener(cls).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Singleton:"
+            },
+            {
+              "id": 1,
+              "linea": "    @classmethod"
+            },
+            {
+              "id": 2,
+              "linea": "    def obtener(cls)"
+            },
+            {
+              "id": 3,
+              "linea": "        pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-09",
+          "nivel": 5,
+          "expected_bug_id": 5,
+          "explanation": "Falta la llave y la comilla de cierre correspondientes en el f-string.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Punto:"
+            },
+            {
+              "id": 1,
+              "linea": "    def __init__(self, x, y):"
+            },
+            {
+              "id": 2,
+              "linea": "        self.x = x"
+            },
+            {
+              "id": 3,
+              "linea": "        self.y = y"
+            },
+            {
+              "id": 4,
+              "linea": "    def __str__(self):"
+            },
+            {
+              "id": 5,
+              "linea": "        return f'Punto({self.x}, {self.y}'"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-10",
+          "nivel": 5,
+          "expected_bug_id": 0,
+          "explanation": "Faltan los dos puntos (:) al concluir la firma de la función anotada.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def f(x: int) -> int"
+            },
+            {
+              "id": 1,
+              "linea": "    return x"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-11",
+          "nivel": 5,
+          "expected_bug_id": 2,
+          "explanation": "Faltan los dos puntos (:) en el encabezado del método estático util().",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Base:"
+            },
+            {
+              "id": 1,
+              "linea": "    @staticmethod"
+            },
+            {
+              "id": 2,
+              "linea": "    def util()"
+            },
+            {
+              "id": 3,
+              "linea": "        pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-12",
+          "nivel": 5,
+          "expected_bug_id": 2,
+          "explanation": "Falta una coma al separar la lista de superclases (herencia múltiple).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Mixin:"
+            },
+            {
+              "id": 1,
+              "linea": "    def mix(self): pass"
+            },
+            {
+              "id": 2,
+              "linea": "class MiClase(Base Mixin):"
+            },
+            {
+              "id": 3,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-13",
+          "nivel": 5,
+          "expected_bug_id": 1,
+          "explanation": "En Python no se puede declarar global y asignar un valor en la misma línea.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "def main():"
+            },
+            {
+              "id": 1,
+              "linea": "    global x = 5"
+            },
+            {
+              "id": 2,
+              "linea": "    print(x)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-14",
+          "nivel": 5,
+          "expected_bug_id": 0,
+          "explanation": "Paréntesis sin cerrar en el decorador, causando un error de sintaxis.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "@mi_decorador("
+            },
+            {
+              "id": 1,
+              "linea": "def funcion():"
+            },
+            {
+              "id": 2,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-15",
+          "nivel": 5,
+          "expected_bug_id": 3,
+          "explanation": "El constructor espera un único argumento, pero se le proporcionan dos.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Nodo:"
+            },
+            {
+              "id": 1,
+              "linea": "    def __init__(self, valor):"
+            },
+            {
+              "id": 2,
+              "linea": "        self.valor = valor"
+            },
+            {
+              "id": 3,
+              "linea": "n = Nodo(1, 2)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-16",
+          "nivel": 5,
+          "expected_bug_id": 4,
+          "explanation": "A una propiedad (@property) se accede como atributo sin paréntesis m.pi.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Math:"
+            },
+            {
+              "id": 1,
+              "linea": "    @property"
+            },
+            {
+              "id": 2,
+              "linea": "    def pi(self): return 3.14"
+            },
+            {
+              "id": 3,
+              "linea": "m = Math()"
+            },
+            {
+              "id": 4,
+              "linea": "print(m.pi())"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-17",
+          "nivel": 5,
+          "expected_bug_id": 1,
+          "explanation": "Falta el paréntesis de cierre en la llamada a await.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "async def principal():"
+            },
+            {
+              "id": 1,
+              "linea": "    await asyncio.sleep(1"
+            },
+            {
+              "id": 2,
+              "linea": "    print('ok')"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-18",
+          "nivel": 5,
+          "expected_bug_id": 2,
+          "explanation": "Falta la coma requerida entre los argumentos 'k' y 'v' del super().__setitem__.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class C(dict):"
+            },
+            {
+              "id": 1,
+              "linea": "    def __setitem__(self, k, v):"
+            },
+            {
+              "id": 2,
+              "linea": "        super().__setitem__(k v)"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-19",
+          "nivel": 5,
+          "expected_bug_id": 1,
+          "explanation": "Corchete sin cerrar en la anotación de tipos (List[int]).",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "from typing import List"
+            },
+            {
+              "id": 1,
+              "linea": "def procesar(datos: List[int) -> int:"
+            },
+            {
+              "id": 2,
+              "linea": "    pass"
+            }
+          ]
+        },
+        {
+          "id": "ERR-5-20",
+          "nivel": 5,
+          "expected_bug_id": 4,
+          "explanation": "El acceso directo a atributos privados falla por name mangling, lanza AttributeError.",
+          "codigo": [
+            {
+              "id": 0,
+              "linea": "class Data:"
+            },
+            {
+              "id": 1,
+              "linea": "    def __init__(self):"
+            },
+            {
+              "id": 2,
+              "linea": "        self.__privado = 1"
+            },
+            {
+              "id": 3,
+              "linea": "d = Data()"
+            },
+            {
+              "id": 4,
+              "linea": "print(d.__privado)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

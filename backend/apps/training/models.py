@@ -81,16 +81,37 @@ class DailyExerciseProgress(models.Model):
     class Meta:
         constraints = [models.UniqueConstraint(fields=['cycle', 'exercise'], name='unique_training_daily_exercise')]
 
-
+    #Nueva version modelo Mejorada segun F5
 class TrainingAttempt(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
     cycle = models.ForeignKey(DailyCycle, on_delete=models.CASCADE)
     submitted_at = models.DateTimeField(auto_now_add=True)
-    answer_payload = models.JSONField()
+    answer_payload = models.JSONField(
+        help_text="Carga útil enviada por React para poder depurar fallos"
+    )
     is_correct = models.BooleanField()
     error_explanation = models.TextField(blank=True)
+    
+    # NUEVOS CAMPOS REQUERIDOS POR F5
+    variant_reference = models.CharField(
+        max_length=100, 
+        help_text="Identificador exacto de la variante JSON que se sirvió"
+    )
+    attempt_number = models.PositiveSmallIntegerField(
+        help_text="Número de intento de 1 a 5"
+    )
 
+    class Meta:
+        ordering = ['-submitted_at']
+        # Índice vital para que el cálculo de intentos por usuario/ejercicio/día sea ultra rápido
+        indexes = [
+            models.Index(fields=['user', 'exercise', 'cycle']),
+        ]
+
+    def __str__(self):
+        resultado = "✅" if self.is_correct else "❌"
+        return f"{self.user.username} - Ejercicio {self.exercise.number} (Intento {self.attempt_number}): {resultado}"
 
 class SkillProgress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
